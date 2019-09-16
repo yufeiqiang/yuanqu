@@ -1,0 +1,22 @@
+<!--logs.wxml-->
+<view class="page">
+    <view class="page__bd">
+        <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
+            <mp-cells>
+                <mp-cell prop="phone" show-error  title="手机号" ext-class="weui-cell_vcode">
+                    <input  data-field="phone" bindinput="formInputChange" name='phone' class="weui-input" placeholder="请输入手机号码"/>
+                    <view slot="footer" bindtap='verification' class="weui-vcode-btn">{{codetext}}</view>
+                </mp-cell>
+                <mp-cell prop="verification_code" show-error title="验证码" ext-class=" weui-cell_vcode">
+                    <input  data-field="verification_code" bindinput="formInputChange" name="verification_code" class="weui-input" placeholder="请输入验证码"/>
+                </mp-cell>
+                <!-- <mp-cell  prop="phone" show-error title="电话" ext-class=" weui-cell_vcode">
+                   
+                </mp-cell> -->
+            </mp-cells>
+        </mp-form>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+        </view>
+    </view>
+</view>

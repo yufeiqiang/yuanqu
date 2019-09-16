@@ -1,0 +1,15 @@
+@import '../../weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+.log-item {
+  margin: 10rpx;
+}
+.weui-cell_vcode input{
+  height: 3em
+}
+.page__bd{
+  padding-right: 20rpx;
+}
