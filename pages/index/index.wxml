@@ -4,24 +4,105 @@
     <swiper
       indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
       interval="{{interval}}" duration="{{duration}}"  style="height:{{height}}px">
-      <block wx:for="{{bannerList}}" wx:key="*this">
+      <block wx:for="{{bannerList}}" wx:key="item.id">
         <swiper-item>
           <view class="swiper-item">
-            <image src='https://www.zhiqushequ.cn/{{item.pic}}' style="height:{{height}}px" bindload="setContainerHeight"></image>
+            <image src='{{baseUrl}}{{item.pic}}' style="height:{{height}}px" 
+            data-height="height"
+            bindload="setContainerHeight"></image>
           </view>
         </swiper-item>
       </block>
     </swiper>
   </view>
-  <view>
-    <swiper class="swiper_container" vertical="true"circular="true" autoplay="true" circular="true" interval="3000">
-      <block wx:for="{{inforList}}" wx:key="*this">
-        <navigator url="{{item.url}}" open-type="navigate">
-          <swiper-item>
-            <view class="swiper_item">{{item.title}}</view>
-          </swiper-item>
-        </navigator>
-      </block>
-    </swiper>
+  <view class='notice'>
+    <view class='notice_left'>
+      <image src='../../image/index/gonggao.png'></image>
+    </view>
+    <view class='notice_right'>
+      <swiper class="swiper_container" vertical="true" circular="true" autoplay="true" circular="true" interval="3000">
+        <block wx:for="{{inforList}}" wx:key="item.id">
+          <navigator url="{{item.url}}" open-type="navigate">
+            <swiper-item>
+              <view class="swiper_item">{{item.title}}</view>
+            </swiper-item>
+          </navigator>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class='barList'>
+    <view class='barList_item'>
+      <navigator url='../recommend/recommend' hover-class="none">
+          <image src='../../image/index/bar01.png'></image>
+        <view>推荐</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='../course/course' hover-class="none">
+          <image src='../../image/index/bar02.png'></image>
+        <view>课程</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar03.png'></image>
+        <view>活动</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar04.png'></image>
+        <view>资讯</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar05.png'></image>
+        <view>办公预定</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar06.png'></image>
+        <view>园区服务</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar07.png'></image>
+        <view>园区论坛</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar08.png'></image>
+        <view>访客预约</view>
+      </navigator>
+    </view>
+    <view class='barList_item'>
+      <navigator url='' hover-class="none">
+          <image src='../../image/index/bar09.png'></image>
+        <view>意见反馈</view>
+      </navigator>
+    </view>
+  </view>
+  <view class='inform'>
+    <view class='poster_head inform_head'>园区风采</view>
+    <scroll-view class="scroll-view_H" style=" white-space: nowrap; display: flex"  scroll-x style="width: 100%">
+      <view class='inform_box'>
+        <view  class='inform_item' wx:for="{{information}}" wx:key="item.id">
+          <image src='{{baseUrl}}{{item.pic}}'></image>
+          <view class='text_title'>{{item.title}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='poster'>
+    <view class='poster_head'>广告</view>
+    <view class='poster_item' wx:for="{{poster}}" wx:key="item.id">
+      <view class='poster_text'>{{item.title}}</view>
+      <image src='{{baseUrl}}{{item.pic}}'></image>
+    </view>
   </view>
 </view>

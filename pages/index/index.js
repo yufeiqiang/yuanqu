@@ -10,9 +10,13 @@ Page({
     autoplay: false,
     circular: false,
     interval: 2000,
-    duration: 500,
+    duration: 100,
     height:0,
-    inforList:[]
+    inforList:[],
+    information:[],
+    poster:[],
+    informHeight:0,
+    baseUrl:app.globalData.baseUrl
   },
   //事件处理函数
 
@@ -20,6 +24,8 @@ Page({
     // console.log(wx.getStorageSync('user'))
     this.requestBanner()
     this.requestInfor()
+    this.inform()
+    this.posterList()
     
   },
   /**请求轮播图 */
@@ -32,9 +38,9 @@ Page({
       "n": "5"
     };
     request.getRequest('cms/info/cmsInfo/crud/pagelist',params).then(res=>{
-      if(res.data.code==200){
+      if(res.code==200){
         this.setData({
-          bannerList:res.data.data.list
+          bannerList:res.data.list
         })
       }
       // console.log(res)
@@ -48,13 +54,45 @@ Page({
       "status": "50"
     };
     request.getRequest('cms/info/cmsInfo/crud/pagelist', params).then(res=>{
-      console.log(res)
-      if(res.data.code==200){
+      // console.log(res)
+      if(res.code==200){
         this.setData({
-          inforList: res.data.data.list
+          inforList: res.data.list
         })
       }
     }).catch(err=>{})
+  },
+  /**请求资讯照片 */
+  inform:function(){
+    let params = {
+      "columns": "1",
+      "types": "8",
+      "status": "50"
+    };
+    request.getRequest('cms/info/cmsInfo/crud/pagelist', params).then(res => {
+      // console.log(res)
+      if (res.code == 200) {
+        this.setData({
+          information: res.data.list
+        })
+      }
+    }).catch(err => { })
+  },
+  /**请求广告列表 */
+  posterList:function(){
+    let params = {
+      "columns": "1",
+      "types": "5",
+      "status": "50"
+    };
+    request.getRequest('cms/info/cmsInfo/crud/pagelist', params).then(res => {
+      // console.log(res)
+      if (res.code == 200) {
+        this.setData({
+          poster: res.data.list
+        })
+      }
+    }).catch(err => { })
   },
   /**设置轮播高度自适应 */
   setContainerHeight:function(e){
@@ -69,8 +107,18 @@ Page({
     // 获取屏幕和原图的比例
     let scale = screenWidth / imgWidth;
     // 设置容器的高度
-    this.setData({
-      height:imgHeight*scale
-    })
+    // console.log(e.target.dataset.height)
+    switch (e.target.dataset.height) {
+      case 'height':
+          this.setData({
+            height: imgHeight * scale
+          })
+          break;
+      case 'informHeight':
+        this.setData({
+          informHeight: imgHeight * scale/2
+        })
+        break;
+    }
   }
 })

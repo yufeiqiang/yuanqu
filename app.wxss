@@ -2,3 +2,43 @@
 .container {
 
 } 
+view,text{
+  color: #333
+}
+page{
+  background: #f3f3f3;
+}
+.null_item{
+  height: 90rpx;
+  width: 100%;
+  background: #fff;
+}
+.nowrap{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.curr_item{
+  display: flex;
+  display: -webkit-flex;
+  padding: 20rpx;
+  background: #fff;
+  border-bottom:1px dashed rgb(207, 207, 207)
+}
+.searchbar{
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+}
+.weui-icon-clea icon{
+  margin-top:10px; 
+}
+.more{
+  text-align: center;
+  color: #666;
+  padding: 60rpx 0;
+  background: #fff;
+  font-size: 12px;
+}
+ 

@@ -1,1 +1,78 @@
-/* pages/my/my.wxss */
+.my_head{
+  position: relative;
+}
+.my_head image{
+  width: 750rpx;
+  height: 300rpx;
+  display: block;
+}
+.head_port{
+  display: flex;
+  align-items:center;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  position: absolute;
+}
+.head_port_l, .head_port_c, .head_port_r{
+  width: 33.3%;
+  
+}
+.head_port_c{
+  text-align: center;
+}
+.head_port_c text{
+  color: #fff;
+}
+.head_port_c image{
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+  margin: 0 auto 10rpx;
+}
+.head_port_r image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.nickname{
+  position: absolute;
+  bottom: 20%;
+  color: #fff;
+  transform: translateX(-50%);
+  left:50%;
+}
+.order_List{
+  display: flex;
+  background: #fff;
+  text-align: center;
+  padding: 24rpx 0;
+}
+.order_List image{
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  margin: 0 auto 6rpx;
+}
+.order_List text{
+  font-size: 14px;
+}
+.order_l, .order_c, .order_r{
+  width: 33.3%;
+}
+.my_list{
+  background: #fff;
+  margin-top:20rpx; 
+  padding-bottom: 50rpx;
+}
+.my_list_item{
+  padding: 20rpx;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAbklEQVQ4T8XTuw3AMAgE0HiTDMEAHsWjZEF0EyGidJZlfkkRWtATxV07nAHQRWQQ0bDOmgc8O2YeqtotJAQiJAV4SBqwkBKwQ8rAirwCZuQfYM5G+YM1WCVgl8o0YEU6BXh9CIFPZQJwisjl1fkGgHNuGS8lzWoAAAAASUVORK5CYII=) no-repeat 96% center;
+  border-bottom:1px solid #e6e6e6; 
+}
+.my_list_item image{
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+  margin-right:20rpx; 
+}

@@ -1,0 +1,42 @@
+.coruse{
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  border-bottom:1px dashed rgb(207, 207, 207);
+}
+.coruse_box{
+  background: #fff;
+}
+.coruse_left{
+  width: 30%;
+  position: relative;
+}
+.coruse_left text{
+  position: absolute;
+  padding: 10rpx;
+  font-size: 14px;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background:rgba(0, 0, 0, 0.51);
+}
+.coruse_left image{
+  width: 100%;
+  height: 200rpx
+}
+.coruse_right{
+  width: 70%;
+  padding-left: 20rpx;
+}
+.coruse_key, .address{
+  padding: 5rpx 0 0;
+  color: #666;
+  font-size: 14px;
+}
+.coruse_content{
+  height: 84rpx;
+  width: 100%;
+  font-size: 14px;
+  overflow: hidden;
+  color: #666;
+}

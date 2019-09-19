@@ -1,0 +1,17 @@
+<!--pages/recommend/recommend.wxml-->
+<view>
+  <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
+    <view class="null_item"></view>
+    <view class='curr_item' wx:for="{{recommList}}" wx:key="item.id">
+      <view class='curr_item_left recomm_left'>
+        <image mode="aspectFill" src='{{baseUrl}}{{item.pic}}'></image>
+      </view>
+      <view class='curr_item_right recomm_right'>
+        <view class='recomm_title nowrap'>{{item.title}}</view>
+        <view class='recomm_keywords nowrap'>{{item.keywords}}</view>
+        <view class='recomm_keywords nowrap'>{{item.createDate}}</view>
+      </view>
+    </view>
+    <mp-loading type="circle" tips="加载中" show="{{isloading}}"></mp-loading>
+    <view class='more' wx:if="{{ismore}}">无数据（-_-）</view>
+</view>

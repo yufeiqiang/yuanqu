@@ -1,4 +1,4 @@
-@import '../../weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+@import '../../components/weui-wxss/dist/style/weui.wxss';
 .log-list {
   display: flex;
   flex-direction: column;

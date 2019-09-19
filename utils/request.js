@@ -24,7 +24,7 @@ function wxPromise(method, url, data, Type){
                 }, 100);
                 //请求成功
                 if(res.data.code==200){
-                    resolve(res)
+                    resolve(res.data)
                 }else{
                     //如果出现异常则弹出dialog
                     wx.showModal({
@@ -38,7 +38,7 @@ function wxPromise(method, url, data, Type){
                             // }   
                         }
                     });
-                    resolve(res)
+                    resolve(res.data)
                 }
             },
             fail:function(res){

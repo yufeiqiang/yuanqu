@@ -31,7 +31,7 @@ Page({
   verifyNumber: function (e) {
     let phone = this.data.formData.phone;
     request.postRequest('mobile/verifycode/get', { phone: phone, type: "LOGIN" }).then((res) => {
-      if(res.data.code==200){
+      if(res.code==200){
         
       }else{
         clearInterval(this.data.codev);
@@ -87,12 +87,12 @@ Page({
     let param = this.data.formData
     request.postRequest('app/member/login', param).then(res=>{
       console.log(res)
-      if(res.data.code == 200){
-        console.log(1215)
-        wx.setStorageSync('user', JSON.stringify(res.data))
-        wx.navigateTo({
-          url: '../index/index',
+      if(res.code == 200){
+        // console.log(1215)
+        wx.switchTab({
+          url: '../index/index'
         })
+        wx.setStorageSync('user', JSON.stringify(res.data))
       }
     }).catch(err=>{
 
