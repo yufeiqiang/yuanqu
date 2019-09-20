@@ -1,5 +1,6 @@
 <view>
-  <mp-searchbar placeholder="请输入关键字搜索"  bindblur="searchData"></mp-searchbar>
+  <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
+  <view class="null_item"></view>
   <view class='coruse_box'>
     <view class='coruse' wx:for="{{courseList}}" wx:key="item.id">
       <view class='coruse_left'>
@@ -11,9 +12,11 @@
         <view class='coruse_key nowrap'>{{item.keywords}}</view>
         <view class="address"><text>地址：</text>{{item.address}}</view>
         <view class='coruse_content'>
-          <text>报名时间：</text>{{item.beginDate}}-{{item.endDate}}
+          <text>报名时间：</text><text class="coruse_time">{{item.beginDate}}-{{item.endDate}}</text>
         </view>
       </view>
     </view>
   </view>
+  <mp-loading type="circle" tips="加载中" show="{{isloading}}"></mp-loading>
+    <view class='more' wx:if="{{ismore}}">无数据（-_-）</view>
 </view>

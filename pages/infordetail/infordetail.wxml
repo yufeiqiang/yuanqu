@@ -1,0 +1,11 @@
+<view>
+  <view class="infordetail" wx:if="{{contentText!=null}}">
+    <view class="infordetail_title">{{contentText.title}}</view>
+    <view class="infordetail_content">
+      <view class="infordetail_time"><text>时间:{{contentText.createDate}}</text><text>{{contentText.author}}</text></view>
+      <rich-text nodes="{{contentText.content}}"></rich-text>
+    </view>
+  </view>
+  <mp-loading type="circle" tips="加载中" show="{{isloading}}"></mp-loading>
+</view>
+

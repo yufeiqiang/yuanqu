@@ -19,14 +19,30 @@ Page({
     baseUrl:app.globalData.baseUrl
   },
   //事件处理函数
-
-  onLoad: function () {
-    // console.log(wx.getStorageSync('user'))
+  /**
+   * 初始化所有方法
+   */
+  init:function(){
     this.requestBanner()
     this.requestInfor()
     this.inform()
     this.posterList()
-    
+  },
+  onLoad: function () {
+    this.init()
+  },
+  /**
+   * 点击轮播图
+   */
+  tapNavigate:function(e){
+    // console.log(e)
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../infordetail/infordetail?id=' + id + '',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   /**请求轮播图 */
   requestBanner:function(){
@@ -120,5 +136,15 @@ Page({
         })
         break;
     }
-  }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    // 当用户下拉的时候，将页码设置为1，同时清空列表数组
+    wx.showNavigationBarLoading()
+    this.init()
+    wx.stopPullDownRefresh()
+    wx.hideNavigationBarLoading()
+  },
 })

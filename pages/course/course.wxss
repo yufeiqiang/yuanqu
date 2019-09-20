@@ -40,3 +40,6 @@
   overflow: hidden;
   color: #666;
 }
+.coruse_time{
+  /* font-size: 12px; */
+}

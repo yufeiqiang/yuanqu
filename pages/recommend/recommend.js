@@ -11,6 +11,7 @@ Page({
     recommList:[],
     isloading:true,
     ismore:false,
+    typeId:'',
     pageNo:1,
     searchVal:'',
     searColor:''
@@ -20,7 +21,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      this.setData({
+        typeId:options.typeId
+      })
       this.recommendList('',this.data.pageNo)
+  },
+  /**
+   * 点击每一项信息
+   */
+  inforItem:function(e){
+    // console.log(e)
+    let id = e.currentTarget.dataset.id;
+    // console.log(id)
+    wx.navigateTo({
+      url: '../infordetail/infordetail?id='+id+'',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   /**
    * 请求列表数据
@@ -29,7 +47,7 @@ Page({
     //初始化请求参数
     let param={
       columns:1,
-      types:'7',
+      types:this.data.typeId,
       status:'50',
       "queryMap['title_like']":val,
       searchVal:'',

@@ -47,6 +47,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 4,
 			"list": [
@@ -72,16 +76,24 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "课程",
 					"pathName": "pages/course/course",
-					"query": "",
+					"query": "typeId=2",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "推荐",
+					"pathName": "pages/recommend/recommend",
+					"query": "typeId=7",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "推荐",
-					"pathName": "pages/recommend/recommend",
+					"name": "详情",
+					"pathName": "pages/infordetail/infordetail",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -4,7 +4,8 @@
     "pages/index/index",
     "pages/my/my",
     "pages/course/course",
-    "pages/recommend/recommend"
+    "pages/recommend/recommend",
+    "pages/infordetail/infordetail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -13,7 +14,7 @@
     "backgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh":true,
-    "onReachBottomDistance":10
+    "onReachBottomDistance":0
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

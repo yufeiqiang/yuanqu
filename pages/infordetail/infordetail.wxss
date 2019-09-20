@@ -1,0 +1,22 @@
+page{
+  background: #fff;
+}
+.infordetail_title{
+  text-align: center;
+  padding: 30rpx 30rpx 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+.infordetail_content{
+  padding: 20rpx;
+}
+.infordetail_time {
+  padding-bottom:20rpx; 
+}
+.infordetail_time text{
+  margin-right: 30rpx;
+  font-size: 12px;
+}
+rich-text img{
+  max-width:100%; 
+}

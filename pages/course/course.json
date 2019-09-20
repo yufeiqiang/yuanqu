@@ -1,5 +1,6 @@
 {
     "usingComponents": {
-      "mp-searchbar": "../../components/searchbar/searchbar"
+      "mp-searchbar": "../../components/searchbar/searchbar",
+      "mp-loading": "../../components/loading/loading"
     }
 }
