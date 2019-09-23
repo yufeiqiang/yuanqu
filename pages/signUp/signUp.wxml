@@ -1,0 +1,21 @@
+<view class="page">
+    <view class="sign_title">{{title}}</view>
+    <view class="page__bd">
+        <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
+            <mp-cells>
+                <mp-cell prop="memberName" show-error  title="姓名" ext-class="weui-cell_vcode">
+                    <input  data-field="memberName" bindinput="formInputChange" name='memberName' class="weui-input" placeholder="请输入姓名"/>
+                </mp-cell>
+                <mp-cell prop="memberPhone" show-error  title="手机" ext-class="weui-cell_vcode">
+                    <input  data-field="memberPhone" bindinput="formInputChange" name='memberPhone' class="weui-input" placeholder="请输入手机号码"/>
+                </mp-cell>
+                <mp-cell prop="remark"  title="备注" ext-class="weui-cell_vcode">
+                  <textarea bindblur="bindTextAreaBlur"  class="textWidth" data-field="remark" name='remark' placeholder="请输入备注信息" />
+                </mp-cell>
+            </mp-cells>
+        </mp-form>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+        </view>
+    </view>
+</view>

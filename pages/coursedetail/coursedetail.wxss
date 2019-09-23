@@ -1,0 +1,91 @@
+/* @import "../course/course.wxss"; */
+.coruse_left{
+  width: 100%;
+  position: relative;
+} 
+.coruse_left text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10rpx 25rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5)
+}
+.coruse_left image{
+  width: 100%;
+  height: 340rpx;
+  display: block;
+}
+.coruse_key{
+  padding:10rpx 0; 
+  font-size:14px; 
+  color: #666;
+}
+.coruse_address{
+  padding-top:10rpx; 
+}
+.coruse_address image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle
+}
+.coruse_right{
+  padding: 20rpx;
+  background: #fff;
+}
+.coruser_title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.singUp_detail{
+  padding: 0;
+  border-bottom: none;
+  justify-content: space-between;
+}
+.singUp_detail_right{
+  color: red;
+}
+.signUp_box{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  background: #fff;
+  height: 120rpx;  
+  border-top: 1px solid #efefef;
+}
+.signUp_left{
+  width: 15%;
+}
+.signUp_right{
+  width: 85%;
+ 
+}
+.signUp_right button{
+  width:95%;
+  height: 76rpx;
+  line-height: 76rpx;
+  margin: 20rpx 5% 0 0 ;
+}
+.coruse_content{
+  background: #fff;
+  padding:20rpx;
+  margin: 20rpx 0;
+}
+.coruse_time{
+  font-size: 14px;
+}
+.detaild_content{
+  background: #fff;
+  padding:20rpx 20rpx 150rpx;
+}
+.signUp_left{
+  text-align: center;
+  padding: 20rpx 0 0;
+}
+.signUp_left image{
+  width: 56rpx;
+  height: 56rpx;
+  margin-top:8rpx; 
+}

@@ -1,0 +1,38 @@
+<wxs src="../../utils/comm_filter.wxs" module="commFilter" />
+<view>
+  <view class='coruse_box'>
+    <view class='coruse' bindtap="courseDetail">
+      <view class='coruse_left'>
+        <image mode="aspectFill" src='{{baseUrl}}{{list.pic}}'></image>
+        <text>{{isTime}}</text>
+      </view>
+      <view class='coruse_right'>
+        <view class='coruser_title nowrap'>{{list.title}}</view>
+        <view class='coruse_key nowrap'>{{list.keywords}}</view>
+        <view class='singUp_detail curr_item nowrap'>
+          <view class="singUp_detail_left">{{list.author}}</view> 
+          <view class="singUp_detail_right">{{list.maxNum}}个名额</view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class='coruse_content'>
+        <text>开始时间：</text><text class="coruse_time">{{list.beginDate}}-{{list.endDate}}</text>
+        <view class="coruse_address">
+          <text>地址：</text>
+          <text class="coruse_time">{{list.address}} | </text>
+          <image src="../../image/course/location.png" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="detaild_content">
+        <rich-text nodes="{{commFilter.imgFilter(list.content)}}"></rich-text>
+      </view>
+    </view>
+  </view>
+  <view class="signUp_box">
+    <view class="signUp_left"><image mode="aspectFill" src='../../image/course/index.png'></image></view>
+    <view class="signUp_right">
+      <button type="primary" bindtap="signUp" hover-class="none" data-title='{{list.title}}' disabled="{{disabled}}"> 报名 </button>
+    </view>
+  </view>
+</view>

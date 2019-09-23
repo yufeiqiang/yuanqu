@@ -29,12 +29,12 @@ Page({
   /**
    * 点击每一项信息
    */
-  inforItem: function (e) {
+  courseDetail: function (e) {
     // console.log(e)
     let id = e.currentTarget.dataset.id;
     // console.log(id)
     wx.navigateTo({
-      url: '../infordetail/infordetail?id=' + id + '',
+      url: '../coursedetail/coursedetail?id=' + id + '',
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -47,8 +47,8 @@ Page({
     //初始化请求参数
     let param = {
       // columns: 1,
-      types: this.data.typeId,
-      status: '50',
+      type: this.data.typeId,
+      state: '50',
       "queryMap['title_like']": val,
       searchVal: '',
       pageSize: 5,

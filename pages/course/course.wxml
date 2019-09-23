@@ -2,10 +2,10 @@
   <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
   <view class="null_item"></view>
   <view class='coruse_box'>
-    <view class='coruse' wx:for="{{courseList}}" wx:key="item.id">
+    <view class='coruse' wx:for="{{courseList}}" wx:key="item.id" bindtap="courseDetail" data-id="{{item.id}}">
       <view class='coruse_left'>
         <image mode="aspectFill" src='{{baseUrl}}{{item.pic}}'></image>
-        <text>进行中</text>
+        <!-- <text>进行中</text> -->
       </view>
       <view class='coruse_right'>
         <view class='coruser_title nowrap'>{{item.title}}</view>

@@ -4,7 +4,9 @@
     "pages/index/index",
     "pages/my/my",
     "pages/course/course",
+    "pages/coursedetail/coursedetail",
     "pages/recommend/recommend",
+    "pages/signUp/signUp",
     "pages/infordetail/infordetail"
   ],
   "window": {

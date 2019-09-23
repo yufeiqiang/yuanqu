@@ -1,0 +1,13 @@
+var imgFilter = function(e=''){
+  var a = getRegExp('<img[^>]*>', 'ig');
+  var result=e.replace(a, function (match, capture) {
+    var c = getRegExp('<img', 'ig');
+    match = match.replace(c, '<img style=""');
+    var d = getRegExp('style\s*?=\s*?([‘"])[\s\S]*?\1', 'ig');
+    return match.replace(d, 'style="max-width:100%;height:auto;"') // 替换style
+  });
+  return result
+}
+module.exports = {
+  imgFilter:imgFilter
+}

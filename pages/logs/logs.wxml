@@ -10,9 +10,6 @@
                 <mp-cell prop="verification_code" show-error title="验证码" ext-class=" weui-cell_vcode">
                     <input  data-field="verification_code" bindinput="formInputChange" name="verification_code" class="weui-input" placeholder="请输入验证码"/>
                 </mp-cell>
-                <!-- <mp-cell  prop="phone" show-error title="电话" ext-class=" weui-cell_vcode">
-                   
-                </mp-cell> -->
             </mp-cells>
         </mp-form>
         <view class="weui-btn-area">
