@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options)
     this.setData({
       typeId: options.typeId
     })
@@ -34,7 +35,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     // console.log(id)
     wx.navigateTo({
-      url: '../coursedetail/coursedetail?id=' + id + '',
+      url: '../coursedetail/coursedetail?id=' + id + '&&typeId=' + this.data.typeId,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },

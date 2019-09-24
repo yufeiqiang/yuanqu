@@ -100,7 +100,7 @@
 					"id": 6,
 					"name": "pages/coursedetail/coursedetail",
 					"pathName": "pages/coursedetail/coursedetail",
-					"query": "id=e126a4f5eb804a77a67868bc27a0e9e6",
+					"query": "id=e126a4f5eb804a77a67868bc27a0e9e6&&typeId=2",
 					"scene": null
 				},
 				{
@@ -108,6 +108,13 @@
 					"name": "pages/signUp/signUp",
 					"pathName": "pages/signUp/signUp",
 					"query": "id=e126a4f5eb804a77a67868bc27a0e9e6",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/office/office",
+					"pathName": "pages/office/office",
+					"query": "",
 					"scene": null
 				}
 			]

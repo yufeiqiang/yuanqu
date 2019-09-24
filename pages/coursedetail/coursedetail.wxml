@@ -4,7 +4,7 @@
     <view class='coruse' bindtap="courseDetail">
       <view class='coruse_left'>
         <image mode="aspectFill" src='{{baseUrl}}{{list.pic}}'></image>
-        <text>{{isTime}}</text>
+        <text>{{isTimeText}}</text>
       </view>
       <view class='coruse_right'>
         <view class='coruser_title nowrap'>{{list.title}}</view>
@@ -32,7 +32,7 @@
   <view class="signUp_box">
     <view class="signUp_left"><image mode="aspectFill" src='../../image/course/index.png'></image></view>
     <view class="signUp_right">
-      <button type="primary" bindtap="signUp" hover-class="none" data-title='{{list.title}}' disabled="{{disabled}}"> 报名 </button>
+      <button type="primary" bindtap="signUp" hover-class="none"  data-title='{{list.title}}' disabled='{{disabled}}'> 报名 </button>
     </view>
   </view>
 </view>

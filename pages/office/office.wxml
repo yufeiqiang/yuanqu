@@ -1,0 +1,26 @@
+<view>
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/office/a.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      办公室预定
+    </view>
+  </view>   
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/office/b.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      会议室预定
+    </view>
+  </view>   
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/office/c.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      柜子预定
+    </view>
+  </view>   
+</view>

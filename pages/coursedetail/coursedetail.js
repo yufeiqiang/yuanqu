@@ -8,8 +8,10 @@ Page({
    */
   data: {
     baseUrl: app.globalData.baseUrl,
-    list:[],
+    list:'',
+    isTimeText:'',
     id:'',
+    typeId:'',
     disabled:false
   },
 
@@ -17,11 +19,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options)
     this.setData({
-      id: options.id
+      id: options.id,
+      typeId: options.typeId
     })
     this.recommendList();
-    
   },
   /**
    * 请求列表数据
@@ -29,23 +32,20 @@ Page({
   recommendList(val = '', pageNo = 1) {
     //初始化请求参数
     let param = {
-      id: this.data.id,
+      id:this.data.id,
      
     }
-    request.getRequest('act/info/actInfo/crud/pagelist', param).then(res => {
+    request.getRequest('act/info/actInfo/crud/get', param).then(res => {
       if (res.code == 200) {
         // 当数据不为空的时候，给列表追加数据
-        // console.log(111)
-        if (res.data.list !== undefined) {
-          // console.log(res)
+        if (res.data !== undefined) {
           this.setData({
-            list: res.data.list[0],
+            list: res.data,
             isloading: false
           })
-          this.isTime(res.data.list[0].endDate)
+          this.isTime(res.data.endDate)
         } else {
           // 当请求到数据为空的时候，显示没有更多提示，同时隐藏加载中按钮
-          // console.log('出来')
           this.setData({
             ismore: true,
             isloading: false
@@ -58,21 +58,22 @@ Page({
   * 判断结束时间是否大于当前时间
   */
   isTime: function (param='') {
+    let newparam = param.replace(/-/g,'/')
     let myDate = new Date();
     let now = myDate.valueOf();
-    // console.log(this.list)
-    let time = new Date(param).valueOf();
+    let time = new Date(newparam).valueOf();
     if (now < time) {
       this.setData({
-        isTime:'进行中'
+        isTimeText:'进行中',
+        disabled: false
       })
       return true;
     } else {
       this.setData({
-        isTime: '已结束',
+        isTimeText: '已结束',
         disabled:true
       })
-      return false;
+      // return false;
     }
   },
   /**
@@ -82,7 +83,7 @@ Page({
     let title = e.currentTarget.dataset.title;
     // console.log(id)
     wx.navigateTo({
-      url: '../signUp/signUp?title=' + title + '&types=2',
+      url: '../signUp/signUp?title=' + title + '&type=' + this.data.typeId + '&id=' + this.data.id + '&isFree=' + this.data.list.isFree,
     })
   },
   /**

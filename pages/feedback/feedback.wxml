@@ -9,7 +9,7 @@
                 <mp-cell prop="memberPhone" show-error  title="手机" ext-class="weui-cell_vcode">
                     <input  data-field="memberPhone" bindinput="formInputChange" name='memberPhone' class="weui-input" placeholder="请输入手机号码"/>
                 </mp-cell>
-                <mp-cell prop="remark"  title="备注" ext-class="weui-cell_vcode">
+                <mp-cell prop="remark"  title="意见" ext-class="weui-cell_vcode">
                   <textarea  class="textWidth"  bindinput="formInputChange" data-field="remark" name='remark' placeholder="" />
                 </mp-cell>
             </mp-cells>

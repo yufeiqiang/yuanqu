@@ -7,7 +7,11 @@
     "pages/coursedetail/coursedetail",
     "pages/recommend/recommend",
     "pages/signUp/signUp",
-    "pages/infordetail/infordetail"
+    "pages/infordetail/infordetail",
+    "pages/office/office",
+    "pages/feedback/feedback",
+    "pages/visitor/visitor",
+    "pages/serve/serve"
   ],
   "window": {
     "backgroundTextStyle": "dark",

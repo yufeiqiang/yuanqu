@@ -2,17 +2,20 @@ const Promise = require('es6-promise-min.js')
 var ip = "www.zhiqushequ.cn";
 var imgUrl = "https://" + ip;
 var apiUrl = "https://" + ip + "/park_manage/api/";
+var apiUrl2 = "https://" + ip + "/park_manage/query/";
 
 /**封装promise */
-function wxPromise(method, url, data, Type){
-     url=apiUrl+url
-  // console.log(Promise)
-  // let contentType = Type  || 'application/x-www-form-urlencoded'
-  // console.log(contentType)
+function wxPromise(method, url, data, type=1){
+    var Url=''
+    if(type==1){
+      Url=apiUrl+url
+    }else if(type==2){
+      Url=apiUrl2+url
+    }
     return new Promise(function(resolve,reject){
       // console.log(url)
       wx.request({
-            url: url,
+            url: Url,
             method:method,
             data: data,
             header: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -56,12 +59,12 @@ function wxPromise(method, url, data, Type){
     })
 }
 
-function getRequest(url, data){
-  return wxPromise("GET", url, data); verification_code
+function getRequest(url, data, type){
+  return wxPromise("GET", url, data, type); verification_code
 }
   
-function postRequest(url, data,type){
-    return wxPromise("POST", url, data);
+function postRequest(url, data, type){
+    return wxPromise("POST", url, data, type);
 }
 
 module.exports = {

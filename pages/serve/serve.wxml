@@ -1,0 +1,42 @@
+<view>
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/park/a.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      宽度申报
+    </view>
+  </view>   
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/park/b.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      网络保障
+    </view>
+  </view>   
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/park/c.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      装修服务
+    </view>
+  </view> 
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/park/c.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      送水服务
+    </view>
+  </view> 
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/park/c.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      其他服务
+    </view>
+  </view> 
+</view>

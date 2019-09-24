@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:'报名',
+    title:'意见反馈',
     formData: {
       memberName: '',
       memberPhone: '',

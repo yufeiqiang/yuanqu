@@ -1,0 +1,18 @@
+<view>
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/visitor/a.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      预约访问
+    </view>
+  </view>   
+  <view class="btn_icon curr_item">
+    <view class="btn_icon_left">
+      <image src="../../image/visitor/b.png"></image>
+    </view>
+    <view class="btn_icon_right">
+      预约参观
+    </view>
+  </view>   
+</view>

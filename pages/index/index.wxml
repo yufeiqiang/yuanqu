@@ -57,13 +57,13 @@
       </navigator>
     </view>
     <view class='barList_item'>
-      <navigator url='' hover-class="none">
+      <navigator url='../office/office' hover-class="none">
           <image src='../../image/index/bar05.png'></image>
         <view>办公预定</view>
       </navigator>
     </view>
     <view class='barList_item'>
-      <navigator url='' hover-class="none">
+      <navigator url='../serve/serve' hover-class="none">
           <image src='../../image/index/bar06.png'></image>
         <view>园区服务</view>
       </navigator>
@@ -75,13 +75,13 @@
       </navigator>
     </view>
     <view class='barList_item'>
-      <navigator url='' hover-class="none">
+      <navigator url='../visitor/visitor' hover-class="none">
           <image src='../../image/index/bar08.png'></image>
         <view>访客预约</view>
       </navigator>
     </view>
     <view class='barList_item'>
-      <navigator url='' hover-class="none">
+      <navigator url='../feedback/feedback' hover-class="none">
           <image src='../../image/index/bar09.png'></image>
         <view>意见反馈</view>
       </navigator>

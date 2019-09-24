@@ -1,0 +1,28 @@
+page{
+  background: #fff;
+}
+.btn_icon{
+  width:680rpx;
+  height:180rpx;
+  background:linear-gradient(90deg,rgba(77,185,238,1),rgba(54,142,254,1));
+  border-radius:15rpx;
+  margin: 25rpx auto;
+  align-items: center;
+  border-bottom:none;
+  padding: 0;
+}
+.btn_icon_left{
+  width: 178rpx;
+  text-align: center;
+  /* height: 100%; */
+  border-right: 1px solid #fff;
+}
+.btn_icon_left image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.btn_icon_right{
+  color: #FFF;
+  text-align: center;
+  margin: 0 auto;
+}
