@@ -23,7 +23,7 @@ page{
   display: -webkit-flex;
   padding: 20rpx;
   background: #fff;
-  border-bottom:1px dashed rgb(207, 207, 207)
+  /* border-bottom:1px dashed rgb(207, 207, 207); */
 }
 .searchbar{
   position: fixed;

@@ -69,7 +69,7 @@
       </navigator>
     </view>
     <view class='barList_item'>
-      <navigator url='' hover-class="none">
+      <navigator url='../../forum/index/index' hover-class="none">
           <image src='../../image/index/bar07.png'></image>
         <view>园区论坛</view>
       </navigator>

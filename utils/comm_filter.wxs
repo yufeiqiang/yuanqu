@@ -8,6 +8,12 @@ var imgFilter = function(e=''){
   });
   return result
 }
+var imgSplit= function(e=''){
+  var data = e.split(",")
+  console.log(data);
+  return data
+}
 module.exports = {
-  imgFilter:imgFilter
+  imgFilter:imgFilter,
+  imgSplit: imgSplit
 }

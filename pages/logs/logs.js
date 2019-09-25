@@ -1,5 +1,6 @@
 const util = require('../../utils/util.js')
-const request = require('../../utils/request.js')
+const request = require('../../utils/request.js');
+const app = getApp();
 
 Page({
   data: {
@@ -25,7 +26,7 @@ Page({
     // this.getBusInfo()
     // wx.setStorageSync('user',1644)
     // console.log(99)
-    console.log(wx.getStorageSync('user'))
+    // console.log(wx.getStorageSync('user'))
   },
   /**或取验证码 */
   verifyNumber: function (e) {
@@ -93,6 +94,7 @@ Page({
           url: '../index/index'
         })
         wx.setStorageSync('user', JSON.stringify(res.data))
+        app.getInfoData()
       }
     }).catch(err=>{
 

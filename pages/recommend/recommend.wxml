@@ -2,7 +2,7 @@
 <view>
   <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
     <view class="null_item"></view>
-    <view class='curr_item' wx:for="{{recommList}}" wx:key="item.id" data-id="{{item.id}}" bindtap="inforItem">
+    <view class='curr_item recomm_list' wx:for="{{recommList}}" wx:key="item.id" data-id="{{item.id}}" bindtap="inforItem">
       <view class='curr_item_left recomm_left'>
         <image mode="aspectFill" src='{{baseUrl}}{{item.pic}}'></image>
       </view>
