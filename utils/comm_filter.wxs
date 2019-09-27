@@ -10,7 +10,7 @@ var imgFilter = function(e=''){
 }
 var imgSplit= function(e=''){
   var data = e.split(",")
-  console.log(data);
+  // console.log(data);
   return data
 }
 module.exports = {

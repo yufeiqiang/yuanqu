@@ -1,6 +1,6 @@
 // pages/recommend/recommend.js
 const app = getApp()
-const request = require("../../utils/request.js")
+const request = require("../../utils/request.js");
 Page({
 
   /**
@@ -29,15 +29,15 @@ Page({
   /**
    * 点击每一项信息
    */
-  // courseDetail: function (e) {
-  //   let id = e.currentTarget.dataset.id;
-  //   wx.navigateTo({
-  //     url: '../coursedetail/coursedetail?id=' + id + '&&typeId=' + this.data.typeId,
-  //     success: function (res) { },
-  //     fail: function (res) { },
-  //     complete: function (res) { },
-  //   })
-  // },
+  forumDetail: function (e) {
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../indexdetail/indexdetail?id=' + id,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
   /**
    * 请求列表数据
    */
@@ -144,5 +144,23 @@ Page({
         searColor: ''
       })
     }
+  },
+  /**
+   * 点赞关注
+   */
+  fabulous: function (e){
+    const { type,id,index} = e.currentTarget.dataset
+    let param = {
+      type: type,
+      memberId: this.data.userId,
+      id: id
+    }
+    wx.showLoading()
+    request.postRequest('/bbs/infofollow/bbsInfoFollow/followAndPraise', param).then((res) => {
+        this.setData({
+          [`list.[${index}].praiseCount`]:res.data
+        })
+
+    })
   }
 })

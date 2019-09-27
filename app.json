@@ -12,7 +12,8 @@
     "pages/feedback/feedback",
     "pages/visitor/visitor",
     "pages/serve/serve",
-    "forum/index/index"
+    "forum/index/index",
+    "forum/indexdetail/indexdetail"
   ],
   "window": {
     "backgroundTextStyle": "dark",

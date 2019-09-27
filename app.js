@@ -46,15 +46,15 @@ App({
       this.globalData.user = user
       return user
     }else{
-      console.log(66)
+      // console.log(66)
       wx.navigateTo({
-        url: '../pages/logs/logs',
+        url: '/pages/logs/logs',
       })
     }
     
   },
   globalData: {
-    user: null,
+    user: {memberId:''},
     baseUrl:'https://www.zhiqushequ.cn',
   }
 })

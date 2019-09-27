@@ -123,6 +123,13 @@
 					"pathName": "forum/index/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "forum/indexdetail/indexdetail",
+					"pathName": "forum/indexdetail/indexdetail",
+					"query": "id= 4c1f414e4da341f2b2836ab00bb26cf3",
+					"scene": null
 				}
 			]
 		}
