@@ -16,7 +16,15 @@ Page({
     pageNo: 1,
     id:'',
     content: '',
-    releaseFocus:true
+    releaseFocus:true,
+    releaseName:'',
+    commentConten:{
+      type:1,
+      infoId:'',
+      createBy:app.globalData.user.memberId,
+      comment:'',
+      parentId:''
+    }
   },
 
   /**
@@ -26,12 +34,17 @@ Page({
     this.setData({
       id: options.id
     })
-    this.recommendList()
+    this.recommendList();
+    // console.log(app.globalData.user)
   },
   /**点击回复 */
   bindReply: function (e) {
+    let id = e.currentTarget.dataset.id
+    let releaseName = e.currentTarget.dataset.releasename
     this.setData({
-      releaseFocus: true
+      releaseFocus: true,
+      'commentConten.parentId':id,
+      releaseName: releaseName
     })
   },
   /**
@@ -48,11 +61,28 @@ Page({
         // 当数据不为空的时候，给列表追加数据
           this.setData({
             list: res.data,
-            isloading: false
+            isloading: false,
+            'commentConten.infoId':res.data.id
           })
         this.commentData(res.data.id)
       }
     })
+  },
+  /**
+   *  提交评论信息
+   */
+  commentSub(){
+    if (this.data.commentConten.comment != ''){
+      request.postRequest('bbs/infocomment/bbsInfoComment/comment', this.data.commentConten).then(res => {
+        if(res.code==200){
+          this.commentData();
+          this.recommendList()
+           this.setData({
+            'commentConten.comment': ''
+          })
+        }
+      })
+    }
   },
   /**
    * 评论列表数据
@@ -62,7 +92,7 @@ Page({
       type: 1,
       memberId: this.data.userId,
       infoId:infoId,
-      pageSize:10,
+      pageSize:100,
       pageNo:1,
     }
     // param = encodeURIComponent(param)
@@ -70,7 +100,7 @@ Page({
       if (res.code == 200) {
         // 当数据不为空的时候，给列表追加数据
         this.setData({
-          commentList: res.data.list
+          commentList: res.data.list,
         })
       }
     })
@@ -91,7 +121,15 @@ Page({
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
   },
-
+  /**
+   * 表单数据改变时候
+   */
+  formInputChange(e) {
+    const comment = e.detail.value
+    this.setData({
+      'commentConten.comment': comment
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

@@ -88,3 +88,19 @@
   color: #666;
   font-size: 14px;
 }
+.searchbar{
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+.searchbar_l{
+  width: 90%;
+}
+.searchbar_r{
+  width: 10%;
+  background: #fff;
+}
+.searchbar_r image{
+  width: 30rpx;
+  height: 30rpx;
+}

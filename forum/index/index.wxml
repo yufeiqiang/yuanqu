@@ -1,6 +1,11 @@
 <view>
   <wxs src="../../utils/comm_filter.wxs" module='commFilter' />
-  <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
+  <view class="searchbar">
+    <mp-searchbar placeholder="请输入关键字搜索"  class="searchbar_l" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
+    <view class="searchbar_r">
+      <navigator url="../releaseInfo/releaseInfo" hover-class="none">发布</navigator>
+    </view>
+  </view>
   <view class="null_item"></view>
   <view class="forum_title_bg">
     <image src="../../image/my/bg.png" mode="aspectFill"></image>
@@ -28,7 +33,7 @@
         </view>
         <view class="comment_list curr_item">
           <view class="comment_list_a">1小时前</view>
-          <view class="delete">删除</view>
+          <view class="delete" wx:if="{{userId==item.memberId}}" data-id="{{item.id}}" catchtap="deleteItem">删除</view>
           <view class="commen_f" bindtap="fabulous" data-id="{{item.id}}" data-index="{{index}}" data-type="2"><image src="../../image/forum/fabulous.png"></image>{{item.praiseCount}}</view>
           <view class="commen_c"><image src="../../image/forum/comment.png"></image>{{item.commentCount}}</view>
         </view>

@@ -25,9 +25,10 @@ Page({
       typeId: options.typeId
     })
     this.recommendList('', this.data.pageNo)
+    console.log(app.globalData.user)
   },
   /**
-   * 点击每一项信息
+   * 点击每条信息
    */
   forumDetail: function (e) {
     let id = e.currentTarget.dataset.id;
@@ -37,6 +38,35 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+  },
+  /**删除每项信息 */
+  deleteItem(e){
+    let id = e.currentTarget.dataset.id;
+    let memberId=this.data.userId;
+    let that=this
+    wx.showModal({
+      title: '删除信息',
+      content: '你确定删除此信息吗？',
+      success: function (e){
+        if (e.confirm){
+          request.postRequest('/bbs/info/bbsInfo/del', { id: id, memberId: memberId }).then((res) => {
+            if (res.code == 200) {
+              wx.showToast({
+                title:'删除'+res.msg,
+              })
+            }
+            that.setData({
+              pageNo: 1,
+              list: [],
+              ismore: false,
+              isloading: true
+            })
+            that.recommendList(this.data.content)
+          })
+        }
+      }
+    })
+    
   },
   /**
    * 请求列表数据
@@ -54,9 +84,7 @@ Page({
       if (res.code == 200) {
         let oldData = this.data.list;
         // 当数据不为空的时候，给列表追加数据
-        // console.log(111)
         if (res.data.list !== undefined) {
-          // console.log(res)
           this.setData({
             list: oldData.concat(res.data.list),
             isloading: false

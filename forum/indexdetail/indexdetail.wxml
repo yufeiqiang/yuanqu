@@ -34,13 +34,8 @@
       </view>
     </view>
     <view class="comment_box">
-      <view class="curr_item" wx:for="{{commentList}}"  bindtap="bindReply" wx:key="item.id">
-        <view class="comment_box_l">
-          {{item.nikeName}}：
-        </view>
-        <view class="comment_box_r">
-          {{item.comment}}
-        </view>
+      <view class="comment_item" wx:for="{{commentList}}" data-id="{{item.id}}" data-releaseName="{{item.nikeName}}" bindtap="bindReply" wx:key="item.id">
+          {{item.nikeName}}<text wx:if="{{item.parentNikeName}}">回复</text>{{item.parentNikeName}}：<text>{{item.comment}}</text>
       </view>
     </view>
     <view class="release" hidden="{{!releaseFocus}}">
@@ -49,11 +44,13 @@
             fixed="true" 
             maxlength="-1" 
             show-confirm-bar=""
-            cursor-spacing="15" 
+            cursor-spacing="28" 
             auto-height="true" 
+            value ="{{commentConten.comment}}"
+            bindinput="formInputChange"
             focus="{{releaseFocus}}"
             placeholder="回复 {{releaseName}}"></textarea>
-      <view class="submit">发送</view>
+      <view class="submit"   bindtap="commentSub">发送</view>
     </view>
   </view>
   <mp-loading type="circle" tips="加载中" show="{{isloading}}"></mp-loading>

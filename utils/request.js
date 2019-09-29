@@ -60,7 +60,7 @@ function wxPromise(method, url, data, type=1){
 }
 
 function getRequest(url, data, type){
-  return wxPromise("GET", url, data, type); verification_code
+  return wxPromise("GET", url, data, type);
 }
   
 function postRequest(url, data, type){

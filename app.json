@@ -13,7 +13,8 @@
     "pages/visitor/visitor",
     "pages/serve/serve",
     "forum/index/index",
-    "forum/indexdetail/indexdetail"
+    "forum/indexdetail/indexdetail",
+    "forum/releaseInfo/releaseInfo" 
   ],
   "window": {
     "backgroundTextStyle": "dark",
