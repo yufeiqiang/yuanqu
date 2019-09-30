@@ -130,6 +130,13 @@
 					"pathName": "forum/indexdetail/indexdetail",
 					"query": "id= 4c1f414e4da341f2b2836ab00bb26cf3",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "forum/releaseInfo/releaseInfo",
+					"pathName": "forum/releaseInfo/releaseInfo",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

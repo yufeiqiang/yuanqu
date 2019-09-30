@@ -1,2 +1,16 @@
-<!--forum/releaseInfo/releaseInfo.wxml-->
-<text>forum/releaseInfo/releaseInfo.wxml</text>
+<view>
+  <view class="curr_item release_title">
+    <view>取消</view>
+    <view class="release_btn"><button bindtap="releaseInfo">发布</button></view>
+  </view>
+  <view class="text_box">
+    <textarea value="" bindinput="formInputChange" placeholder="此刻想说点什么呢"></textarea>
+  </view>
+  <view class="img-box">
+    <view class="img" wx:for="{{param.pics}}" wx:for-item="item" wx:key="*this">
+        <image src="{{baseUrl}}{{item}}" data-index="{{index}}" mode="aspectFill" bindtap="previewImg"></image>
+        <view class="delete-btn" data-index="{{index}}" catchtap="deleteImg">删除</view>
+    </view>
+    <view class="upload-img-btn" bindtap="chooseImg" wx:if="{{param.pics.length<9}}">上传</view>
+  </view>
+</view>
