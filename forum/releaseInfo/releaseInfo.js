@@ -16,6 +16,21 @@ Page({
 
   },
   /**
+   * 点击取消按钮
+   */
+  cancel:function(){
+    wx.showModal({
+      title: '确定要取消发布吗',
+      success:function(res){
+        if(res.confirm){
+          wx.navigateBack({
+            delta: 2
+          })
+        }
+      }
+    })
+  },
+  /**
    * 发布信息
    */
   releaseInfo(){
@@ -28,7 +43,7 @@ Page({
       param.pics = param.pics.join()
       request.postRequest('bbs/info/bbsInfo/crud/save', param).then(res => {
         if (res.code == 200) {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../index/index',
           })
         }
@@ -108,6 +123,7 @@ Page({
       }
     })
   },
+  /**点击图片放大 */
   previewImg(e) {
     let index = e.currentTarget.dataset.index;
     let pics = this.data.param.pics;
@@ -116,6 +132,7 @@ Page({
       urls: pics,
     })
   },
+  /**点击删除图片 */
   deleteImg(e) {
     let _index = e.currentTarget.dataset.index;
     console.log(e)

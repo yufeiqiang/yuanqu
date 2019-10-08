@@ -1,6 +1,7 @@
-.forum_title_bg image{
+.searchbar_bottom image{
   width: 100%;
-  height: 240rpx;
+  display: block;
+  height: 180rpx;
 }
 .forum_title{
   border-bottom: 1px solid rgb(228, 228, 228); 
@@ -88,7 +89,7 @@
   color: #666;
   font-size: 14px;
 }
-.searchbar{
+.searchbar_flex{
   display: flex;
   align-items: center;
   background: #fff;
@@ -103,4 +104,33 @@
 .searchbar_r image{
   width: 30rpx;
   height: 30rpx;
+}
+.null_item{
+  height: 360rpx;
+}
+.bar{
+  position: fixed;
+  width: 100%;
+  padding: 10rpx 0;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid rgb(214, 214, 214);
+  background: #fff;
+}
+.bar .curr_item{
+  text-align: center;
+  padding: 0;
+}
+.bar .curr_item .bar_item{
+  width: 33.3%;
+  font-size: 14px;
+}
+.bar .curr_item .bar_item text{
+  color: #666;
+}
+.bar .curr_item image{
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 auto;
+  display: block;
 }

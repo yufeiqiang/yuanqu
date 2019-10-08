@@ -1,6 +1,6 @@
 <view>
   <view class="curr_item release_title">
-    <view>取消</view>
+    <view bindtap="cancel">取消</view>
     <view class="release_btn"><button bindtap="releaseInfo">发布</button></view>
   </view>
   <view class="text_box">

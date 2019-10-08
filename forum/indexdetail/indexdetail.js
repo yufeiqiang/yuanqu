@@ -26,7 +26,6 @@ Page({
       parentId:''
     }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -35,7 +34,34 @@ Page({
       id: options.id
     })
     this.recommendList();
-    // console.log(app.globalData.user)
+    console.log(app.globalData.user)
+  },
+  /**
+  * 点击关注
+  */
+  follow(e) {
+    let id = e.currentTarget.dataset.id
+    console.log(id)
+    this.followRequest(1,id)
+  },  
+  /**
+   * 点击关注 点赞
+   */
+  followRequest(type='1',id){
+    let param = {
+      type: type,
+      memberId: this.data.userId,
+      id:id
+    }
+    wx.showLoading()
+    request.postRequest('bbs/infofollow/bbsInfoFollow/followAndPraise', param).then((res) => {
+      if (res.code == 200) {
+        this.recommendList();
+        // this.setData({
+        //   [`list.[${index}].praiseCount`]: res.data
+        // })
+      }
+    })
   },
   /**点击回复 */
   bindReply: function (e) {

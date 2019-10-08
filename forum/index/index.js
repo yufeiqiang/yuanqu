@@ -13,8 +13,10 @@ Page({
     ismore: false,
     userId: app.globalData.user.memberId,
     pageNo: 1,
+    type:1,
     content: '',
-    searColor: ''
+    searColor: '',
+    titleBtn:['最新','最热','关注']
   },
 
   /**
@@ -24,8 +26,21 @@ Page({
     this.setData({
       typeId: options.typeId
     })
-    this.recommendList('', this.data.pageNo)
-    console.log(app.globalData.user)
+    this.recommendList('', this.data.pageNo,this.data.type)
+    // console.log(app.globalData.user)
+  },
+  /**
+   * 点击头部导航
+   */
+  titleBarBtn(e){
+    // console.log(e.currentTarget.dataset)
+    this.setData({
+      type: e.currentTarget.dataset.index,
+      list:[],
+      content:'',
+      pageNo:1
+    })
+    this.recommendList('', this.data.pageNo, this.data.type)
   },
   /**
    * 点击每条信息
@@ -61,7 +76,7 @@ Page({
               ismore: false,
               isloading: true
             })
-            that.recommendList(this.data.content)
+            that.recommendList('', that.data.pageNo, that.data.type)
           })
         }
       }
@@ -71,11 +86,11 @@ Page({
   /**
    * 请求列表数据
    */
-  recommendList(val = '', pageNo = 1) {
+  recommendList(val = '', pageNo = 1, type=1) {
     //初始化请求参数
     let param = {
-      type: '1',
-      content: '',
+      type: type,
+      content: val,
       memberId:this.data.userId,
       pageSize: 5,
       pageNo: pageNo,
@@ -91,7 +106,6 @@ Page({
           })
         } else {
           // 当请求到数据为空的时候，显示没有更多提示，同时隐藏加载中按钮
-          // console.log('出来')
           this.setData({
             ismore: true,
             isloading: false
@@ -105,6 +119,7 @@ Page({
    */
   searchData: function (e) {
     // 点击搜索按钮，初始化参数，同时将val值赋给全局变量
+    console.log(e.detail.value)
     this.setData({
       pageNo: 1,
       list: [],
@@ -112,7 +127,7 @@ Page({
       isloading: true,
       content: e.detail.value
     })
-    this.recommendList(e.detail.value, this.data.pageNo)
+    this.recommendList(e.detail.value, this.data.pageNo, this.data.type)
   },
   /**
    * 点击清除搜索按钮
@@ -126,7 +141,7 @@ Page({
       isloading: true,
       content: ''
     })
-    this.recommendList()
+    this.recommendList('',this.data.pageNo, this.data.type)
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -140,7 +155,7 @@ Page({
       isloading: true
     })
     wx.showNavigationBarLoading()
-    this.recommendList(this.data.content)
+    this.recommendList(this.data.content,this.data.pageNo,this.data.type)
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
   },
@@ -157,7 +172,7 @@ Page({
       isloading: true,
       ismore: false
     })
-    this.recommendList(this.data.content, this.data.pageNo)
+    this.recommendList(this.data.content, this.data.pageNo,this.data.type)
   },
   /**
    * 监听页面滚动
@@ -185,9 +200,12 @@ Page({
     }
     wx.showLoading()
     request.postRequest('/bbs/infofollow/bbsInfoFollow/followAndPraise', param).then((res) => {
+       if(res.code==200){
         this.setData({
           [`list.[${index}].praiseCount`]:res.data
         })
+        wx.hideLoading()
+       }
 
     })
   }

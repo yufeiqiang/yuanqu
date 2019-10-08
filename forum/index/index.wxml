@@ -1,19 +1,29 @@
 <view>
   <wxs src="../../utils/comm_filter.wxs" module='commFilter' />
   <view class="searchbar">
-    <mp-searchbar placeholder="请输入关键字搜索"  class="searchbar_l" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
-    <view class="searchbar_r">
-      <navigator url="../releaseInfo/releaseInfo"  hover-class="none" redirect>发布</navigator>
+    <view class="searchbar_flex">
+      <mp-searchbar placeholder="请输入关键字搜索"  class="searchbar_l" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText=''></mp-searchbar>
+      <view class="searchbar_r">
+        <navigator url="../releaseInfo/releaseInfo"  hover-class="none"  open-type='redirectTo'>发布</navigator>
+      </view>
+    </view>
+    <view class="searchbar_bottom">
+      <image src="../../image/my/bg.png" mode="aspectFill"></image>
+      <view class="forum_title curr_item">
+        <view class="forum_title_list {{type==(index+1) ? 'curr_title':''}}" 
+          wx:for="{{titleBtn}}" 
+          wx:key="index" 
+          bindtap="titleBarBtn"
+          data-index="{{index+1}}">
+          {{item}}
+        </view>
+        <!-- <view class="forum_title_list curr_title">最热</view>
+        <view class="forum_title_list">关注</view> -->
+      </view>
     </view>
   </view>
   <view class="null_item"></view>
   <view class="forum_title_bg">
-    <image src="../../image/my/bg.png" mode="aspectFill"></image>
-    <view class="forum_title curr_item">
-      <view class="forum_title_list">最新</view>
-      <view class="forum_title_list curr_title">最热</view>
-      <view class="forum_title_list">关注</view>
-    </view>
     <view class="forum_content curr_item" wx:for="{{list}}" wx:key="item.id">
       <view class="forum_content_l">
         <image src="{{baseUrl}}{{item.headImg}}"></image>  
@@ -21,9 +31,9 @@
       <view class="forum_content_r" bindtap="forumDetail" data-id="{{item.id}}">
         <view class="forum_nickname curr_item">
           <view class="nickname_text">{{item.nikeName}}</view>
-          <view>
+          <!-- <view>
             <button>关注</button>
-          </view>
+          </view> -->
         </view>
         <view class="forum_content_text">{{item.content}}</view>
         <view class="forum_img_box curr_item" >
@@ -37,6 +47,22 @@
           <view class="commen_f" catchtap="fabulous" data-id="{{item.id}}" data-index="{{index}}" data-type="2"><image src="../../image/forum/fabulous.png"></image>{{item.praiseCount}}</view>
           <view class="commen_c"><image src="../../image/forum/comment.png"></image>{{item.commentCount}}</view>
         </view>
+      </view>
+    </view>
+  </view>
+  <view class="bar">
+    <view class="curr_item">
+      <view class="bar_item">
+        <image src="../../image/forum/bar1.png" mode="aspectFill"></image>
+        <text>园区圈子</text>
+      </view>
+      <view class="bar_item">
+        <image src="../../image/forum/bar2.png" mode="aspectFill"></image>
+        <text>我的圈子</text>
+      </view>
+      <view class="bar_item">
+        <image src="../../image/forum/bar3.png" mode="aspectFill"></image>
+        <text>评论点赞</text>
       </view>
     </view>
   </view>

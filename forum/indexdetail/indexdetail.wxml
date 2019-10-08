@@ -8,8 +8,8 @@
       <view class="forum_content_r">
         <view class="forum_nickname curr_item">
           <view class="nickname_text">{{list.nikeName}}</view>
-          <view>
-            <button>关注</button>
+          <view wx:if="{{userId != list.memberId}}">
+            <button bindtap="follow" data-id="{{list.memberId}}">{{list.isFollow==0 ? '关注':'取消关注'}}</button>
           </view>
         </view>
         <view class="forum_content_text">{{list.content}}</view>

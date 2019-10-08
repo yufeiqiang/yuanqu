@@ -73,7 +73,7 @@ Page({
         _that.setData({
           codetext: --coden + '重新发送'
         })
-        if (coden == 0) {
+        if (coden == 60) {
 
           clearInterval(this.data.codev);
           _that.setData({
