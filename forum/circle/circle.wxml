@@ -1,0 +1,56 @@
+<view>
+  <wxs src="../../utils/comm_filter.wxs" module='commFilter' />
+  <view class="searchbar_bottom">
+    <image src="../../image/my/bg.png" mode="aspectFill"></image>
+    <view class="nickname">
+      <image src="{{baseUrl}}{{total.headImg==null ? '/ress/staticpm/images/651e65aeea164db5bdb2c3492aaf17a6/e902b99cbc3747fb4275f9b6663c25da.jpg':total.headImg}}">
+      </image>
+      <text>{{total.nikeName}}</text>
+    </view>
+    <view wx:if="{{userId != showMemberId}}" class="isFollow">
+      <button bindtap="follow" >{{total.isFollow > 0 ? '已关注':'关注'}}</button>
+    </view>
+    <view class="forum_title curr_item">
+      <view class="forum_title_list">
+        <navigator  url="../follow/follow?id={{showMemberId}}&type=1">
+          <view>{{total.followCount}}</view>
+          关注
+        </navigator>
+      </view>
+      <view class="forum_title_list">
+        <navigator url="../follow/follow?id={{showMemberId}}&type=2">
+          <view>{{total.fansCount}}</view>
+          粉丝
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="forum_title_bg">
+    <view class="forum_content curr_item" wx:for="{{list}}" wx:key="item.id">
+      <view class="forum_content_l">
+        <image 
+        src="{{baseUrl}}{{item.headImg==null ? '/ress/staticpm/images/651e65aeea164db5bdb2c3492aaf17a6/e902b99cbc3747fb4275f9b6663c25da.jpg':item.headImg}}">
+        </image>  
+      </view>
+      <view class="forum_content_r" bindtap="forumDetail" data-id="{{item.id}}">
+        <view class="forum_nickname curr_item">
+          <view class="nickname_text">{{item.nikeName}}</view>
+        </view>
+        <view class="forum_content_text">{{item.content}}</view>
+        <view class="forum_img_box curr_item" >
+          <view class="forum_img" wx:for="{{commFilter.imgSplit(item.pics)}}" wx:key="item">
+            <image src="{{baseUrl}}{{item}}" wx:if="{{item}}" mode="aspectFill"></image>
+          </view>
+        </view>
+        <view class="comment_list curr_item">
+          <view class="comment_list_a">{{commFilter.diaplayTime(item.createDate)}}</view>
+          <view class="delete" wx:if="{{userId==item.memberId}}" data-id="{{item.id}}" catchtap="deleteItem">删除</view>
+          <view class="commen_f" catchtap="fabulous" data-id="{{item.id}}" data-index="{{index}}" data-type="2"><image src="../../image/forum/fabulous.png"></image>{{item.praiseCount}}</view>
+          <view class="commen_c"><image src="../../image/forum/comment.png"></image>{{item.commentCount}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <mp-loading type="circle" tips="加载中" show="{{isloading}}"></mp-loading>
+    <view class='more' >无数据（-_-）</view>
+</view>

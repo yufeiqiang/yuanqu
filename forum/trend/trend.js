@@ -13,10 +13,7 @@ Page({
     ismore: false,
     userId: app.globalData.user.memberId,
     pageNo: 1,
-    type:1,
-    content: '',
-    searColor: '',
-    titleBtn:['最新','最热','关注']
+    type:5,
   },
 
   /**
@@ -28,12 +25,6 @@ Page({
     })
     this.recommendList('', this.data.pageNo,this.data.type)
     
-  },
-  onShow:function(){
-    this.setData({
-      list:[]
-    })
-    this.recommendList('', 1, this.data.type)
   },
   /**
    * 点击头部导航

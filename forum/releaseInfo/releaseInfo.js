@@ -135,7 +135,7 @@ Page({
   /**点击删除图片 */
   deleteImg(e) {
     let _index = e.currentTarget.dataset.index;
-    console.log(e)
+    // console.log(e)
     let pics = this.data.param.pics;
     pics.splice(_index, 1);
     this.setData({

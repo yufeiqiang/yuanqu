@@ -1,19 +1,63 @@
 .searchbar_bottom image{
   width: 100%;
   display: block;
-  height: 180rpx;
+  height: 300rpx;
+}
+.searchbar_bottom{
+  position: relative;
 }
 .forum_title{
   border-bottom: 1px solid rgb(228, 228, 228); 
+  background: rgba(0, 0, 0, 0.51);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6rpx 20rpx;
+  position: absolute;
+  bottom:0;
+  left: 0;
 }
 .forum_title_list{
-  width: 33.3%;
+  width: 50%;
   text-align: center;
-  height: 100%;
+  font-size: 12px;
+  color: #fff;
+}
+.forum_title_list view{
+  color: #fff;
+  font-size: 12px;
 }
 .curr_title{
   color: #368efeFF;
-  /* border-bottom: 1px solid #368efeFF;  */
+}
+.nickname{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%,-70%)
+}
+.isFollow{
+  position: absolute;
+  right: 20rpx;
+  top: 30rpx;
+}
+.isFollow button{
+  background: none;
+  font-size: 12px;
+  color: #fff;
+  height: 50rpx;
+  line-height: 50rpx;
+  border: 1px solid rgba(255, 255, 255, 0.753);
+}
+.nickname text{
+  color: #fff;
+  text-align: center;
+}
+.nickname image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:40rpx; 
+  margin: 0 auto;
 }
 .forum_content{
   border-bottom:1px solid #efefef; 

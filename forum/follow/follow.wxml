@@ -1,0 +1,19 @@
+<view>
+  <wxs src="../../utils/comm_filter.wxs" module='commFilter' />
+  <view class="follow_title curr_item">
+    <view class="{{flag==1 ? 'curr_follow':''}}" bindtap="followBtn" data-type="1">我的关注</view>
+    <view class="{{flag==2 ? 'curr_follow':''}}" bindtap="followBtn" data-type="2">我的粉丝</view>
+  </view>
+  <view class="follow_item curr_item" wx:for="{{fType}}" wx:key="item.id">
+    <view class="follow_left"> <image 
+        src="{{baseUrl}}{{item.headImg==null ? '/ress/staticpm/images/651e65aeea164db5bdb2c3492aaf17a6/e902b99cbc3747fb4275f9b6663c25da.jpg':item.headImg}}">
+        </image> <text space="nbsp" decode> &nbsp;&nbsp;{{item.nikeName}}</text></view>
+    <view class="folow_right">
+      <view class="isFollow">
+        <button bindtap="follow" data-id="{{item.memberId}}">{{item.isFollow > 0 ? '已关注':'关注'}}</button>
+      </view>
+    </view>
+  </view>
+  <mp-loading type="circle" tips="加载中" show="{{isloading}}"></mp-loading>
+  <view class='more' wx:if="{{ismore}}">无更多数据（-_-）</view>
+</view>

@@ -108,7 +108,7 @@
   height: 30rpx;
 }
 .null_item{
-  height: 360rpx;
+  height: 30rpx;
 }
 .bar{
   position: fixed;

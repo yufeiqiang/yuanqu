@@ -137,6 +137,27 @@
 					"pathName": "forum/releaseInfo/releaseInfo",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "forum/circle/circle",
+					"pathName": "forum/circle/circle",
+					"query": "id=b490c3089428405a98d60489decafd71",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "forum/follow/follow",
+					"pathName": "forum/follow/follow",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "forum/trend/trend",
+					"pathName": "forum/trend/trend",
+					"query": "id=b490c3089428405a98d60489decafd71",
+					"scene": null
 				}
 			]
 		}

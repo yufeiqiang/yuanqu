@@ -22,9 +22,8 @@ function wxPromise(method, url, data, type=1){
             success:function(res){
                 //关闭加载loading弹窗
                 // console.log(res)
-                setTimeout(function () {
-                    wx.hideLoading();
-                }, 100);
+                wx.hideLoading();
+  
                 //请求成功
                 if(res.data.code==200){
                     resolve(res.data)

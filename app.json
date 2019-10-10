@@ -13,6 +13,9 @@
     "pages/visitor/visitor",
     "pages/serve/serve",
     "forum/index/index",
+    "forum/circle/circle",
+    "forum/follow/follow",
+    "forum/trend/trend",
     "forum/indexdetail/indexdetail",
     "forum/releaseInfo/releaseInfo" 
   ],

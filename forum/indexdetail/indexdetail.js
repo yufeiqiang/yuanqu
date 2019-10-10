@@ -16,7 +16,7 @@ Page({
     pageNo: 1,
     id:'',
     content: '',
-    releaseFocus:true,
+    releaseFocus:false,
     releaseName:'',
     commentConten:{
       type:1,
@@ -36,13 +36,64 @@ Page({
     this.recommendList();
     console.log(app.globalData.user)
   },
+  /**删除每项信息 */
+  deleteItem(e) {
+    let id = e.currentTarget.dataset.id;
+    let memberId = this.data.userId;
+    let that = this
+    wx.showModal({
+      title: '删除信息',
+      content: '你确定删除此信息吗？',
+      success: function (e) {
+        if (e.confirm) {
+          request.postRequest('/bbs/info/bbsInfo/del', { id: id, memberId: memberId }).then((res) => {
+            if (res.code == 200) {
+              wx.showToast({
+                title: '删除' + res.msg,
+                success:function(e){
+                  setTimeout(()=>{
+                    wx.navigateBack({
+                      delta: 1
+                    })
+                  },1000)
+                }
+              })
+             
+            }
+            // that.setData({
+            //   pageNo: 1,
+            //   list: [],
+            //   ismore: false,
+            //   isloading: true
+            // })
+            // that.recommendList('', that.data.pageNo, that.data.type)
+          })
+        }
+      }
+    })
+
+  },
+  /**
+   * 点击头像跳转到个人圈子
+   */
+  circle(e) {
+    let id = e.currentTarget.dataset.id;
+    // console.log(id)
+    wx.navigateTo({
+      url: '../circle/circle?id=' + id,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
   /**
   * 点击关注
   */
   follow(e) {
     let id = e.currentTarget.dataset.id
-    console.log(id)
-    this.followRequest(1,id)
+    let type = e.currentTarget.dataset.type
+    // console.log(id)
+    this.followRequest(type,id)
   },  
   /**
    * 点击关注 点赞
@@ -170,4 +221,20 @@ Page({
     })
     this.recommendList(this.data.content, this.data.pageNo)
   },
+  /**
+   * 点击图片放大
+   */
+  /**点击图片放大 */
+  previewImg(e) {
+    let index = e.currentTarget.dataset.index;
+    let pics = this.data.list.pics.split(',');
+    let that= this
+    newpics=pics.map(function(item){
+      return that.data.baseUrl+item
+    })
+    wx.previewImage({
+      current: newpics[index],
+      urls: newpics,
+    })
+  }
 })
