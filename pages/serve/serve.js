@@ -6,7 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    list: [
+      { img: 'a.png', text:'宽度申报', type:1},
+      { img: 'b.png', text:'网络保障', type:2},
+      { img: 'c.png', text:'装修服务', type:3},
+      { img: 'd.png', text:'送水服务', type:4},
+      { img: 'e.png', text:'其他服务', type:5},
+    ]
   },
 
   /**
@@ -15,13 +21,11 @@ Page({
   onLoad: function (options) {
     // this.list()
   },
-  list:function(){
-    let param = {
-      identifier:'query_product_list',
-      type:1,
-    }
-    request.getRequest('ls/query_product_list',param,2).then(()=>{
-
+  serveItem(e){
+    let type = e.currentTarget.dataset.type
+    let text = e.currentTarget.dataset.text
+    wx:wx.navigateTo({
+      url: '../serveform/serveform?type='+type+'&text='+text+''
     })
   },
   /**

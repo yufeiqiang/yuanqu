@@ -1,0 +1,29 @@
+<view class="page">
+    <view class="page__bd">
+        <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
+            <mp-cells>
+                <mp-cell prop="names" show-error  title="联系人" ext-class="weui-cell_vcode">
+                    <input  data-field="names" bindinput="formInputChange" name='names' value="{{formData.names}}" class="weui-input" placeholder="请输入姓名"/>
+                </mp-cell>
+                <mp-cell prop="telno" show-error  title="手机" ext-class="weui-cell_vcode">
+                    <input  data-field="telno" bindinput="formInputChange" name='telno' class="weui-input" value="{{formData.telno}}" placeholder="请输入手机号码"/>
+                </mp-cell>
+                <mp-cell prop="weixinno" show-error  title="微信" ext-class="weui-cell_vcode">
+                    <input  data-field="weixinno" bindinput="formInputChange" name='weixinno' class="weui-input" value="" placeholder="请输入微信号"/>
+                </mp-cell>
+                <mp-cell prop="qqno" show-error  title="QQ" ext-class="weui-cell_vcode">
+                    <input  data-field="qqno" bindinput="formInputChange" name='qqno' class="weui-input" placeholder="请输入QQ"/>
+                </mp-cell>
+                <mp-cell prop="chiefcomplaint"  title="详细地址" ext-class="weui-cell_vcode">
+                  <textarea  class="textWidth"  bindinput="formInputChange" data-field="chiefcomplaint" name='chiefcomplaint' placeholder="" />
+                </mp-cell>
+                <mp-cell prop="claim"  title="备注" ext-class="weui-cell_vcode">
+                  <textarea  class="textWidth"  bindinput="formInputChange" data-field="claim" name='claim' placeholder="" />
+                </mp-cell>
+            </mp-cells>
+        </mp-form>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+        </view>
+    </view>
+</view>

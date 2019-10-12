@@ -1,0 +1,23 @@
+<view >
+    <wxs src="../../utils/comm_filter.wxs" module="commFilter" />
+    <view class="serve_item">
+      <view>单号：<text>{{list.id}}</text></view>
+      <view>状态信息：<text class="{{list.dealstatus==2 ? 'active':''}}">{{commFilter.dealstatus(list.dealstatus)}}</text></view>
+      <!-- <view>单号：<text>146sf9ga9g90haha9hak3wk3</text></view> -->
+    </view>
+    <view class="serve_item">
+      <view>报装地址：<text>{{list.chiefcomplaint}}</text></view>
+      <view>申请时间：<text>{{list.createDate}}</text></view>
+    </view>
+    <view class="serve_item">
+      <view>联系人：<text>{{list.name}}</text></view>
+      <view>手机号码：<text>{{list.telno}}</text></view>
+      <view>备注：<text>{{list.claim}}</text></view>
+    </view>
+    <view class="serve_item" wx:if="{{list.dealDate}}">
+      <view>处理人：<text>{{list.dealBy}}</text></view>
+      <view>处理时间：<text>{{list.dealDate}}</text></view>
+      <view>处理情况：<text>{{list.dealContent}}</text></view>
+    </view>
+    <view class="serve_btn" bindtap="cancel" wx:if="{{list.dealstatus =='0' || list.dealstatus =='1'}}">取消</view>
+</view>

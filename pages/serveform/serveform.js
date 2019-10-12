@@ -6,24 +6,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:'意见反馈',
     formData: {
-      memberName: '',
-      memberPhone: '',
-      remark:'',
-      actId:'',
-      memberId:'',
-      type:'',
-      isFree:''
+      dealstatus: '0',
+      names: app.globalData.user.name,
+      telno: app.globalData.user.phone,
+      weixinno:'',
+      qqno:'',
+      chiefcomplaint:'',
+      claim:'',
+      createBy: app.globalData.user.memberId,
+      type:''
     },
+    text:'',
+    userId: app.globalData.user.memberId,
     rules: [
       {
-        name: 'memberName',
+        name: 'names',
         rules: { required: true, message: '请填写姓名' },
       },
       {
-        name: 'memberPhone',
+        name: 'telno',
         rules: { required: true, message: '手机号必填' }
+      },
+      {
+        name:'chiefcomplaint',
+        rules:{ required:true,  message:'详细地址必填'}
       }
     ] 
   },
@@ -31,33 +38,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let user = JSON.parse(wx.getStorageSync('user'));
-    if(user==''){
-      wx.navigateTo({
-        url: '../logs/logs',
-      })
-      return false;
-    }
-    // console.log(user.memberId)
+    // console.log(options)
+    console.log(app.globalData.user)
+    wx.setNavigationBarTitle({
+      title: options.text  
+    })
     this.setData({
-      title:options.title,
-      'formData.actId':options.id,
+      text:options.text,
       'formData.type': options.type,
-      'formData.memberId':user.memberId,
-      'formData.isFree': options.isFree
     })
   },
   /**
-   * 提交报名方法
+   * 提交方法
    */
   submitData: function () {
     let param = this.data.formData
-    request.postRequest('act/infoorder/actInfoOrder/place', param).then(res => {
+    param.name= param.names
+    request.postRequest('tdo/serverreginfo/tdoServerReginfo/crud/save', param).then(res => {
       // console.log(res)
       if (res.code == 200) {
-        // console.log(1215)
-        wx.navigateTo({
-          url: '../course/course?typeId=' + this.data.formData.type
+        wx.navigateBack({
+          delta:1
         })
       }
     }).catch(err => {
@@ -75,7 +76,7 @@ Page({
   submitForm(e) {
     this.selectComponent('#form').validate((valid, errors) => {
       if (!valid) {
-        // console.log(errors)
+        console.log(errors)
         const firstError = Object.keys(errors)
         if (firstError.length) {
           wx.showToast({

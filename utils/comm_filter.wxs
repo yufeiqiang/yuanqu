@@ -61,8 +61,26 @@ var diaplayTime = function(dateTimeStamp){
 
   return result;
 }
+var dealstatus = function (dealstatus){
+  console.log(dealstatus)
+  switch (dealstatus){
+    case '0' :
+      return '待处理';
+      break;
+    case '1' :
+      return '处理中';
+      break;
+    case '2' :
+      return '处理结束';
+      break;
+    case '-1' :
+      return '已取消'
+      break;
+  }
+}
 module.exports = {
   imgFilter:imgFilter,
   imgSplit: imgSplit,
-  diaplayTime: diaplayTime
+  diaplayTime: diaplayTime,
+  dealstatus: dealstatus
 }

@@ -1,0 +1,30 @@
+<view >
+  <wxs src="../../utils/comm_filter.wxs" module="commFilter" />
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==index?'active':''}}"  data-current="{{index}}" bindtap="swichNav" wx:for="{{titleList}}" wx:key="index">{{item}}</view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}"  duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item wx:for='{{list}}' wx:key="index">
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{item}}" wx:key="item.id" >
+                    <view class="item-ans" bindtap="itmeDetail" data-id="{{item.id}}">
+                      <view>
+                        <text>单号：</text><text>{{item.id}}</text>
+                      </view>
+                      <view>
+                        <text>状态：</text><text class="{{item.dealstatus==0 ? 'active':''}}">{{commFilter.dealstatus(item.dealstatus)}}</text>
+                      </view>
+                      <view>
+                        <text>备注：</text>{{item.claim}}<text></text>
+                      </view>
+                      <view>
+                        <text>提交时间：</text>{{item.createDate}}<text></text>
+                      </view>
+                    </view>
+                </block>
+                <view class='more'>无更多数据（-_-）</view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>

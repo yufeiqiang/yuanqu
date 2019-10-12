@@ -1,0 +1,31 @@
+page{
+  /* background: #fff; */
+}
+.serve_item{
+  background: #fff;
+  margin-bottom: 25rpx;
+  padding: 20rpx 0 0rpx 25rpx;
+}
+.serve_item view{
+  padding: 20rpx 20rpx 20rpx 0;
+  border-bottom: 1px solid #ededed;
+}
+.serve_item view:last-child{
+  border: none;
+}
+.serve_item view text{
+  color: #666;
+}
+.serve_item view text.active{
+  color: red;
+}
+.serve_btn{
+  width: 90%;
+  margin: 0 auto;
+  height: 60rpx;
+  border-radius:30rpx; 
+  line-height: 60rpx;
+  text-align: center;
+  border:1px solid #4675F9;
+  color: #4675F9;
+}

@@ -1,13 +1,13 @@
 <view>
-  <view class="btn_icon curr_item">
+  <view class="btn_icon curr_item" wx:for="{{list}}" wx:key="item.id" data-type="{{item.type}}"  data-text="{{item.text}}" bindtap="serveItem">
     <view class="btn_icon_left">
-      <image src="../../image/park/a.png"></image>
+      <image src="../../image/park/{{item.img}}"></image>
     </view>
     <view class="btn_icon_right">
-      宽度申报
+      {{item.text}}
     </view>
   </view>   
-  <view class="btn_icon curr_item">
+  <!-- <view class="btn_icon curr_item">
     <view class="btn_icon_left">
       <image src="../../image/park/b.png"></image>
     </view>
@@ -38,5 +38,5 @@
     <view class="btn_icon_right">
       其他服务
     </view>
-  </view> 
+  </view>  -->
 </view>
