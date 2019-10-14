@@ -174,7 +174,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "pages/serveList/serveList",
 					"pathName": "pages/serveList/serveList",
 					"query": "id=b490c3089428405a98d60489decafd71",
@@ -184,6 +184,20 @@
 					"id": -1,
 					"name": "pages/serveListDetail/serveListDetail",
 					"pathName": "pages/serveListDetail/serveListDetail",
+					"query": "id=b490c3089428405a98d60489decafd71",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/visitor/visitor",
+					"pathName": "pages/visitor/visitor",
+					"query": "id=b490c3089428405a98d60489decafd71",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/visitorList/visitorList",
+					"pathName": "pages/visitorList/visitorList",
 					"query": "id=b490c3089428405a98d60489decafd71",
 					"scene": null
 				}

@@ -24,23 +24,27 @@ function wxPromise(method, url, data, type=1){
                 // console.log(res)
                 wx.hideLoading();
   
-                //请求成功
-                if(res.data.code==200){
-                    resolve(res.data)
+                //判断接口类型
+                if(type==1){
+                  if(res.data.code==200){
+                      resolve(res.data)
+                  }else{
+                      //如果出现异常则弹出dialog
+                      wx.showModal({
+                          title: '提示',
+                          content: res.data.msg + '',
+                          confirmColor: '#118EDE',
+                          showCancel: false,
+                          success: function (res) {
+                              // if (res.confirm) {
+                                  
+                              // }   
+                          }
+                      });
+                      resolve(res.data)
+                  }
                 }else{
-                    //如果出现异常则弹出dialog
-                    wx.showModal({
-                        title: '提示',
-                        content: res.data.msg + '',
-                        confirmColor: '#118EDE',
-                        showCancel: false,
-                        success: function (res) {
-                            // if (res.confirm) {
-                                
-                            // }   
-                        }
-                    });
-                    resolve(res.data)
+                  resolve(res.data)
                 }
             },
             fail:function(res){

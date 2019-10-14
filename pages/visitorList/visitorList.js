@@ -97,11 +97,14 @@ Page({
                 });  
             }  
         });
-        console.log(e)
+        // console.log(e)
       //进入页面请求数据
       this.setData({
         'param.type':e.type,
         currentTab:e.type-1
+      })
+      wx.setNavigationBarTitle({
+        title: e.title
       })
       this.requestList()
     }, 

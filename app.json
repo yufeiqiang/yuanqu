@@ -11,6 +11,8 @@
     "pages/office/office",
     "pages/feedback/feedback",
     "pages/visitor/visitor",
+    "pages/visitorList/visitorList",
+    "pages/visitorform/visitorform",
     "pages/serve/serve",
     "pages/serveList/serveList",
     "pages/serveListDetail/serveListDetail",

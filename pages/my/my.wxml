@@ -55,13 +55,13 @@
         <text>我的课程</text>
       </view>
     </navigator>
-    <navigator url='../course/course' hover-class="none">
+    <navigator url='../visitorList/visitorList?type=1&title=预约访问' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon05.png'></image>
         <text>我的预约</text>
       </view>
     </navigator>
-    <navigator url='../serveList/serveList' hover-class="none">
+    <navigator url='../serveList/serveList?type=1' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon06.png'></image>
         <text>我的服务</text>

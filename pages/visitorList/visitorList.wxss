@@ -1,0 +1,18 @@
+.tab-h{
+    height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: #F7F7F7; font-size: 16px; white-space: nowrap;position: fixed;top: 0; left: 0; z-index: 99;}
+.tab-item{margin:0 36rpx;display: inline-block;}
+.tab-item.active{color: #4675F9;position: relative;}
+.item-ans .active{color: #4675F9}
+.tab-item.active:after{ content: "";display: block;height: 8rpx;width: 110rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;}
+page{
+  background: #fff;
+}
+.item-ans{ 
+  padding: 25rpx;
+  border-bottom:1px solid #ededed;
+}
+.tab-content{margin-top: 80rpx;}
+.scoll-h{height: 100%;}
+.item-ans view{
+  padding-bottom: 10rpx;
+}

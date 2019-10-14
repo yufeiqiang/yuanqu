@@ -53,12 +53,12 @@ Page({
    */
   submitData: function () {
     let param = this.data.formData
-    param.name= param.names
+    param.name= param.names;
     request.postRequest('tdo/serverreginfo/tdoServerReginfo/crud/save', param).then(res => {
       // console.log(res)
       if (res.code == 200) {
-        wx.navigateBack({
-          delta:1
+        wx.navigateTo({
+          url: '../serveList/serveList?type='+param.type+'',
         })
       }
     }).catch(err => {

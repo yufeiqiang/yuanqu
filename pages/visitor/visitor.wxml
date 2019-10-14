@@ -1,18 +1,22 @@
 <view>
-  <view class="btn_icon curr_item">
-    <view class="btn_icon_left">
-      <image src="../../image/visitor/a.png"></image>
-    </view>
-    <view class="btn_icon_right">
-      预约访问
-    </view>
-  </view>   
-  <view class="btn_icon curr_item">
-    <view class="btn_icon_left">
-      <image src="../../image/visitor/b.png"></image>
-    </view>
-    <view class="btn_icon_right">
-      预约参观
-    </view>
-  </view>   
+  <navigator url="../visitorform/visitorform?type=1&title=预约访问"  hover-class="none">
+    <view class="btn_icon curr_item">
+      <view class="btn_icon_left">
+          <image src="../../image/visitor/a.png"></image>
+        </view>
+        <view class="btn_icon_right">
+          预约访问
+        </view>
+    </view>     
+  </navigator> 
+  <navigator url="../visitorform/visitorform?type=2&title=预约参观"  hover-class="none">
+    <view class="btn_icon curr_item">
+      <view class="btn_icon_left">
+        <image src="../../image/visitor/b.png"></image>
+      </view>
+      <view class="btn_icon_right">
+        预约参观
+      </view>
+    </view>  
+  </navigator> 
 </view>
