@@ -2,114 +2,21 @@ const app = getApp()
 const request = require("../../utils/request.js");
 Page({
     data:{
-      winHeight:"",//窗口高度
-      currentTab:0, //预设当前项的值
-      scrollLeft:0, //tab标题的滚动条位置
-      titleList:['宽带申报','网络保障','装修服务','送水服务','其他服务'],
-      list:[[],[],[],[],[]],
-      param:{
-        type:'',
-        createBy: app.globalData.user.memberId,
-        pageSize:'100',
-        pageNo:'1'
-      }
+      type:'1',
+      list:null,
     },
-    /**
-     * 点击每一项
-     */
-    itmeDetail(e){
-      let id = e.currentTarget.dataset.id;
-      wx.navigateTo({
-        url: '../serveListDetail/serveListDetail?id='+id+'',
-      })
-    },
-    // 滚动切换标签样式
-    switchTab:function(e){
-      // console.log(e.detail.current)
-      this.setData({
-        'param.type':e.detail.current + 1
-      })
-      this.requestList(e.detail.current+1)
-        this.setData({
-            currentTab:e.detail.current
-        });
-        this.checkCor();
-    },
-    /**请求数据 */
-    requestList(digit=1){
-      // console.log(digit)
-      // this.setData({
-      //   'param.type': digit
-      // })
-      let param = this.data.param
-      wx.showLoading({
-        title: '加载中',
-      })
-      request.getRequest('tdo/serverreginfo/tdoServerReginfo/crud/pagelist',param).then((res)=>{
-        if(res.code==200){
-          let data = res.data.list
-          let list = this.data.list;
-          list[digit-1]=res.data.list
-          this.setData({
-            list: list
-          })
-        }
-      })
-    },
-    // 点击标题切换当前页时改变样式
-    swichNav:function(e){
-        var cur=e.target.dataset.current;
-        let _num = cur+1
-        this.setData({
-          'param.type': _num
-        })
-        this.requestList()
-        if(this.data.currentTaB==cur){return false;}
-        else{
-            this.setData({
-                currentTab:cur
-            })
-        }
-    },
-    //判断当前滚动超过一屏时，设置tab标题滚动条。
-    checkCor:function(){
-      if (this.data.currentTab>2){
-        this.setData({
-          scrollLeft:300
-        })
-      }else{
-        this.setData({
-          scrollLeft:0
-        })
-      }
-    },
-    onLoad: function(e) {  
-        var that = this; 
-        //  高度自适应
-        wx.getSystemInfo( {  
-            success: function( res ) {  
-              var clientHeight=res.windowHeight,
-                  clientWidth=res.windowWidth,
-                  rpxR=750/clientWidth;
-              var calc=clientHeight*rpxR;
-                that.setData( {  
-                    winHeight: calc  
-                });  
-            }  
-        });
-        // console.log(e)
-      //进入页面请求数据
-      this.setData({
-        'param.type':e.type,
-        currentTab:e.type-1
-      })
-      wx.setNavigationBarTitle({
-        title: e.title
-      })
-      this.requestList()
-    }, 
-  onShow:function(){
+  onLoad: function (e) {
+    //进入页面请求数据
+    this.setData({
+      type: e.type,
+    })
+    wx.setNavigationBarTitle({
+      title: e.title
+    })
     this.requestList()
+  },
+  onShow: function () {
+
   },
   /**
  * 页面相关事件处理函数--监听用户下拉动作
@@ -120,4 +27,68 @@ Page({
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
   }, 
+  /**
+   * 点击预约头部
+   */
+  titleBtn(e){
+    let type= e.currentTarget.dataset.type;
+    this.setData({
+      type:type
+    })
+    this.requestList()
+  },
+  /**
+   * 点击取消预约
+   */
+  cancelBtn(e){
+    let id = e.currentTarget.dataset.id;
+    // console.log(id)
+    let that =this;
+    wx.showModal({
+      title: '取消预约',
+      content: '你确定取消此预约吗？',
+      success: function (e) {
+        if (e.confirm) {
+          request.postRequest('/appoint/info/appointInfo/cancel', { id: id }).then(res => {
+            console.log(res)
+            if (res.code == 200) {
+              wx.showToast({
+                title: '取消成功',
+                success: function (e) {
+                  setTimeout(() => {
+                    that.requestList()
+                  }, 1000)
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+    /**请求数据 */
+  requestList(){
+    let param = { 
+          var: "a.type in(1,3) and a.member_id ='"+app.globalData.user.memberId+"'",
+          m: 0, 
+          n: 200,
+          identifier:'query_appoint_list' 
+        }
+    wx.showLoading({
+      title: '加载中',
+    })
+    request.getRequest('ls',param,2).then((res)=>{
+        // console.log(res)
+        let newData=[]
+        for(itme in res){
+          // console.log(this.data.type)
+          if (res[itme].type == this.data.type) {
+            newData.push(res[itme])
+          }
+        }
+        this.setData({
+          list: newData
+        })
+    })
+  }
 })

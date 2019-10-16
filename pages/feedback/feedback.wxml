@@ -4,10 +4,13 @@
         <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
             <mp-cells>
                 <mp-cell prop="memberName" show-error  title="姓名" ext-class="weui-cell_vcode">
-                    <input  data-field="memberName" bindinput="formInputChange" name='memberName' class="weui-input" placeholder="请输入姓名"/>
+                    <input  data-field="memberName" bindinput="formInputChange" name='memberName' value="{{formData.memberName}}" class="weui-input" placeholder="请输入姓名"/>
                 </mp-cell>
                 <mp-cell prop="memberPhone" show-error  title="手机" ext-class="weui-cell_vcode">
-                    <input  data-field="memberPhone" bindinput="formInputChange" name='memberPhone' class="weui-input" placeholder="请输入手机号码"/>
+                    <input  data-field="memberPhone" 
+                    bindinput="formInputChange" 
+                    name='memberPhone' 
+                    value="{{formData.memberPhone}}"class="weui-input" placeholder="请输入手机号码"/>
                 </mp-cell>
                 <mp-cell prop="remark"  title="意见" ext-class="weui-cell_vcode">
                   <textarea  class="textWidth"  bindinput="formInputChange" data-field="remark" name='remark' placeholder="" />

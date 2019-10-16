@@ -7,14 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.baseUrl,
+    baseUrl: app.globalData.baseUrl, 
+    memberId: app.globalData.user.memberId,
     courseList: [],
     isloading: true,
     ismore: false,
     typeId: '',
     pageNo: 1,
     searchVal: '',
-    searColor: ''
+    searColor: '',
+    falg:'1',
   },
 
   /**
@@ -23,9 +25,15 @@ Page({
   onLoad: function (options) {
     // console.log(options)
     this.setData({
-      typeId: options.typeId
+      typeId: options.typeId,
+      falg: options.falg
     })
-    this.recommendList('', this.data.pageNo)
+    if(this.data.falg==2){
+      this.myRecommendList(this.data.pageNo)
+    }else{
+      this.recommendList('', this.data.pageNo)
+    }
+    
   },
   /**
    * 点击每一项信息
@@ -78,6 +86,57 @@ Page({
     })
   },
   /**
+   * 我的课程数据，我的活动
+   */
+  myRecommendList(){
+    let memberId = this.data.memberId
+    let type = this.data.typeId
+    let param = {
+      var: "a.create_by = '" + memberId+"' and a.type = '"+type+"'",
+      m: 1,
+      n: 2000,
+      identifier: "query_act_order_list",
+    }
+    request.getRequest('ls', param, 2).then(res => {
+        let data = [];
+      // console.log(1)
+        for(item in res){
+          // console.log(res[item])
+          data.push(res[item])
+        }
+        this.setData({
+          courseList: data,
+          ismore: true,
+          isloading: false
+        })
+    })
+  },
+  /**
+   * 取消报名
+   */
+  cancelBtn(e){
+    let id = e.currentTarget.dataset.id;
+    let that = this
+    wx.showModal({
+      title: '取消报名',
+      content: '你确定取消报名吗？',
+      success: function (e) {
+        if (e.confirm) {
+          request.postRequest('act/infoorder/actInfoOrder/cancel', { id: id }).then(res => {
+              wx.showToast({
+                title: '取消成功',
+                success: function (e) {
+                  setTimeout(() => {
+                    that.myRecommendList()
+                  }, 1000)
+                }
+              })
+          })
+        }
+      }
+    })
+  },
+  /**
    * 搜索按钮
    */
   searchData: function (e) {
@@ -117,7 +176,11 @@ Page({
       isloading: true
     })
     wx.showNavigationBarLoading()
-    this.recommendList(this.data.searchVal)
+    if (this.data.falg == 2) {
+      this.myRecommendList(this.data.pageNo)
+    } else {
+      this.recommendList(this.data.searchVal)
+    }
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
   },
@@ -134,7 +197,11 @@ Page({
       isloading: true,
       ismore: false
     })
-    this.recommendList(this.data.searchVal, this.data.pageNo)
+    if (this.data.falg == 2) {
+      this.myRecommendList(this.data.pageNo)
+    } else {
+      this.recommendList(this.data.searchVal, this.data.pageNo)
+    }
   },
   /**
    * 监听页面滚动

@@ -8,13 +8,12 @@ Page({
   data: {
     title:'意见反馈',
     formData: {
-      memberName: '',
-      memberPhone: '',
+      memberName: app.globalData.user.name,
+      memberPhone: app.globalData.user.phone,
+      memberId: app.globalData.user.memberId,
+      companyId:'1',
       remark:'',
-      actId:'',
-      memberId:'',
-      type:'',
-      isFree:''
+      type:'2',
     },
     rules: [
       {
@@ -48,11 +47,11 @@ Page({
     })
   },
   /**
-   * 提交报名方法
+   * 提交方法
    */
   submitData: function () {
     let param = this.data.formData
-    request.postRequest('act/infoorder/actInfoOrder/place', param).then(res => {
+    request.postRequest('/appoint/info/appointInfo/appoint', param).then(res => {
       // console.log(res)
       if (res.code == 200) {
         // console.log(1215)

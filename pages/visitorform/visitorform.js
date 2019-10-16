@@ -147,16 +147,28 @@ Page({
    */
   submitData: function () {
     let param = this.data.formData
-    param.name= param.names;
     delete param.companyList
     delete param.visit
     delete param.dateTimeArray
     request.postRequest('/appoint/info/appointInfo/appoint', param).then(res => {
       // console.log(res)
       if (res.code == 200) {
-        wx.navigateTo({
-          url: '../visitorList/visitorList?type=' + param.type +'&title='+this.data.title+'',
-        })
+        if (this.data.formData.type != 2){
+          wx.navigateTo({
+            url: '../visitorList/visitorList?type=' + param.type + '&title=' + this.data.title + '',
+          })
+        }else{
+          wx.showToast({
+            title: '反馈成功',
+            success: function (e) {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1000)
+            }
+          })
+        }
       }
     }).catch(err => {
 

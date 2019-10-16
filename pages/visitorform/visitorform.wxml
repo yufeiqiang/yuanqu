@@ -8,7 +8,7 @@
                 <mp-cell prop="personPhone" show-error  title="手机" ext-class="weui-cell_vcode">
                     <input  data-field="personPhone" bindinput="formInputChange" name='personPhone' class="weui-input" value="{{formData.personPhone}}" placeholder="请输入手机号码"/>
                 </mp-cell>
-                <mp-cell prop="companyId" show-error  title="公司名称" ext-class="weui-cell_vcode">
+                <mp-cell prop="companyId" show-error  title="公司名称" wx:if="{{formData.type!=2}}" ext-class="weui-cell_vcode">
                   <picker mode = selector 
                   range='{{formData.companyList}}' 
                   data-field="companyId"
@@ -18,7 +18,7 @@
                     </view>
                   </picker>
                 </mp-cell>
-                <mp-cell prop="matter" show-error  title="来访事由" ext-class="weui-cell_vcode">
+                <mp-cell show-error  title="来访事由" wx:if="{{formData.type!=2}}" ext-class="weui-cell_vcode">
                   <picker mode = selector 
                   range='{{formData.visit}}' 
                   data-field="matter"
@@ -28,7 +28,7 @@
                     </view>
                   </picker>
                 </mp-cell>
-                <mp-cell prop="matter" show-error  title="预约时间" ext-class="weui-cell_vcode">
+                <mp-cell  show-error  title="预约时间" wx:if="{{formData.type!=2}}" ext-class="weui-cell_vcode">
                   <picker mode="multiSelector" 
                   value="{{dateTime}}" 
                   bindchange="changeDateTime" 
@@ -39,14 +39,18 @@
                     </view>
                   </picker>
                 </mp-cell>
-                <mp-cell prop="otherPerson" show-error  title="同行人"  wx:if="type==1" ext-class="weui-cell_vcode">
+                <mp-cell prop="otherPerson" show-error  title="同行人"  wx:if="{{formData.type==1}}" ext-class="weui-cell_vcode">
                     <input  data-field="otherPerson" bindinput="formInputChange" name='otherPerson' class="weui-input" placeholder="请输入同行人"/>
                 </mp-cell>
-                <mp-cell prop="num" show-error  title="参观人数" wx:if="{{formData.type==2}}" ext-class="weui-cell_vcode">
+                <mp-cell prop="num" show-error  title="参观人数" wx:if="{{formData.type==3}}" ext-class="weui-cell_vcode">
                     <input  data-field="num" bindinput="formInputChange" name='num' class="weui-input" placeholder="请输入参观人数"/>
                 </mp-cell>
-                <mp-cell prop="remarks"  title="备注" wx:if="{{formData.type==2}}" ext-class="weui-cell_vcode">
-                  <textarea  class="textWidth"  bindinput="formInputChange" data-field="remarks" name='remarks' placeholder="" />
+                <mp-cell prop="remarks"  title="描述" wx:if="{{formData.type==3 || formData.type==2}}" ext-class="weui-cell_vcode">
+                  <textarea  class="textWidth"  
+                  bindinput="formInputChange" 
+                  data-field="{{formData.type==2 ? 'matter':'remarks'}}" 
+                  name="{{formData.type==2 ? 'matter':'remarks'}}"
+                  placeholder="" />
                 </mp-cell>
             </mp-cells>
         </mp-form>

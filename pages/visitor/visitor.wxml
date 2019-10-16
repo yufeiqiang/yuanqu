@@ -9,7 +9,7 @@
         </view>
     </view>     
   </navigator> 
-  <navigator url="../visitorform/visitorform?type=2&title=预约参观"  hover-class="none">
+  <navigator url="../visitorform/visitorform?type=3&title=预约参观"  hover-class="none">
     <view class="btn_icon curr_item">
       <view class="btn_icon_left">
         <image src="../../image/visitor/b.png"></image>

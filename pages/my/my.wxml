@@ -31,25 +31,25 @@
     </view>
   </view>
   <view class='my_list'>
-    <navigator url='../course/course' hover-class="none">
+    <!-- <navigator url='../course/course' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon01.png'></image>
         <text>我的订单</text>
       </view>
-    </navigator>
-    <navigator url='../course/course' hover-class="none">
+    </navigator> -->
+    <navigator url='../index/index' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon02.png'></image>
         <text>我的企业</text>
       </view>
     </navigator>
-    <navigator url='../course/course' hover-class="none">
+    <navigator url='../course/course?typeId=1&falg=2' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon03.png'></image>
         <text>我的活动</text>
       </view>
     </navigator>
-    <navigator url='../course/course' hover-class="none">
+    <navigator url='../course/course?typeId=2&falg=2' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon04.png'></image>
         <text>我的课程</text>
@@ -67,17 +67,15 @@
         <text>我的服务</text>
       </view>
     </navigator>
-    <navigator url='../course/course' hover-class="none">
+    <navigator url='../visitorform/visitorform?type=2&title=意见反馈' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon07.png'></image>
         <text>意见反馈</text>
       </view>
     </navigator>
-    <navigator url='../course/course' hover-class="none">
-      <view class='my_list_item'>
-        <image src='../../image/my/icon08.png'></image>
-        <text>联系我们</text>
-      </view>
-    </navigator>
+    <view class='my_list_item' bindtap="callPhone">
+      <image src='../../image/my/icon08.png'></image>
+      <text>联系我们</text>
+    </view>
   </view>
 </view>

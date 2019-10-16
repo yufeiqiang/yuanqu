@@ -81,7 +81,7 @@
       </navigator>
     </view>
     <view class='barList_item'>
-      <navigator url='../feedback/feedback' hover-class="none">
+      <navigator url='../visitorform/visitorform?type=2&title=意见反馈' hover-class="none">
           <image src='../../image/index/bar09.png'></image>
         <view>意见反馈</view>
       </navigator>

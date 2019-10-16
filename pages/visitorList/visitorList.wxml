@@ -1,30 +1,30 @@
 <view >
   <wxs src="../../utils/comm_filter.wxs" module="commFilter" />
-    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-        <view class="tab-item {{currentTab==index?'active':''}}"  data-current="{{index}}" bindtap="swichNav" wx:for="{{titleList}}" wx:key="index">{{item}}</view>
-    </scroll-view>
-    <swiper class="tab-content" current="{{currentTab}}"  duration="300" bindchange="switchTab"
-     style="height:{{winHeight}}rpx">
-        <swiper-item wx:for='{{list}}' wx:key="index">
-            <scroll-view scroll-y="true" class="scoll-h" >
-                <block wx:for="{{item}}" wx:key="item.id" >
-                    <view class="item-ans" bindtap="itmeDetail" data-id="{{item.id}}">
-                      <view>
-                        <text>单号：</text><text>{{item.id}}</text>
-                      </view>
-                      <view>
-                        <text>状态：</text><text class="{{item.dealstatus==0 ? 'active':''}}">{{commFilter.dealstatus(item.dealstatus)}}</text>
-                      </view>
-                      <view>
-                        <text>备注：</text>{{item.claim}}<text></text>
-                      </view>
-                      <view>
-                        <text>提交时间：</text>{{item.createDate}}<text></text>
-                      </view>
-                    </view>
-                </block>
-                <view class='more'>无更多数据（-_-）</view>
-            </scroll-view>
-        </swiper-item>
-    </swiper>
+    <block>
+        <view class="title_box">
+          <view class="curr_item title_visitor">
+            <view class="{{type==1?'title_visitor_curr':''}}" data-type="1" bindtap="titleBtn">预约访问</view>
+            <view class="{{type==3?'title_visitor_curr':''}}" data-type="3" bindtap="titleBtn">预约参观</view>
+          </view>
+        </view>
+        <view class="item_null"></view>
+        <view class="item-ans" wx:for="{{list}}"  wx:key="item.id">
+          <view class="curr_item">
+            <view><text>预约公司：</text>{{item.companyName}}</view>
+            <view class="curr_cancel"> {{item.statusName}}</view>
+          </view>
+          <view class="curr_item">
+            <view><text>姓名：</text>{{item.personName}}</view>
+            <view><text>手机号：</text>{{item.personPhone}}</view>
+          </view>
+          <view class="curr_item">
+            <view><text>来访事由：</text>{{item.matter}}</view>
+            <view><text>预约日期：</text>{{item.visitTime}}</view>
+          </view>
+          <view wx:if="{{item.statusName!='已取消'}}">
+            <button class="visiro_btn" bindtap="cancelBtn" data-id="{{item.id}}">取消预约</button>
+          </view>
+        </view>
+    </block>
+    <view class='more'>无更多数据（-_-）</view>
 </view>

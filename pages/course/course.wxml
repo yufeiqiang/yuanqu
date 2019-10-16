@@ -1,8 +1,8 @@
 <view>
-  <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}"></mp-searchbar>
-  <view class="null_item"></view>
+  <mp-searchbar placeholder="请输入关键字搜索" class="searchbar" bindblur="searchData"  cancel="false" bindclear="clearsearch" cancelText='' style="box-shadow:{{searColor}}" wx:if="{{falg!=2}}"></mp-searchbar>
+  <view class="null_item" wx:if="{{falg!=2}}"></view>
   <view class='coruse_box'>
-    <view class='coruse' wx:for="{{courseList}}" wx:key="item.id" bindtap="courseDetail" data-id="{{item.id}}">
+    <view class='coruse' wx:for="{{courseList}}" wx:key="item.id" bindtap="courseDetail" data-id="{{falg==2? item.act_info_id:item.id}}">
       <view class='coruse_left'>
         <image mode="aspectFill" src='{{baseUrl}}{{item.pic}}'></image>
         <!-- <text>进行中</text> -->
@@ -10,9 +10,23 @@
       <view class='coruse_right'>
         <view class='coruser_title nowrap'>{{item.title}}</view>
         <view class='coruse_key nowrap'>{{item.keywords}}</view>
-        <view class="address"><text>地址：</text>{{item.address}}</view>
+        <!-- <view class="address"><text>地址：</text>{{item.address}}</view> -->
+        <view class="curr_item" wx:if="{{falg==2}}">
+          <view>{{item.member_name}}</view>
+          <view>{{item.member_phone}}</view>
+        </view>
         <view class='coruse_content'>
-          <text>报名时间：</text><text class="coruse_time">{{item.beginDate}}-{{item.endDate}}</text>
+          <view wx:if="{{falg==1}}">
+            <text >报名时间：</text><text class="coruse_time">{{item.beginDate}}-{{item.endDate}}</text>
+          </view>
+          <view wx:if="{{falg==2}}">
+            <text>报名时间：</text><text class="coruse_time">{{item.act_begin_date}}-{{item.act_end_date}}</text>
+          </view>
+        </view>
+        <view class="curr_item cancel_btn">
+          <view>发起人：{{item.author}}</view>
+          <view wx:if="{{item.state==3}}">已完成</view>
+          <view wx:if="{{falg==2 && (item.state==1)}}" catchtap="cancelBtn" data-id="{{item.id}}">取消报名</view>
         </view>
       </view>
     </view>

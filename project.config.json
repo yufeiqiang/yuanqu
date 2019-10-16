@@ -195,10 +195,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 20,
 					"name": "pages/visitorList/visitorList",
 					"pathName": "pages/visitorList/visitorList",
-					"query": "id=b490c3089428405a98d60489decafd71",
+					"query": "type=1&title=预约服务",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/feedback/feedback",
+					"pathName": "pages/feedback/feedback",
+					"query": "type=1&title=预约服务",
 					"scene": null
 				}
 			]
