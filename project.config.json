@@ -207,6 +207,13 @@
 					"pathName": "pages/feedback/feedback",
 					"query": "type=1&title=预约服务",
 					"scene": null
+				},
+				{
+					"id": 22,
+					"name": "pages/officeList/officeList",
+					"pathName": "pages/officeList/officeList",
+					"query": "type=1&title=办公室",
+					"scene": null
 				}
 			]
 		}

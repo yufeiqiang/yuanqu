@@ -1,0 +1,26 @@
+<view>
+  <view class="office_top">
+    <view class="office_filter">
+      <picker 
+        mode="selector"
+        range="{{personNumber}}"
+        data-field="personIndex"
+        data-product="product_property"
+        bindchange="bindPickerChange"
+        value="{{personIndex}}">{{personNumber[personIndex] ? personNumber[personIndex] : type==3 ? '人数':'面积'}}</picker>
+    </view>
+    <view class="office_filter" wx:if="{{type!=4}}">
+      <picker mode="selector" 
+        range="{{priceList}}" 
+        data-field="priceIndex"
+        data-product="price"
+        bindchange="bindPickerChange" 
+        value="{{priceIndex}}">{{priceList[priceIndex] ? priceList[priceIndex]:'价格'}}</picker>
+    </view>
+  </view>
+  <view>
+    <view class="office_item">
+
+    </view>
+  </view>   
+</view>

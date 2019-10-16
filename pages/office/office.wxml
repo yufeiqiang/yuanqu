@@ -1,26 +1,32 @@
 <view>
-  <view class="btn_icon curr_item">
-    <view class="btn_icon_left">
-      <image src="../../image/office/a.png"></image>
+  <navigator url="../officeList/officeList?type=1,2&title=办公室" hover-class="none">
+    <view class="btn_icon curr_item">
+      <view class="btn_icon_left">
+        <image src="../../image/office/a.png"></image>
+      </view>
+      <view class="btn_icon_right">
+        办公室预定
+      </view>
     </view>
-    <view class="btn_icon_right">
-      办公室预定
-    </view>
-  </view>   
-  <view class="btn_icon curr_item">
-    <view class="btn_icon_left">
-      <image src="../../image/office/b.png"></image>
-    </view>
-    <view class="btn_icon_right">
-      会议室预定
-    </view>
-  </view>   
-  <view class="btn_icon curr_item">
-    <view class="btn_icon_left">
-      <image src="../../image/office/c.png"></image>
-    </view>
-    <view class="btn_icon_right">
-      柜子预定
-    </view>
-  </view>   
+  </navigator>  
+  <navigator url="../officeList/officeList?type=3&title=会议室" hover-class="none">
+    <view class="btn_icon curr_item">
+      <view class="btn_icon_left">
+        <image src="../../image/office/b.png"></image>
+      </view>
+      <view class="btn_icon_right">
+        会议室预定
+      </view>
+    </view>  
+  </navigator> 
+  <navigator url="../officeList/officeList?type=4&title=柜子" hover-class="none">
+    <view class="btn_icon curr_item">
+      <view class="btn_icon_left">
+        <image src="../../image/office/c.png"></image>
+      </view>
+      <view class="btn_icon_right">
+        柜子预定
+      </view>
+    </view> 
+  </navigator>  
 </view>

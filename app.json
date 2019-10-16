@@ -9,6 +9,7 @@
     "pages/signUp/signUp",
     "pages/infordetail/infordetail",
     "pages/office/office",
+    "pages/officeList/officeList",
     "pages/feedback/feedback",
     "pages/visitor/visitor",
     "pages/visitorList/visitorList",
