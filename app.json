@@ -10,6 +10,8 @@
     "pages/infordetail/infordetail",
     "pages/office/office",
     "pages/officeList/officeList",
+    "pages/officeListDetail/officeListDetail",
+    "pages/officeform/officeform",
     "pages/feedback/feedback",
     "pages/visitor/visitor",
     "pages/visitorList/visitorList",

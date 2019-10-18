@@ -1,0 +1,58 @@
+<view>
+  <wxs src="../../utils/comm_filter.wxs" module="commFilter" />
+  <view class="page-section page-section-spacing swiper">
+    <swiper
+      indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+      interval="{{interval}}" duration="{{duration}}"  style="height:{{height}}px">
+      <block wx:for="{{officeListDetail.imgUrls}}" wx:key="item.id">
+        <swiper-item>
+          <view class="swiper-item" data-id="{{item.id}}" bindtap="tapNavigate">
+            <image src='{{baseUrl}}{{item.src}}' style="height:{{height}}px" 
+            data-height="height"
+            bindload="setContainerHeight"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="officeContent">
+    <view class="officeContent_a">{{officeListDetail.name}}</view>
+    <view class="officeContent_b curr_item">
+      <view> <text class="office_price">{{officeListDetail.price}} </text>{{officeListDetail.unitName}}</view>
+      <view>{{officeListDetail.productStatus}}</view>
+    </view>
+    <view class="officeContent_c">
+      押金：{{officeListDetail.depositTypeName}}
+    </view>
+  </view>
+  <view class="office_location">
+    {{officeListDetail.location}}
+  </view>
+  <view class="office_detail">
+    <view class="office_mi"><image src="../../image/office/mi.png" wx:if="{{ officeListDetail.productType==2}}"></image><image src="../../image/office/ren.png" wx:else></image><block wx:if="{{officeListDetail.productType==2}}">{{officeListDetail.area}}</block><block wx:else>{{officeListDetail.sort}}</block> <text>{{ officeListDetail.productType==2? 'm²' : '人' }}</text></view>
+    <view>
+      <text class="office_detail_title">详情</text>
+      <view class="office_detail_content">
+         <rich-text nodes="{{commFilter.imgFilter(officeListDetail.details)}}"></rich-text>
+      </view>
+    </view>
+    <view>
+      <text class="office_detail_title">周边情况</text>
+      <view class="office_detail_content">
+         <rich-text nodes="{{commFilter.imgFilter(officeListDetail.peripheral_environment)}}"></rich-text>
+      </view>
+    </view>
+    <view>
+      <text class="office_detail_title">交通状况</text>
+      <view class="office_detail_content">
+         <rich-text nodes="{{commFilter.imgFilter(officeListDetail.traffic)}}"></rich-text>
+      </view>
+    </view>
+  </view>
+  <view class="signUp_box">
+    <view class="signUp_left"><image mode="aspectFill" src='../../image/course/index.png'></image></view>
+    <view class="signUp_right">
+      <button type="primary" bindtap="signUp" hover-class="none"  data-title='{{list.title}}' > 预约使用 </button>
+    </view>
+  </view>
+</view>

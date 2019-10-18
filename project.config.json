@@ -212,7 +212,14 @@
 					"id": 22,
 					"name": "pages/officeList/officeList",
 					"pathName": "pages/officeList/officeList",
-					"query": "type=1&title=办公室",
+					"query": "type=1,2&title=办公室",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "pages/officeListDetail/officeListDetail",
+					"pathName": "pages/officeListDetail/officeListDetail",
+					"query": "pid='cce2a982d9f64b048a7498a1ae165051'&title=办公室",
 					"scene": null
 				}
 			]

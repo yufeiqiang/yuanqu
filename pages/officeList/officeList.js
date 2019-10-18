@@ -12,11 +12,23 @@ Page({
     personIndex:'',
     product_property:'',
     price:'',
-    type:''
+    type:'',
+    title:'',
+    baseUrl: app.globalData.baseUrl,
+    list:null
   },
-
   /**
-   * 改变下拉选项
+   * 点击每条信息跳转
+   */
+  tapOfficeDetail(e){
+    let id = e.currentTarget.dataset.id;
+    // console.log(e)
+    wx.navigateTo({
+      url: '../officeListDetail/officeListDetail?id='+id+'&title='+this.data.title+'',
+    })
+  },
+  /**
+   * 改变下拉选项筛选
    */
   bindPickerChange(e){
     let { field, product} = e.currentTarget.dataset;
@@ -55,7 +67,16 @@ Page({
           identifier: "query_product_list"
         }
     request.getRequest('ls',param,2).then(res=>{
-      console.log
+      for(item in res){
+        var data = res[item].imgUrls;
+        var icon = res[item].facilities
+        // console.log(icon)
+        res[item].imgUrls = JSON.parse(data)[0]
+        res[item].facilities = JSON.parse(icon)
+      }
+      this.setData({
+        list:res
+      })
     })
   },
   /**
@@ -63,7 +84,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      type:options.type
+      type:options.type,
+      title: options.title
     })
     wx.setNavigationBarTitle({
       title: options.title,

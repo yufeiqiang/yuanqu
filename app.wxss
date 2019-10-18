@@ -42,4 +42,35 @@ page{
   background: #fff;
   font-size: 12px;
 }
+.signUp_box{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  background: #fff;
+  height: 120rpx;  
+  border-top: 1px solid #efefef;
+}
+.signUp_left{
+  width: 15%;
+}
+.signUp_right{
+  width: 85%;
  
+}
+.signUp_right button{
+  width:95%;
+  height: 76rpx;
+  line-height: 76rpx;
+  margin: 20rpx 5% 0 0 ;
+}
+.signUp_left{
+  text-align: center;
+  padding: 20rpx 0 0;
+}
+.signUp_left image{
+  width: 56rpx;
+  height: 56rpx;
+  margin-top:8rpx; 
+}
