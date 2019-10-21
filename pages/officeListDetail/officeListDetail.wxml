@@ -52,7 +52,16 @@
   <view class="signUp_box">
     <view class="signUp_left"><image mode="aspectFill" src='../../image/course/index.png'></image></view>
     <view class="signUp_right">
-      <button type="primary" bindtap="signUp" hover-class="none"  data-title='{{list.title}}' > 预约使用 </button>
+      <button type="primary" 
+        bindtap="signUp" 
+        hover-class="none"  
+        data-title='{{title}}' 
+        data-id="{{officeListDetail.id}}" 
+        data-unitName="{{officeListDetail.unitName}}"
+        data-name="{{officeListDetail.name}}"
+        data-depositAmount = "{{officeListDetail.depositAmount}}"
+        data-depositTypeName="{{officeListDetail.depositTypeName}}"
+        data-price="{{officeListDetail.price}}"> 预约使用 </button>
     </view>
   </view>
 </view>

@@ -17,7 +17,9 @@ Page({
     officeListDetail:'',
     height: 0,
     pid:'',
-    title:''
+    title:'',
+    id:'',
+    unitname:''
   },
   
   /**
@@ -60,7 +62,7 @@ Page({
     // console.log(e.target.dataset.height)
     switch (e.target.dataset.height) {
       case 'height':
-        console.log(imgHeight)
+        // console.log(imgHeight)
         this.setData({
           height: imgHeight * scale
         })
@@ -76,8 +78,11 @@ Page({
    * 点击预约使用
    */
   signUp(e){
+    // console.log(e.currentTarget.dataset)
+    let { id, title, unitname, deposittypename, price, name, depositamount} = e.currentTarget.dataset;
     wx.navigateTo({
-      url: '../officeform/officeform',
+      url: '../officeform/officeform?id=' + id + '&title=' + title + '&unitname='
+        + unitname + '&depositTypeName=' + deposittypename + '&price=' + price + '&name=' + name + '&depositAmount=' + depositamount+'',
     })
   },
   /**

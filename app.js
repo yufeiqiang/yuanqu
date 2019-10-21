@@ -56,5 +56,6 @@ App({
   globalData: {
     user: {memberId:''},
     baseUrl:'https://www.zhiqushequ.cn',
-  }
+  },
+
 })

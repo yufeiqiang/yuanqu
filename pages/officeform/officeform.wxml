@@ -1,16 +1,36 @@
 <view>
-  <button bindtap="pickerShow" style="width:80vw;margin-top:20px">显示picker</button>
-</view>
-
-<view style="text-align:center;margin-top:20px">
-  <view wx:if="{{startTime}}">
-    开始时间：{{startTime}}
+  <view class="huiyuan">{{name}}</view>
+  <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
+      <mp-cells>
+          <mp-cell prop="names" show-error  title="选择时间：" ext-class="weui-cell_vcode">
+            <input  bindtap="pickerShow" class="weui-input timeClass" disabled  value="{{startTime}} - {{endTime}}"></input>
+          </mp-cell>
+          <mp-cell prop="price" show-error  title="单  价：" ext-class="weui-cell_vcode">
+              <input  data-field="price" bindinput="formInputChange" name='price' disabled value="{{formData.price}}{{formData.unitname}}" class="weui-input"/>
+          </mp-cell>
+          <mp-cell prop="num" show-error  title="预定数量：" ext-class="weui-cell_vcode">
+              <input  data-field="num" bindinput="formInputChange"  type='number' name='num'  value="{{formData.num}}" class="weui-input"/>
+          </mp-cell>
+          <mp-cell prop="depositAmount" show-error  title="押  金："  ext-class="weui-cell_vcode">
+              <input  data-field="depositAmount" bindinput="formInputChange" disabled name='depositAmount'  value="{{formData.depositTypeName}} / {{formData.depositAmount}}" class="weui-input"/>
+          </mp-cell>
+          <mp-cell prop="memberName" show-error  title="联 系 人：" ext-class="weui-cell_vcode">
+              <input  data-field="memberName" bindinput="formInputChange" name='memberName' value="{{formData.memberName}}" class="weui-input" placeholder="请输入姓名"/>
+          </mp-cell>
+          <!-- <mp-cell prop="memberPhone" show-error  title="联系电话：" ext-class="weui-cell_vcode">
+              <input  data-field="memberPhone" bindinput="formInputChange" name='memberPhone' class="weui-input" value="{{formData.memberPhone}}" placeholder="请输入手机号码"/>
+          </mp-cell>
+          <mp-cell prop="buyerRemark"  title="备注信息：" ext-class="weui-cell_vcode">
+            <textarea  class="textWidth"  bindinput="formInputChange" data-field="buyerRemark" name='buyerRemark' placeholder="" />
+          </mp-cell> -->
+      </mp-cells>
+  </mp-form>
+  <view class="total">
+    总金额：<text>{{total}}</text>
   </view>
-  <view wx:if="{{endTime}}">
-    结束时间：{{endTime}}
+  <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
   </view>
 </view>
-
-
 <timePicker pickerShow="{{isPickerShow}}" id="picker" wx:if="{{isPickerRender}}" bind:hidePicker="pickerHide" bind:setPickerTime="setPickerTime"
   config="{{pickerConfig}}"></timePicker>
