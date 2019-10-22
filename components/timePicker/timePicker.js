@@ -65,7 +65,7 @@ Component({
           }
           let n = tmp[conf.column];
           if (s>=n || e>=n) {
-            this.initPick();
+            this.initPick(this.data.config);
             this.setData({
               startValue: this.data.startValue,
               endValue: this.data.endValue,
@@ -109,6 +109,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //阻止滑动事件
+    onCatchTouchMove(e) {
+      return
+    },
     //读取配置项
     readConfig() {
       let limitEndTime = new Date().getTime();
@@ -153,9 +157,6 @@ Component({
         limitEndTimeArr
       });
     },
-    preventD:function(){
-
-    },
     //滚动开始
     handlePickStart:function(e){
       this.setData({
@@ -193,7 +194,7 @@ Component({
           " " +
           (this.data.hourColumn ? format0(startArr[3]) : "00") +
           ":" +
-          (this.data.minColumn ? format0(startArr[4]) : "00") ;
+          (this.data.minColumn ? format0(startArr[4]) : "00") 
           // ":" +
           // (this.data.secColumn ? format0(startArr[5]) : "00");
 
@@ -206,7 +207,7 @@ Component({
           " " +
           (this.data.hourColumn ? format0(endArr[3]) : "00") +
           ":" +
-          (this.data.minColumn ? format0(endArr[4]) : "00") ;
+          (this.data.minColumn ? format0(endArr[4]) : "00") 
           // ":" +
           // (this.data.secColumn ? format0(endArr[5]) : "00");
 

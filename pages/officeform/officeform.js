@@ -1,5 +1,4 @@
 const app = getApp();
-const { watch, computed } = require("../../utils/vuefy.js")
 
 Page({
   data: {
@@ -47,17 +46,8 @@ Page({
       'formData.depositAmount':depositAmount,
       name: name
     })
-    this.totalPriceFun(this.data.startTime, this.data.endTime);
-    computed(this, {
-      total: function() {
-        console.log(parseInt(this.data.formData.num))
-        var totalPrice = (parseInt(this.data.formData.taskTime) * parseInt(this.data.formData.price) * parseInt(this.data.formData.num)) + parseInt(this.data.formData.depositAmount);
-        this.setData({
-          'formData.totalPrice': totalPrice
-        })
-        return totalPrice
-      }
-    })
+    this.taskTimeFun(this.data.startTime, this.data.endTime);
+    this.totalPriceFun()
   },
   pickerShow: function() {
     this.setData({
@@ -80,28 +70,49 @@ Page({
       startTime: data.startTime,
       endTime: data.endTime
     });
-    this.totalPriceFun(data.startTime, data.endTime)
+    this.taskTimeFun(data.startTime, data.endTime)
+    this.totalPriceFun()
   },
   /**
-  * input失焦
+  * input值改变时候
   */
   formInputChange(e) {
     const { field } = e.currentTarget.dataset;
-    console.log(e)
+    // console.log(e)
     this.setData({
       [`formData.${field}`]: e.detail.value
     })
+    this.totalPriceFun()
   },
-  // formInputChanges(e) {
-  //   console.log(14151)
-  //   const { field } = e.currentTarget.dataset;
-  //   // console.log(e)
-  //   this.setData({
-  //     [field]: e.detail.value
-  //   })
-  // },
-  /**计算各种单位的使用时间 */
-  totalPriceFun(startTime, endTime){
+  /**
+   * input失焦
+   */
+  formNumChange(e){
+    const { field } = e.currentTarget.dataset;
+    this.setData({
+      [`formData.${field}`]: e.detail.value
+    })
+    if (field == 'num') {
+      if (e.detail.value == '') {
+        this.setData({
+          'formData.num': 1
+        })
+      }
+      this.totalPriceFun()
+    }
+  },
+  /**
+   * 计算总价
+   */
+  totalPriceFun(){
+    var totalPrice = (parseInt(this.data.formData.taskTime) * parseInt(this.data.formData.price) * parseInt(this.data.formData.num)) + parseInt(this.data.formData.depositAmount);
+    totalPrice = isNaN(totalPrice) ? 0 : totalPrice
+    this.setData({
+      'formData.totalPrice': totalPrice
+    })
+  },
+  /**根据单位类型判断出时间差 */
+  taskTimeFun(startTime, endTime){
     // console.log(this.data.formData.unitname)
     var taskTime='';
     if (this.data.formData.unitname =='元/小时'){
@@ -111,12 +122,13 @@ Page({
     } else if (this.data.formData.unitname == '元/位/月' || this.data.formData.unitname == '元/月' || this.data.formData.unitname == '元/个/月' ){
       taskTime = this.getIntervalMonth(this.ConvertDateFromString(startTime), this.ConvertDateFromString(endTime))
     }
+    // console.log(taskTime)
     this.setData({
       'formData.taskTime': taskTime
     })
   },
   /**
-   * 计算时间差
+   * 计算小时，天数差
    */
   GetDateDiff(startTime, endTime, diffType) {
     //将xxxx-xx-xx的时间格式，转换为 xxxx/xx/xx的格式 
@@ -150,7 +162,7 @@ Page({
     return Math.ceil((eTime.getTime() - sTime.getTime()) / parseInt(timeType));;
   },
   /**
-   * 计算月数
+   * 计算月份差
    */
   getIntervalMonth(startDate, endDate) {
     var startMonth = startDate.getMonth();

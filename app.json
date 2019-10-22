@@ -25,7 +25,7 @@
     "forum/follow/follow",
     "forum/trend/trend",
     "forum/indexdetail/indexdetail",
-    "forum/releaseInfo/releaseInfo" 
+    "forum/releaseInfo/releaseInfo"
   ],
   "window": {
     "backgroundTextStyle": "dark",
