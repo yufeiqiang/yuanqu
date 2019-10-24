@@ -79,10 +79,11 @@ Page({
    */
   signUp(e){
     // console.log(e.currentTarget.dataset)
-    let { id, title, unitname, deposittypename, price, name, depositamount} = e.currentTarget.dataset;
+    let { id, title, unitname, deposittypename, price, name, depositamount, unit} = e.currentTarget.dataset;
     wx.navigateTo({
       url: '../officeform/officeform?id=' + id + '&title=' + title + '&unitname='
-        + unitname + '&depositTypeName=' + deposittypename + '&price=' + price + '&name=' + name + '&depositAmount=' + depositamount+'',
+        + unitname + '&depositTypeName=' + deposittypename + '&price=' + price + '&name='
+        + name + '&depositAmount=' + depositamount + '&unit=' + unit+'',
     })
   },
   /**

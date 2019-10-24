@@ -1,11 +1,10 @@
 const app = getApp();
-
+const request = require("../../utils/request.js")
+const util = require("../../utils/util.js")
 Page({
   data: {
     isPickerRender: false,
     isPickerShow: false,
-    startTime: "2019/01/01 12:32",
-    endTime: "2019/01/02 12:32",
     pickerConfig: {
       endDate: true,
       column: "minute",
@@ -16,39 +15,53 @@ Page({
       limitEndTime: "2055-05-06 12:32"
     },
     name: '',
-    formData:{
-      id:'', 
-      title:'', 
-      price:'', 
-      unitname:'', 
-      num: '1',
-      depositTypeName:'', 
-      memberName: '', 
-      memberPhone :'',
-      buyerRemark:'',
-      totalPrice:'',
-      depositAmount:'',
-      taskTime:''
-    }
+    unitname:'',
+    depositTypeName: '', 
+    taskTime: '',
+    formData: {
+      memberId: app.globalData.user.memberId, //用户id
+      buildingReleaseId: '', //产品ID
+      startTime: '2019-01-01 12:32', // 开始时间
+      endTime: '2019-01-02 12:32', // 结束Id
+      price: '',     // 单价
+      unit: '',    // 单位
+      num: '1',   // 预定数量
+      memberName: '', //联系人
+      memberPhone: '', //电话
+      buyerRemark: '',  // 备注信息
+      depositAmount: '', // 押金
+      totalPrice: '' // 总价
+    },
+    rules: [
+      {
+        name: 'memberName',
+        rules: { required: true, message: '请填联系人' },
+      },
+      {
+        name: 'memberPhone',
+        rules: { required: true, message: '手机号必填' }
+      },
+    ] 
   },
   onLoad: function(options) {
     // console.log(options)
-    let { id, title, price, unitname, depositTypeName, name, depositAmount} = options;
+    let { id, title, price, unitname, depositTypeName, name, depositAmount, unit} = options;
     wx.setNavigationBarTitle({
       title: '预定'+ options.title ,
     })
     this.setData({
-      'formData.id':id, 
-      'formData.title':title, 
+      'formData.buildingReleaseId':id, 
+      title:title, 
       'formData.price':price, 
-      'formData.unitname':unitname, 
-      'formData.depositTypeName':depositTypeName, 
+      'formData.unit': unit, 
+      unitname:unitname, 
+      depositTypeName:depositTypeName, 
       'formData.depositAmount':depositAmount,
       name: name
     })
-    this.taskTimeFun(this.data.startTime, this.data.endTime);
     this.totalPriceFun()
   },
+  /**显示时间弹窗 */
   pickerShow: function() {
     this.setData({
       isPickerShow: true,
@@ -56,21 +69,22 @@ Page({
       chartHide: true
     });
   },
+  /**隐藏时间弹窗 */
   pickerHide: function() {
     this.setData({
       isPickerShow: false,
       chartHide: false
     });
   },
-
+  /**点击时间弹窗确定按钮 */
   setPickerTime: function(val) {
     // console.log(val.detail);
     let data = val.detail;
     this.setData({
-      startTime: data.startTime,
-      endTime: data.endTime
+      'formData.startTime': data.startTime,
+      'formData.endTime': data.endTime
     });
-    this.taskTimeFun(data.startTime, data.endTime)
+    // this.taskTimeFun(data.startTime, data.endTime)
     this.totalPriceFun()
   },
   /**
@@ -105,84 +119,59 @@ Page({
    * 计算总价
    */
   totalPriceFun(){
-    var totalPrice = (parseInt(this.data.formData.taskTime) * parseInt(this.data.formData.price) * parseInt(this.data.formData.num)) + parseInt(this.data.formData.depositAmount);
-    totalPrice = isNaN(totalPrice) ? 0 : totalPrice
+    //时间差
+    let taskTime = util.timeSlot(this.data.formData.startTime, this.data.formData.endTime, this.data.unitname);
+    // 计算总价钱
+    var totalPrice = (parseInt(taskTime) * parseInt(this.data.formData.price) * parseInt(this.data.formData.num)) + parseInt(this.data.formData.depositAmount);
+    totalPrice = isNaN(totalPrice) ? 0 : totalPrice;
     this.setData({
-      'formData.totalPrice': totalPrice
+      'formData.totalPrice': totalPrice,
+      taskTime
     })
   },
-  /**根据单位类型判断出时间差 */
-  taskTimeFun(startTime, endTime){
-    // console.log(this.data.formData.unitname)
-    var taskTime='';
-    if (this.data.formData.unitname =='元/小时'){
-      taskTime = this.GetDateDiff(startTime, endTime, 'hour')
-    } else if (this.data.formData.unitname == '元/天'){
-      taskTime = this.GetDateDiff(startTime, endTime,'day')
-    } else if (this.data.formData.unitname == '元/位/月' || this.data.formData.unitname == '元/月' || this.data.formData.unitname == '元/个/月' ){
-      taskTime = this.getIntervalMonth(this.ConvertDateFromString(startTime), this.ConvertDateFromString(endTime))
+  
+  /**提交方法 */
+  submitData: function () {
+    let param = this.data.formData;
+    var type 
+    switch(this.data.title){
+      case '会议室' :
+        type=3
+        break;
+      case '办公室' :
+        type=2
+        break;
+      case '柜子' :
+        type = 4 ;
+        break;
     }
-    // console.log(taskTime)
-    this.setData({
-      'formData.taskTime': taskTime
+    request.postRequest('order/order/order/place_weixin', param).then(res => {
+      console.log(res)
+      if (res.code == 200) {
+        wx.navigateTo({
+          url: '../officeSuccList/officeSuccList?type=' + type + '',
+        })
+      }
+    }).catch(err => {
+
     })
   },
-  /**
-   * 计算小时，天数差
-   */
-  GetDateDiff(startTime, endTime, diffType) {
-    //将xxxx-xx-xx的时间格式，转换为 xxxx/xx/xx的格式 
-    if(startTime.indexOf(".") != -1) startTime = startTime.substring(0, startTime.indexOf("."));
-    if(endTime.indexOf(".") != -1) endTime = endTime.substring(0, endTime.indexOf("."));
-    startTime = startTime.replace(/\-/g, "/");
-    endTime = endTime.replace(/\-/g, "/");
-    // console.log(startTime+'-----'+endTime)
-    //将计算间隔类性字符转换为小写
-    diffType = diffType.toLowerCase();
-    var sTime = new Date(startTime); //开始时间
-    var eTime = new Date(endTime); //结束时间
-    //作为除数的数字
-    var timeType = 1;
-    switch(diffType) {
-      case "second":
-        timeType = 1000;
-        break;
-      case "minute":
-        timeType = 1000 * 60;
-        break;
-      case "hour":
-        timeType = 1000 * 3600;
-        break;
-      case "day":
-        timeType = 1000 * 3600 * 24;
-        break;
-      default:
-        break;
-    }
-    return Math.ceil((eTime.getTime() - sTime.getTime()) / parseInt(timeType));;
+  /**表单提交验证 */
+  submitForm(e) {
+    this.selectComponent('#form').validate((valid, errors) => {
+      if (!valid) {
+        console.log(errors)
+        const firstError = Object.keys(errors)
+        if (firstError.length) {
+          wx.showToast({
+            title: errors[firstError[0]].message,
+          })
+
+        }
+      } else {
+        // console.log(errors)
+        this.submitData()
+      }
+    })
   },
-  /**
-   * 计算月份差
-   */
-  getIntervalMonth(startDate, endDate) {
-    var startMonth = startDate.getMonth();
-    var endMonth = endDate.getMonth();
-    var startDay = startDate.getDate();
-    var endDay = endDate.getDate();
-    var intervalMonth = (startDate.getFullYear() * 12 + startMonth) - (endDate.getFullYear() * 12 + endMonth);
-    intervalMonth = Math.abs(intervalMonth);
-    if(endDay > startDay) intervalMonth += 1;
-    return intervalMonth;
-  },
-  /**
-   * 将时间转为标准时间
-   */
-  ConvertDateFromString(dateString) {
-    if(dateString) {
-      var arr1 = dateString.split(" ");
-      var sdate = arr1[0].split('/');
-      var date = new Date(sdate[0], sdate[1], sdate[2]);
-      return date;
-    }
-  }
 });

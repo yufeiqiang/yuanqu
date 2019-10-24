@@ -58,6 +58,7 @@
         data-title='{{title}}' 
         data-id="{{officeListDetail.id}}" 
         data-unitName="{{officeListDetail.unitName}}"
+        data-unit="{{officeListDetail.unit}}"
         data-name="{{officeListDetail.name}}"
         data-depositAmount = "{{officeListDetail.depositAmount}}"
         data-depositTypeName="{{officeListDetail.depositTypeName}}"

@@ -1,5 +1,6 @@
 const Promise = require('es6-promise-min.js')
 var ip = "www.zhiqushequ.cn";
+// var ip = "192.168.0.65:8080";
 var imgUrl = "https://" + ip;
 var apiUrl = "https://" + ip + "/park_manage/api/";
 var apiUrl2 = "https://" + ip + "/park_manage/query/";
@@ -44,10 +45,13 @@ function wxPromise(method, url, data, type=1){
                       resolve(res.data)
                   }
                 }else{
+                  // console.log(res)
                   resolve(res.data)
+                  // resolve(res)
                 }
             },
             fail:function(res){
+                console.log(res)
                 setTimeout(function(){
                     wx.hideLoading();
                 },100)

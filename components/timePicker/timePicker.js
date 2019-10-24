@@ -187,9 +187,9 @@ Component({
         
         let startTimeBack =
           startArr[0] +
-          "/" +
+          "-" +
           format0(startArr[1]) +
-          "/" +
+          "-" +
           format0(startArr[2]) +
           " " +
           (this.data.hourColumn ? format0(startArr[3]) : "00") +
@@ -200,9 +200,9 @@ Component({
 
         let endTimeBack =
           endArr[0] +
-          "/" +
+          "-" +
           format0(endArr[1]) +
-          "/" +
+          "-" +
           format0(endArr[2]) +
           " " +
           (this.data.hourColumn ? format0(endArr[3]) : "00") +

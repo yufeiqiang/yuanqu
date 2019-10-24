@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": true,
 		"minified": true,
@@ -228,6 +228,20 @@
 					"name": "pages/officeform/officeform",
 					"pathName": "pages/officeform/officeform",
 					"query": "pid='cce2a982d9f64b048a7498a1ae165051'&title=办公室",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": "pages/officeSuccList/officeSuccList",
+					"pathName": "pages/officeSuccList/officeSuccList",
+					"query": "type=2",
+					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "pages/officeSuccDetail/officeSuccDetail",
+					"pathName": "pages/officeSuccDetail/officeSuccDetail",
+					"query": "type=2&id=2019102416003346344L",
 					"scene": null
 				}
 			]

@@ -17,15 +17,15 @@
     <view class='nickname'>13265969478</view>
   </view>
   <view class='order_List'>
-    <view class='order_l'>
+    <view class='order_l' bindtap="officedetail" data-type="3">
       <image src='../../image/my/order01.png'></image>
       <text>会议室订单</text>
     </view>
-    <view class='order_c'>
+    <view class='order_c' bindtap="officedetail" data-type="2">
       <image src='../../image/my/order02.png'></image>
       <text>办公室订单</text>
     </view>
-    <view class='order_r'>
+    <view class='order_r' bindtap="officedetail" data-type="4">
       <image src='../../image/my/order03.png'></image>
       <text>柜子订单</text>
     </view>

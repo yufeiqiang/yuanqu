@@ -2,17 +2,17 @@
   <view class="huiyuan">{{name}}</view>
   <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
       <mp-cells>
-          <mp-cell prop="names" show-error  title="选择时间：" ext-class="weui-cell_vcode">
-            <input  bindtap="pickerShow" class="weui-input timeClass" disabled  value="{{startTime}} - {{endTime}}"></input>
+          <mp-cell  show-error  title="选择时间：" ext-class="weui-cell_vcode">
+            <input  bindtap="pickerShow" class="weui-input timeClass" disabled  value="{{formData.startTime}} - {{formData.endTime}}"></input>
           </mp-cell>
-          <mp-cell prop="price" show-error  title="单  价：" ext-class="weui-cell_vcode">
+          <mp-cell  show-error  title="单  价：" ext-class="weui-cell_vcode">
               <input  data-field="price" bindinput="formInputChange" name='price' disabled value="{{formData.price}}{{formData.unitname}}" class="weui-input"/>
           </mp-cell>
           <mp-cell prop="num" show-error  title="预定数量：" ext-class="weui-cell_vcode">
-              <input  data-field="num" bindinput="formInputChange" bindblur="formNumChange" min="1" type='number' name='num'  value="{{formData.num}}" class="weui-input"/>
+              <input  data-field="num" bindinput="formInputChange" disabled="{{title!='柜子'}}" bindblur="formNumChange" min="1" type='number' name='num'  value="{{formData.num}}" class="weui-input"/>
           </mp-cell>
-          <mp-cell prop="depositAmount" show-error  title="押  金："  ext-class="weui-cell_vcode">
-              <input  data-field="depositAmount" bindinput="formInputChange" disabled name='depositAmount'  value="{{formData.depositTypeName}} / {{formData.depositAmount}}" class="weui-input"/>
+          <mp-cell  show-error  title="押  金："  ext-class="weui-cell_vcode">
+              <input  data-field="depositAmount" bindinput="formInputChange" disabled name='depositAmount'  value="{{depositTypeName}} / {{formData.depositAmount}}" class="weui-input"/>
           </mp-cell>
           <mp-cell prop="memberName" show-error  title="联 系 人：" ext-class="weui-cell_vcode">
               <input  data-field="memberName" bindinput="formInputChange" name='memberName' value="{{formData.memberName}}" class="weui-input" placeholder="请输入姓名"/>
@@ -26,7 +26,7 @@
       </mp-cells>
   </mp-form>
   <view class="total">
-    总金额：<text>{{formData.totalPrice}}</text>
+    总金额：<text>{{formData.totalPrice}}元</text>
   </view>
   <view class="weui-btn-area">
       <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>

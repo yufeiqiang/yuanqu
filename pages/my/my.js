@@ -13,6 +13,16 @@ Page({
     })
   },
   /**
+   * 点击跳转到详情
+   */
+  officedetail(e){
+    console.log(e)
+    let type= e.currentTarget.dataset.type
+    wx.navigateTo({
+      url: '../officeSuccList/officeSuccList?type='+type+'',
+    })
+  },
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {

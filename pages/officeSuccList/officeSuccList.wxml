@@ -1,0 +1,46 @@
+<view >
+  <wxs src="../../utils/comm_filter.wxs" module="commFilter" />
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==index?'active':''}}"  data-current="{{index}}" bindtap="swichNav" wx:for="{{titleList}}" wx:key="index">{{item}}</view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}"  duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item wx:for='{{list}}' wx:key="index">
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{item}}" wx:key="item.id"  >
+                    <view class="item-ans" bindtap="itmeDetail" data-id="{{item.id}}">
+                      <view class="curr_item succ_tilte">
+                        <view class="productTypeName">{{item.productTypeName}}</view>
+                        <view>{{item.orderStatusName}}</view>
+                      </view>
+                      <view class="curr_item succ_tilte succ_con_box" catchtap="succDetail" data-id="{{item.orderNo}}">
+                        <view class="succ_img">
+                          <image src="{{baseUrl}}{{item.imgUrls[0].src}}"></image>
+                        </view>
+                        <view class="succ_content">
+                          <view class="curr_item succ_tilte succ_content_name">
+                            <view>{{item.productName}}</view>
+                            <view>{{item.price}}{{item.unitName}}</view>
+                          </view>
+                          <text>{{item.startTime}}</text> 
+                          <text hidden="{{item.productType==3}}">至</text>
+                          <text>{{item.productType==3?item.hourTime:item.endTime}}</text>
+                        </view>
+                      </view>
+                      <view class="computPrice">
+                        <view class="curr_item succ_tilte">
+                          <view>
+                            <text>共计{{item.taskTime}}{{item.unitName=='元/小时'? '小时':'月'}}</text>，实付 <text class="totalPrice">¥{{item.totalPrice}}</text>
+                          </view>
+                          <view>
+                              <button class="visiro_btn" catchtap="cancelOrder" data-id="{{item.id}}">取消订单</button>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                </block>
+                <view class='more'>无更多数据（-_-）</view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>

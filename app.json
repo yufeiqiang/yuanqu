@@ -12,6 +12,8 @@
     "pages/officeList/officeList",
     "pages/officeListDetail/officeListDetail",
     "pages/officeform/officeform",
+    "pages/officeSuccList/officeSuccList",
+    "pages/officeSuccDetail/officeSuccDetail",
     "pages/feedback/feedback",
     "pages/visitor/visitor",
     "pages/visitorList/visitorList",

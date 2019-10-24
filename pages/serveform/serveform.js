@@ -62,7 +62,7 @@ Page({
         })
       }
     }).catch(err => {
-
+      console.log(err)
     })
   },
   formInputChange(e) {
