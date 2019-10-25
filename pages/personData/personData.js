@@ -38,14 +38,6 @@ Page({
     }).catch(err => { })
   },
   /**
-   * 跳转到编辑资料页面
-   */
-  editData(){
-    wx.navigateTo({
-      url: '../personData/personData',
-    })
-  },
-  /**
    * 点击跳转到详情
    */
   officedetail(e){

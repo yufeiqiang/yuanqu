@@ -2,7 +2,7 @@
     height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: #F7F7F7; font-size: 16px; white-space: nowrap;position: fixed;top: 0; left: 0; z-index: 99;}
 .tab-item{margin:0 36rpx;display: inline-block;}
 .tab-item.active{color: #4675F9;position: relative;}
-.item-ans .active{color: #4675F9}
+.item-ans .active{color: rgb(92, 118, 190)}
 .tab-item.active:after{ content: "";display: block;height: 8rpx;width: 76rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;}
 /* page{
   background: #fff;
@@ -11,13 +11,11 @@
   /* padding: 25rpx 0; */
   background: #fff;
   margin-bottom:12rpx; 
-  border-bottom:1px solid #ededed;
+  border-top:1px solid #ededed;
 }
 .tab-content{margin-top: 80rpx;}
 .scoll-h{height: 100%;}
-.item-ans>view{
-  padding-bottom: 10rpx;
-}
+
 .succ_con_box{
   background: #f7f5f5;
   padding: 25rpx;
@@ -25,9 +23,21 @@
 }
 .succ_tilte{
   justify-content: space-between;
-  padding:25rpx;
+  padding:25rpx 25rpx;
   align-items: center;
+ 
   
+}
+.succ_tilte_bg {
+    /* height: 88rpx; */
+   background: rgb(24, 132, 233);
+   padding: 20rpx 20rpx;
+}
+.succ_tilte_bg>view{
+  padding: 0;
+}
+.succ_tilte_bg view{
+   color: #fff;
 }
 .succ_content_name{
   background: none;
@@ -46,6 +56,7 @@
 .computPrice{
   /* padding: 20rpx 0; */
   text-align: right;
+  border-top: 1px solid #ededed;
 }
 .succ_content text{
   margin-right: 12rpx;
@@ -65,5 +76,13 @@
   font-weight: 600;
 }
 .beizhu{
+  /* color: #333; */
   padding: 20rpx ;
+}
+.beizhu view{
+  padding-bottom: 10rpx;
+}
+.beizhu text{
+  color: #666;
+  font-size: 14px;
 }

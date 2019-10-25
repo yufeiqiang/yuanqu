@@ -1,11 +1,11 @@
 <view >
   <block wx:for="{{list}}" wx:key="item.id"  >
-      <view class="item-ans" bindtap="itmeDetail" data-id="{{item.id}}">
-        <view class="curr_item succ_tilte">
+      <view class="item-ans" data-id="{{item.id}}">
+        <view class="curr_item succ_tilte succ_tilte_bg">
           <view class="productTypeName">{{item.productTypeName}}</view>
           <view>{{item.orderStatusName}}</view>
         </view>
-        <view class="curr_item succ_tilte succ_con_box" catchtap="succDetail" data-id="{{item.id}}">
+        <view class="curr_item succ_tilte succ_con_box" data-id="{{item.id}}">
           <view class="succ_img">
             <image src="{{baseUrl}}{{item.imgUrls[0].src}}"></image>
           </view>
@@ -20,9 +20,9 @@
           </view>
         </view>
         <view class="beizhu">
-          <view>下单时间：<text></text></view>
-          <view>下单编号：<text></text></view>
-          <view>备 注：<text></text></view>
+          <view>下单时间：<text>{{item.createDate}}</text></view>
+          <view>下单编号：<text>{{item.orderNo}}</text></view>
+          <view>下单备注：<text>{{item.remarks==''? '暂无':item.remarks}}</text></view>
         </view>
         <view class="computPrice">
           <view class="curr_item succ_tilte">
@@ -30,7 +30,7 @@
               <text>共计{{item.taskTime}}{{item.unitName=='元/小时'? '小时':'月'}}</text>，实付 <text class="totalPrice">¥{{item.totalPrice}}</text>
             </view>
             <view>
-                <button class="visiro_btn" catchtap="cancelOrder" data-id="{{item.id}}">取消订单</button>
+                <button class="visiro_btn" hidden="{{item.orderStatusName=='已取消' || item.orderStatusName=='已完成'}}" catchtap="cancelOrder" data-id="{{item.id}}">取消订单</button>
             </view>
           </view>
         </view>

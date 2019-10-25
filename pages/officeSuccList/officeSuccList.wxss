@@ -15,9 +15,6 @@
 }
 .tab-content{margin-top: 80rpx;}
 .scoll-h{height: 100%;}
-.item-ans>view{
-  padding-bottom: 10rpx;
-}
 .succ_con_box{
   background: #f7f5f5;
   padding: 25rpx;

@@ -93,8 +93,8 @@ Page({
     let type = this.data.typeId
     let param = {
       var: "a.create_by = '" + memberId+"' and a.type = '"+type+"'",
-      m: 1,
-      n: 2000,
+      m: 0,
+      n: 20000,
       identifier: "query_act_order_list",
     }
     request.getRequest('ls', param, 2).then(res => {

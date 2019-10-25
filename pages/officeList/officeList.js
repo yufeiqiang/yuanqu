@@ -63,7 +63,7 @@ Page({
           type:this.data.type,
           sstr: product,
           m: 0,
-          n: 200,
+          n: 20000,
           identifier: "query_product_list"
         }
     request.getRequest('ls',param,2).then(res=>{

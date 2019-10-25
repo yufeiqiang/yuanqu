@@ -1,0 +1,31 @@
+.my_list{
+  background: #fff;
+  padding-bottom: 50rpx;
+  
+}
+page{
+  background: #fff;
+}
+.my_list_item{
+  padding: 20rpx 60rpx 20rpx 20rpx;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAbklEQVQ4T8XTuw3AMAgE0HiTDMEAHsWjZEF0EyGidJZlfkkRWtATxV07nAHQRWQQ0bDOmgc8O2YeqtotJAQiJAV4SBqwkBKwQ8rAirwCZuQfYM5G+YM1WCVgl8o0YEU6BXh9CIFPZQJwisjl1fkGgHNuGS8lzWoAAAAASUVORK5CYII=) no-repeat 96% center;
+  border-bottom:1px solid #e6e6e6; 
+  justify-content: space-between;
+  align-items: center;
+}
+.my_list_item image{
+  width: 100rpx;
+  height: 100rpx;
+  vertical-align: middle;
+  border-radius: 50rpx;
+  /* margin-right:20rpx;  */
+}
+.shezi{
+  position: absolute;
+  right: 25rpx;
+  top: 30rpx;
+}
+.shezi image{
+  width: 40rpx;
+  height: 40rpx;
+}

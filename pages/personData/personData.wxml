@@ -1,0 +1,43 @@
+<view class='container'>
+  <view class='my_list'>
+    <navigator url='../personPhoto/personPhoto' hover-class="none">
+      <view class='my_list_item curr_item'>
+        <view class="">
+          <text decode>头&emsp;&emsp;像</text>
+        </view>
+        <view>
+          <image src="{{user.baseUrl}}{{user.user.images}}" mode="aspectFill"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url='../personDataInput/personDataInput' hover-class="none">
+      <view class='my_list_item  curr_item'>
+        <view>
+          <text decode>姓&emsp;&emsp;名</text>
+        </view>
+        <view></view>
+      </view>
+    </navigator>
+    <view class='my_list_item  curr_item'>
+      <view>
+        <text decode>性&emsp;&emsp;别</text>
+      </view>
+      <view></view>
+    </view>
+    <navigator url='../personDataInput/personDataInput?typeId=2&falg=2' hover-class="none">
+      <view class='my_list_item  curr_item'>
+        <view>
+          <text decode>身&nbsp;份&nbsp;证</text>
+        </view>
+        <view></view>
+      </view>
+    </navigator>
+    <view class='my_list_item curr_item'>
+      <view>
+        <text>联系电话</text>
+      </view>
+      <view></view>
+      
+    </view>
+  </view>
+</view>

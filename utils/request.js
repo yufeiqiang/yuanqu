@@ -56,7 +56,7 @@ function wxPromise(method, url, data, type=1){
                     wx.hideLoading();
                 },100)
                 wx.showModal({
-                    title:'服务器暂时无法连接',
+                    title:'服务器发生错误',
                     icon:'loading',
                     duration: 2000
                 })

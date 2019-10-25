@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"postcss": true,
 		"minified": true,
@@ -241,6 +241,13 @@
 					"id": 26,
 					"name": "pages/officeSuccDetail/officeSuccDetail",
 					"pathName": "pages/officeSuccDetail/officeSuccDetail",
+					"query": "type=2&id=2019102416003346344L",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personData/personData",
+					"pathName": "pages/personData/personData",
 					"query": "type=2&id=2019102416003346344L",
 					"scene": null
 				}

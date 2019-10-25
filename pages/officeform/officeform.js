@@ -10,7 +10,7 @@ Page({
       column: "minute",
       dateLimit: true,
       initStartTime: "2019-01-01 12:32",
-      initEndTime: "2019-01-02 12:32",
+      initEndTime: "2022-01-02 12:32",
       limitStartTime: "2015-05-06 12:32",
       limitEndTime: "2055-05-06 12:32"
     },

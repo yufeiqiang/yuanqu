@@ -33,7 +33,7 @@
                             <text>共计{{item.taskTime}}{{item.unitName=='元/小时'? '小时':'月'}}</text>，实付 <text class="totalPrice">¥{{item.totalPrice}}</text>
                           </view>
                           <view>
-                              <button class="visiro_btn" catchtap="cancelOrder" data-id="{{item.id}}">取消订单</button>
+                              <button class="visiro_btn" catchtap="cancelOrder" hidden="{{item.orderStatusName=='已取消' || item.orderStatusName=='已完成'}}" data-id="{{item.id}}">取消订单</button>
                           </view>
                         </view>
                       </view>

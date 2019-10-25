@@ -6,14 +6,14 @@ Page({
       winHeight:"",//窗口高度
       currentTab:0, //预设当前项的值
       scrollLeft:0, //tab标题的滚动条位置
-      titleList:['全  部','处理中','已审核','已取消','已完成'],
+      titleList:['全  部','处理中','已审核','已取消','已完成'], 
       list:[[],[],[],[],[]],
       type:'',
       param:{
         identifier:'query_order_list',
         memberId: "'" + app.globalData.user.memberId +"'",
         n:'10000',
-        m:'1'
+        m:'0'
       },
       baseUrl: app.globalData.baseUrl
     },
@@ -123,6 +123,7 @@ Page({
       }
     },
     onLoad: function(e) {  
+      console.log(app.globalData.user.memberId)
         var that = this; 
         //  高度自适应
         wx.getSystemInfo( {  
@@ -144,7 +145,7 @@ Page({
       this.requestList()
     }, 
   onShow:function(){
-    this.requestList()
+    // this.requestList()
   },
   /**
  * 页面相关事件处理函数--监听用户下拉动作

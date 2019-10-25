@@ -5,14 +5,19 @@
       <view class="head_port_l"> 
       </view>
       <view class="head_port_c"> 
-        <image src="../../image/my/tou.png"></image>
+        <image src="{{user.baseUrl}}{{user.user.images}}" mode="aspectFill"></image>
         <!-- <text>13265969478</text> -->
       </view>
-      <view class="head_port_r"> 
-        <view>
-          <image src="../../image/my/edit.png" class="edit_btn"></image>
+      <navigator url='../personPhoto/personPhoto' hover-class="none">
+        <view class="head_port_r"> 
+          <view>
+            <image src="../../image/my/edit.png" class="edit_btn"></image>
+          </view>
         </view>
-      </view>
+      </navigator>
+    </view>
+    <view class="shezi" catchtap="editData">
+      <image src="../../image/my/shezi.png" class="edit_btn"></image>
     </view>
     <view class='nickname'>13265969478</view>
   </view>

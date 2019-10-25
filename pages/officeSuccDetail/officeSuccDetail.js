@@ -71,6 +71,12 @@ Page({
       request.getRequest('ls',param,2).then((res)=>{
         var data = [];
         res[0].imgUrls = JSON.parse(res[0].imgUrls)
+        res[0].taskTime = util.timeSlot(res[0].startTime, res[0].endTime, res[0].unitName);
+        let startTime = res[0].startTime.split(' ')
+        let endTime = res[0].endTime.split(' ')
+        res[0].startTime = startTime[0]
+        res[0].endTime = endTime[0]
+        res[0].hourTime = startTime[1].substr(0, 5) + '-' + endTime[1].substr(0, 5)
         data.push(res[0])
         this.setData({
           list: data
