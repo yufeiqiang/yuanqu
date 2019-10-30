@@ -3,6 +3,7 @@
     "pages/logs/logs",
     "pages/index/index",
     "pages/my/my",
+    "pages/enterprise/enterprise",
     "pages/personPhoto/personPhoto",
     "pages/personDataInput/personDataInput",
     "pages/personData/personData",

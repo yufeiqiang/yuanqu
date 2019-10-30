@@ -15,7 +15,7 @@
       </block>
     </swiper>
   </view>
-  <view class='notice'>
+  <view  class='notice'>
     <view class='notice_left'>
       <image src='../../image/index/gonggao.png'></image>
     </view>

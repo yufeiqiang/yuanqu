@@ -78,6 +78,7 @@ Page({
         // console.log(res);
         let pics = that.data.param.pics;
         for (let i = 0; i < tempFilePaths.length; i++) {
+          // console.log(tempFilePaths[i])
           if (pics.length < 9) {
             wx.showLoading({
               title: '上传中',

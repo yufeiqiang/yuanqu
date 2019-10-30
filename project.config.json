@@ -4,8 +4,9 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
+		"enhance": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -249,6 +250,19 @@
 					"name": "pages/personData/personData",
 					"pathName": "pages/personData/personData",
 					"query": "type=2&id=2019102416003346344L",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personDataInput/personDataInput",
+					"pathName": "pages/personDataInput/personDataInput",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterprise",
+					"pathName": "pages/enterprise/enterprise",
 					"scene": null
 				}
 			]

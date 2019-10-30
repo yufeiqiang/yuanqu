@@ -1,3 +1,9 @@
 <view class='container'>
-  修改姓名
+  <view class="curr_item person_box">
+    <view class="person_box_l">{{nameKey}}</view>
+    <view class="person_box_r"><input bindinput="inputChange" type="{{fieldKey=='idCard'? 'idcard':''}}" data-field="{{fieldKey}}" value=""></input></view>
+  </view>
+  <view class="submit">
+    <view catchtap="submitForm">保存</view>
+  </view>
 </view>

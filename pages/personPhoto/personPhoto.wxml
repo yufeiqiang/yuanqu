@@ -1,5 +1,24 @@
+<import src="../we-cropper/we-cropper.wxml"/>
 <view class='container'>
-  <view class='my_list'>
-    上传头像
+  <view class="cropper-wrapper">
+    <template is="we-cropper" data="{{...cropperOpt}}"/>
+      <view class="cropper-buttons">
+          <view
+                  class="upload"
+                  bindtap="uploadTap">
+              上传图片
+          </view>
+          <view
+                  class="getCropperImage"
+                  catchtap="getCropperImage">
+              生成图片
+          </view>
+      </view>
+      <view catchtap="chooseImg">
+        上传头像
+      </view>
+      <view catchtap="putong">
+        普通上传
+      </view>
   </view>
 </view>

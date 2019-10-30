@@ -42,7 +42,7 @@
         <text>我的订单</text>
       </view>
     </navigator> -->
-    <navigator url='../index/index' hover-class="none">
+    <navigator url='../enterprise/enterprise' hover-class="none">
       <view class='my_list_item'>
         <image src='../../image/my/icon02.png'></image>
         <text>我的企业</text>

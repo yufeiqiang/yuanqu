@@ -8,15 +8,33 @@ Page({
    */
   data: {
     user: app.globalData,
-    memberId: app.globalData.user.memberId
+    memberId: app.globalData.user.memberId,
+    userData:'',
+    sexArray:['男','女','保密'],
+    sexIndex:'0'
   },
   callPhone(){
     wx.makePhoneCall({
       phoneNumber: '02038106809' //仅为示例，并非真实的电话号码
     })
   },
-  bianji(){
-    this.requestPhoto()
+  /**
+   * 数据列表
+   */
+  dataList() {
+    let params = {
+      url: 'uc/member/get',
+      memberId: this.data.memberId
+    }
+    request.postRequest('uc/member/get', params).then(res => {
+      // console.log(res)
+      if(res.code==200){
+        this.setData({
+          userData: res.data,
+          sexIndex: parseInt(res.data.sex)-1
+        })
+      }
+    }).catch(err => { })
   },
   /**
    * 修改头像
@@ -25,9 +43,9 @@ Page({
     let params = {
       memberId: this.data.memberId,
       url: 'uc/member/update',
-      images: '/ress/staticpm/images/651e65aeea164db5bdb2c3492aaf17a6/e902b99cbc3747fb4275f9b6663c25da.jpg',
+      images: '',
       name:'',
-      sex:'',
+      sex: 1 + parseInt(this.data.sexIndex) ,
       idCard:''
       
     };
@@ -38,10 +56,20 @@ Page({
     }).catch(err => { })
   },
   /**
+   * 选择性别
+   */
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      sexIndex: e.detail.value
+    })
+    this.requestPhoto()
+  },
+  /**
    * 点击跳转到详情
    */
   officedetail(e){
-    console.log(e)
+    // console.log(e)
     let type= e.currentTarget.dataset.type
     wx.navigateTo({
       url: '../officeSuccList/officeSuccList?type='+type+'',
@@ -51,8 +79,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
-    console.log(app.globalData.user.images)
+    // console.log(app.globalData)
+    this.dataList()
+    // console.log(app.globalData.user.images)
   },
 
   /**
@@ -66,7 +95,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.dataList()
   },
 
   /**
@@ -101,6 +130,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    wx.showNavigationBarLoading()
+    this.dataList()
+    wx.stopPullDownRefresh()
+    wx.hideNavigationBarLoading()
   }
 })

@@ -8,33 +8,60 @@ Page({
    */
   data: {
     user: app.globalData,
-    memberId: app.globalData.user.memberId
-  },
-  callPhone(){
-    wx.makePhoneCall({
-      phoneNumber: '02038106809' //仅为示例，并非真实的电话号码
-    })
-  },
-  bianji(){
-    this.requestPhoto()
+    memberId: app.globalData.user.memberId,
+    fieldKey:'',
+    params:{
+      name: '',
+      idCard: '',
+    }
   },
   /**
-   * 修改头像
+   * 接收input值
    */
-  requestPhoto: function () {
+  inputChange(e){
+    let val = e.detail.value;
+    let key=e.currentTarget.dataset.field
+    // console.log(e.currentTarget.dataset.field)
+    this.setData({
+     [`params.${key}`]:val
+    })
+  },
+  /**
+   * 提交表单
+   */
+  submitForm(){
+    if (this.data.fieldKey == 'name' && this.data.params.name==''){
+      wx.showToast({
+        title: '' + this.data.nameKey + '不能为空',
+      })
+    } else if (this.data.fieldKey == 'idCard' && this.data.params.idCard ==''){
+      wx.showToast({
+        title: '' + this.data.nameKey + '不能为空',
+      })
+    }else{
+      this.requestData()
+    }
+  },
+  /**
+   * 提交表单数据
+   */
+  requestData: function () {
     let params = {
       memberId: this.data.memberId,
       url: 'uc/member/update',
-      images: '/ress/staticpm/images/651e65aeea164db5bdb2c3492aaf17a6/e902b99cbc3747fb4275f9b6663c25da.jpg',
-      name:'',
+      images: '',
+      name: this.data.params.name,
       sex:'',
-      idCard:''
+      idCard: this.data.params.idCard
       
     };
     request.getRequest('uc/member/update', params).then(res => {
       console.log(res)
-    
-      // console.log(res)
+      if(res.code==200){
+        wx.navigateBack({
+          delta:1
+        })
+      }
     }).catch(err => { })
   },
   /**
@@ -51,8 +78,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
-    console.log(app.globalData.user.images)
+    // console.log(app.globalData.user)
+    this.setData({
+      nameKey: options.nameKey,
+      fieldKey: options.fieldKey
+    })
   },
 
   /**
