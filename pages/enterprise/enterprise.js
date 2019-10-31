@@ -50,6 +50,38 @@ Page({
         name: 'legal_person_phone',
         rules: { required: true, message: '请填法人手机号码!' }
       },
+      {
+        name: 'email',
+        rules: { required: true, message: '填写邮箱！' }
+      },
+      {
+        name: 'legal_person_id_card',
+        rules: { required: true, message: '填写法人身份证号！' }
+      },
+      {
+        name: 'address',
+        rules: { required: true, message: '填写公司地址！' }
+      },
+      {
+        name: 'public_bank',
+        rules: { required: true, message: '填写开户行！' }
+      },
+      {
+        name: 'public_account',
+        rules: { required: true, message: '填写对公账号！' }
+      },
+      {
+        name: 'organization_code',
+        rules: { required: true, message: '填写组织机构号码！' }
+      },
+      {
+        name: 'scale',
+        rules: { required: true, message: '填写公司规模!' }
+      },
+      {
+        name: 'descs',
+        rules: { required: true, message: '填写公司经营范围!' }
+      },
     ] 
   },
   /**
