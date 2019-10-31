@@ -22,7 +22,7 @@ Page({
       targetId: 'targetCropper', // 用于用于生成截图的canvas组件标识符
       pixelRatio: device.pixelRatio, // 传入设备像素比
       width,  // 画布宽度
-      height, // 画布高度
+      height:device.windowHeight, // 画布高度
       scale: 2.5, // 最大缩放倍数
       zoom: 8, // 缩放系数
       cut: {
@@ -32,18 +32,6 @@ Page({
         height: 200 // 裁剪框高度
       }
     }
-  },
-  putong(){
-    var that = this
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'],
-      success: (res) => {
-        let tempFilePaths = res.tempFilePaths[0]
-        that.setData({
-          tempFilePath:tempFilePaths
-        })
-      }
-    })
   },
   chooseImg(){
     let that=this

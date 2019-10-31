@@ -263,6 +263,13 @@
 					"id": -1,
 					"name": "pages/enterprise/enterprise",
 					"pathName": "pages/enterprise/enterprise",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personPhoto/personPhoto",
+					"pathName": "pages/personPhoto/personPhoto",
 					"scene": null
 				}
 			]

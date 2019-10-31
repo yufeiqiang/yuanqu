@@ -8,18 +8,19 @@ Page({
    */
   data: {
     formData: {
-      memberId: app.globalData.user.memberId,
+      create_by: app.globalData.user.memberId,
+      community_id:'',
       name:'',
       legal_person:'',
       legal_person_phone:'',
       email:'',
       legal_person_id_card:'',
-      province:'',
-      province_code:'',
-      city:'',
-      city_code:'',
-      country:'',
-      country_code:'',
+      province:"广东省",
+      province_code:'440000',
+      city:"广州市",
+      city_code:'440100',
+      country:"海珠区",
+      country_code:'440105',
       address:'',
       public_bank:'',
       number:'',
@@ -30,16 +31,20 @@ Page({
       legal_person_card_face:'',
       legal_person_card_back:'',
       organization_pic:'',
-      public_account_pic:''
+      public_account_pic:'',
+      status:"0",
+      del_flag:"0",
+      tname:"c_company"
     },
+    baseUrl:app.globalData.baseUrl,
     companyList:[],
     companyIndex:0,
-    region: ['广东省', '广州市', '海珠区'],
     cparam:{
       create_by: +app.globalData.user.memberId,
       del_flag: "0",
       identifier:"query_community_list"
     },
+    flag:'',
     userId: app.globalData.user.memberId,
     rules: [
       {
@@ -82,6 +87,22 @@ Page({
         name: 'descs',
         rules: { required: true, message: '填写公司经营范围!' }
       },
+      {
+        name: 'legal_person_card_face',
+        rules: { required: true, message: '上传身份证正面!' }
+      },
+      {
+        name: 'legal_person_card_back',
+        rules: { required: true, message: '上传身份证反面!' }
+      },
+      {
+        name: 'organization_pic',
+        rules: { required: true, message: '上传组织机构证正面!' }
+      },
+      {
+        name: 'public_account_pic',
+        rules: { required: true, message: '上传对公账号反面!' }
+      },
     ] 
   },
   /**
@@ -99,30 +120,23 @@ Page({
    */
   formselectorChange(e) {
     let index = e.detail.value;
-    let id = this.data.formData.companyList[index].companyId
-    console.log(id)
+    let val = this.data.companyList[index].value
     this.setData({
       companyIndex: index,
-      'formData.companyId': id
+      'formData.community_id': val
     })
-  },
-  /**
-   * 获取已提交的数据
-   */
-  getCompany(){
-    let companyDetailparam= this.data.companyDetailparam
   },
   /**
    * 共用请求数据接口
    */
-  _initData(param,callBack) {
+  _initData(param,callBack,url='ls') {
     // let param = this.data.cparam;
-    request.getRequest('ls', param, 2).then(res => {
+    request.getRequest(url, param, 2).then(res => {
       callBack(res)
     })
   },
   /**
-   * 根据判断是否有注册过企业
+   * 根据详情判断是否有注册过企业
    */
   getCompanyDetail(){
     this._initData({create_by:app.globalData.user.memberId,
@@ -130,11 +144,14 @@ Page({
       identifier:"get_company_detail"},(res)=>{
         // 判断如果有注册过直接遍历初始化数据
         if(res){
-          console.log(res)
-        }else{
-          // 否则初始化社区下拉框跟城市下拉
-          this.initPicker()
+          // console.log(res)
+          let formData = Object.assign(this.data.formData,res[0])
+          this.setData({
+            formData,
+            flag:res,
+          });
         }
+        this.initPicker()
     })
   },
   /**
@@ -146,54 +163,124 @@ Page({
       del_flag: "0",
       identifier:"query_community_list"
     },(res)=>{
-      console.log(res)
       var data = []
       for(item in res){
         data.push(res[item])
       }
-      // console.log(this)
+      var companyIndex=this._findIndex(data,this.data.formData.community_id) == -1 ? 
+                        0 : this._findIndex(data,this.data.formData.community_id);
+      // console.log(companyIndex)
       this.setData({
-        companyList:data
+        companyList:data,
+        companyIndex
       })
     })
   },
   /**
-   * 提交方法
+   * 根据id找出改id在数组中的索引index
    */
-  submitData: function () {
+  _findIndex(list=[],i=''){
+    // console.log(list)
+    return list.findIndex(item=>{
+      // console.log(item.value)
+      return item.value == i
+    })
+  },
+  /**
+   * 提交数据
+   */
+  insertCompany(){
     let param = this.data.formData
-    delete param.companyList
-    delete param.visit
-    delete param.dateTimeArray
-    request.postRequest('/appoint/info/appointInfo/appoint', param).then(res => {
-      // console.log(res)
-      if (res.code == 200) {
-        if (this.data.formData.type != 2){
-          wx.navigateTo({
-            url: '../visitorList/visitorList?type=' + param.type + '&title=' + this.data.title + '',
-          })
-        }else{
-          wx.showToast({
-            title: '反馈成功',
-            success: function (e) {
-              setTimeout(() => {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 1000)
-            }
-          })
-        }
+    this._initData(param,(res)=>{
+      if(res==1){
+        wx.showToast({
+          title:"提交注册成功！"
+        })
+        this.getCompanyDetail()
       }
-    }).catch(err => {
-
+    },"insert?1=1")
+  },
+  /**
+   * 
+   * 更新数据 
+   */
+  updateCompany(){
+    let param = this.data.formData
+    this._initData(param,(res)=>{
+      if(res==1){
+        wx.showToast({
+          title:"数据更新成功！"
+        })
+        this.getCompanyDetail()
+      }
+    },"update?1=1")
+  },
+  /**
+   * 选择城市
+   * @param {} e 
+   */
+  bindRegionChange: function (e) {
+     let {value, code, postcode} = e.detail
+    // console.log('picker发送选择改变，携带值为',value,code,)
+    let pro={
+      province:value[0],
+      province_code:code[0],
+      city:value[1],
+      city_code:code[1],
+      country:value[2],
+      country_code:code[2],
+    }
+    this.setData({
+      formData: Object.assign(this.data.formData,pro)
+    })
+  },
+  /**
+   *点击图片上传 
+   * @param {flied} options 
+   */
+  chooseImg(e){
+    let val = e.currentTarget.dataset.field;
+    let that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      success: (res) => {
+        let tempFilePath = res.tempFilePaths
+        // console.log(res);
+        wx.showLoading({
+          title: '上传中',
+        })
+        wx.uploadFile({
+          url: that.data.baseUrl +'/park_manage/api/sys/file/upload',
+          filePath:tempFilePath[0],
+          name:'file',
+          header:'',
+          formData:{
+            accessToken: app.globalData.user.accessToken,
+            userId: app.globalData.user.memberId,
+            dfsType:'0'
+          },
+          success:function(e){
+            let data = JSON.parse(e.data)
+            if(e.statusCode == 200){
+              if(data.code==200){
+                let url = data.data.file_rsurl
+                that.setData({
+                  [`formData.${val}`]: url
+                });
+                wx.hideLoading()
+              }
+            }
+            
+          }
+        })
+      }
     })
   },
   /**表单提交验证 */
   submitForm(e) {
     this.selectComponent('#form').validate((valid, errors) => {
       if (!valid) {
-        console.log(errors)
+        // console.log(errors)
         const firstError = Object.keys(errors)
         if (firstError.length) {
           wx.showToast({
@@ -202,7 +289,11 @@ Page({
 
         }
       } else {
-        this.submitData()
+        if(this.data.flag){
+          this.updateCompany()
+        }else{
+          this.insertCompany()
+        }
       }
     })
   },
@@ -212,9 +303,6 @@ Page({
   onLoad: function (options) {
     //初始化判断详情信息
     this.getCompanyDetail()
-    this.setData({
-      
-    })
     wx.setNavigationBarTitle({
       title: "企业信息"
     })
@@ -251,7 +339,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.showNavigationBarLoading()
+    this.getCompanyDetail()
     wx.stopPullDownRefresh()
+    wx.hideNavigationBarLoading()
   },
 
   /**

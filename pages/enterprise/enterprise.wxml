@@ -15,59 +15,78 @@
                 <input  data-field="name" bindinput="formInputChange" name='name' value="{{formData.name}}" class="weui-input" placeholder="请输入企业名称"/>
             </mp-cell>
             <mp-cell prop="legal_person" show-error  title="法人代表" ext-class="weui-cell_vcode">
-                <input  data-field="legal_person" bindinput="formInputChange" name='legal_person' class="weui-input" value="{{formData.legal_person}}" placeholder="请输入法人代表"/>
+                <input  data-field="legal_person" bindinput="formInputChange" name='legal_person' class="weui-input" value="{{formData.legal_person}}" value="{{formData.legal_person}}" placeholder="请输入法人代表"/>
             </mp-cell>
             <mp-cell prop="legal_person_phone" show-error  title="手机号" ext-class="weui-cell_vcode">
-                <input  data-field="legal_person_phone" bindinput="formInputChange" name='legal_person_phone' class="weui-input" placeholder="请输入手机号"/>
+                <input  data-field="legal_person_phone" value="{{formData.legal_person_phone}}" bindinput="formInputChange" name='legal_person_phone' class="weui-input" placeholder="请输入手机号"/>
             </mp-cell>
             <mp-cell prop="email" show-error  title="邮箱"  ext-class="weui-cell_vcode">
-                <input  data-field="email" bindinput="formInputChange" name='email' class="weui-input" placeholder="请输入邮箱"/>
+                <input  data-field="email" value="{{formData.email}}" bindinput="formInputChange" name='email' class="weui-input" placeholder="请输入邮箱"/>
             </mp-cell>
             <mp-cell prop="legal_person_id_card" show-error  title="身份证"  ext-class="weui-cell_vcode">
-                <input  data-field="legal_person_id_card" bindinput="formInputChange" name='legal_person_id_card' class="weui-input" placeholder="请输入身份证"/>
+                <input  data-field="legal_person_id_card" value="{{formData.legal_person_id_card}}" bindinput="formInputChange" name='legal_person_id_card' class="weui-input" placeholder="请输入身份证"/>
             </mp-cell>
             <mp-cell prop="num" show-error  title="地区"  ext-class="weui-cell_vcode">
-                <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                <picker mode="region" bindchange="bindRegionChange" value="{{region}}" >
                     <view class="picker">
-                    {{region[0]}}，{{region[1]}}，{{region[2]}}
+                    {{formData.province}}，{{formData.city}}，{{formData.country}}
                     </view>
                 </picker>
             </mp-cell>
             <mp-cell prop="address" show-error  title="公司地址"  ext-class="weui-cell_vcode">
-                <input  data-field="address" bindinput="formInputChange" name='address' class="weui-input" placeholder="请输入公司地址"/>
+                <input  data-field="address" bindinput="formInputChange" value="{{formData.address}}" name='address' class="weui-input" placeholder="请输入公司地址"/>
             </mp-cell>
-            <mp-cell prop="number" show-error  title="公司电话"  ext-class="weui-cell_vcode">
-                <input  data-field="number" bindinput="formInputChange" name='number' class="weui-input" placeholder="请输入公司电话"/>
+            <mp-cell prop="tel" show-error  title="公司电话"  ext-class="weui-cell_vcode">
+                <input  data-field="tel" bindinput="formInputChange" value="{{formData.tel}}" name='tel' class="weui-input" placeholder="请输入公司电话"/>
             </mp-cell>
             <mp-cell prop="public_bank" show-error  title="开户行"  ext-class="weui-cell_vcode">
-                <input  data-field="public_bank" bindinput="formInputChange" name='public_bank' class="weui-input" placeholder="请输入开户行"/>
+                <input  data-field="public_bank" bindinput="formInputChange" value="{{formData.public_bank}}" name='public_bank' class="weui-input" placeholder="请输入开户行"/>
             </mp-cell>
             <mp-cell prop="public_account" show-error  title="对公账户"  ext-class="weui-cell_vcode">
-                <input  data-field="public_account" bindinput="formInputChange" name='public_account' class="weui-input" placeholder="请输入对公账号"/>
+                <input  data-field="public_account" bindinput="formInputChange" value="{{formData.public_account}}" name='public_account' class="weui-input" placeholder="请输入对公账号"/>
             </mp-cell>
             <mp-cell prop="organization_code" show-error  title="组织机构号码"  ext-class="weui-cell_vcode">
-                <input  data-field="organization_code" bindinput="formInputChange" name='organization_code' class="weui-input" placeholder="请输入组织机构码"/>
+                <input  data-field="organization_code" bindinput="formInputChange" value="{{formData.organization_code}}" name='organization_code' class="weui-input" placeholder="请输入组织机构码"/>
             </mp-cell>
             <mp-cell prop="scale" show-error  title="公司规模"  ext-class="weui-cell_vcode">
-                <input  data-field="scale" bindinput="formInputChange" name='scale' class="weui-input" placeholder="请输入公司规模"/>
+                <input  data-field="scale" bindinput="formInputChange" value="{{formData.scale}}" name='scale' class="weui-input" placeholder="请输入公司规模"/>
             </mp-cell>
             <mp-cell prop="descs" show-error  title="公司经营范围"  ext-class="weui-cell_vcode">
-                <input  data-field="descs" bindinput="formInputChange" name='descs' class="weui-input" placeholder="请输入参观人数"/>
+                <input  data-field="descs" bindinput="formInputChange" name='descs' value="{{formData.descs}}" class="weui-input" placeholder="请输入参观人数"/>
             </mp-cell>
             <mp-cell prop="legal_person_card_face" show-error  title="身份证相" ext-class="weui-cell_vcode">
-                <input  data-field="legal_person_card_face" text="hidden" name='legal_person_card_face' class="weui-input"/>
-                <view>
-                    <image src=""></image>
+                <input  data-field="legal_person_card_face" hidden value="" name='legal_person_card_face' class="weui-input"/>
+                <view class="person_card_face curr_item">
+                    <view class="curr_item_l" bindtap = "chooseImg" data-field="legal_person_card_face">
+                        <view>上传身份证正面</view>
+                        <image src="{{formData.legal_person_card_face == '' ? '../../image/my/shangchuan.png': baseUrl+formData.legal_person_card_face}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="curr_item_r" bindtap = "chooseImg" data-field="legal_person_card_back">
+                        <view>上传身证反面</view>
+                        <image src="{{formData.legal_person_card_back == '' ? '../../image/my/shangchuan.png': baseUrl+formData.legal_person_card_back}}" mode="aspectFill"></image>
+                    </view>
                 </view>
             </mp-cell>
             <mp-cell prop="legal_person_card_back"  show-error  ext-class="weui-cell_vcode">
-                <input  data-field="legal_person_card_back" hidden text="hidden" name='legal_person_card_back' class="weui-input"/>
+                <input  data-field="legal_person_card_back" hidden  name='legal_person_card_back' class="weui-input"/>
             </mp-cell>
             <mp-cell prop="organization_pic" show-error  title="组织机构相片" ext-class="weui-cell_vcode">
-                <input  data-field="organization_pic" bindinput="formInputChange" name='organization_pic' class="weui-input"/>
+                <input  data-field="organization_pic" hidden bindinput="formInputChange"  name='organization_pic' class="weui-input"/>
+                <view class="person_card_face curr_item">
+                    <view class="curr_item_l" bindtap = "chooseImg" data-field="organization_pic">
+                        <view>清晰正面</view>
+                        <image src="{{formData.organization_pic == '' ? '../../image/my/shangchuan.png': baseUrl+formData.organization_pic}}" mode="aspectFill"></image>
+                    </view>
+                </view>
             </mp-cell>
             <mp-cell prop="public_account_pic" show-error  title="对公账号相片" ext-class="weui-cell_vcode">
-                <input  data-field="public_account_pic" bindinput="formInputChange" name='public_account_pic' class="weui-input"/>
+                <input  data-field="public_account_pic" hidden bindinput="formInputChange" name='public_account_pic' class="weui-input"/>
+                <view class="person_card_face curr_item">
+                <view class="curr_item_l" bindtap = "chooseImg" data-field="public_account_pic">
+                    <view>清晰正面</view>
+                    <image src="{{formData.public_account_pic == '' ? '../../image/my/shangchuan.png': baseUrl+formData.public_account_pic}}" mode="aspectFill"></image>
+                </view>
+            </view>
             </mp-cell>
         </mp-form>
         <view class="weui-btn-area">

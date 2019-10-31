@@ -1,0 +1,15 @@
+.cropper-buttons{
+    width: 100%;
+    height: 70rpx;
+    position: fixed;
+    background:initial;
+    box-sizing: content-box;
+    left: 0;
+    bottom: 0;
+}
+.cropper-buttons view{
+    width: 33.3%;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+}
