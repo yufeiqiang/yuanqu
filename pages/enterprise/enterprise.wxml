@@ -28,7 +28,7 @@
             </mp-cell>
             <mp-cell prop="num" show-error  title="地区"  ext-class="weui-cell_vcode">
                 <picker mode="region" bindchange="bindRegionChange" value="{{region}}" >
-                    <view class="picker">
+                    <view class="picker"> 
                     {{formData.province}}，{{formData.city}}，{{formData.country}}
                     </view>
                 </picker>

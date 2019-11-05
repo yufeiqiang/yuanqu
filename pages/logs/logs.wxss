@@ -11,5 +11,26 @@
   height: 3em
 }
 .page__bd{
-  padding-right: 20rpx;
+  /* padding-top:20rpx;  */
+}
+.curr_item{
+  justify-items: stretch
+}
+page{
+  background:#fff;
+}
+.home view{
+  width: 50%;
+  font-weight: bold;
+  font-size: 16px;
+}
+.home{
+  padding:20rpx 40rpx;
+}
+.home-right{
+  text-align: right;
+}
+.home image{
+  width: 40rpx;
+  height: 40rpx;
 }

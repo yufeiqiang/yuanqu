@@ -5,7 +5,7 @@
       <view class="head_port_l"> 
       </view>
       <view class="head_port_c"> 
-        <image src="{{user.baseUrl}}{{user.user.images}}" mode="aspectFill"></image>
+        <image src="{{user.baseUrl}}{{userData.images}}" bindtap = "previewImage"  data-url="{{userData.images}}" mode="aspectFill"></image>
         <!-- <text>13265969478</text> -->
       </view>
       <navigator url='../personPhoto/personPhoto' hover-class="none">
@@ -19,7 +19,7 @@
     <view class="shezi" catchtap="editData">
       <image src="../../image/my/shezi.png" class="edit_btn"></image>
     </view>
-    <view class='nickname'>13265969478</view>
+    <view class='nickname'>{{userData.name || userData.phone  }}</view>
   </view>
   <view class='order_List'>
     <view class='order_l' bindtap="officedetail" data-type="3">

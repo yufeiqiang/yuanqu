@@ -31,12 +31,12 @@ Page({
    */
   onLoad: function (options) {
     let user = JSON.parse(wx.getStorageSync('user'));
-    if(user==''){
-      wx.navigateTo({
-        url: '../logs/logs',
-      })
-      return false;
-    }
+    // if(user==''){
+    //   wx.navigateTo({
+    //     url: '../logs/logs',
+    //   })
+    //   return false;
+    // }
     // console.log(user.memberId)
     this.setData({
       title:options.title,

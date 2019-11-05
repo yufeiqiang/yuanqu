@@ -40,7 +40,7 @@ Page({
   /**删除每项信息 */
   deleteItem(e){
     let id = e.currentTarget.dataset.id;
-    let memberId=this.data.userId;
+    let memberId=app.globalData.user.memberId;
     let that=this
     wx.showModal({
       title: '删除信息',
@@ -73,7 +73,7 @@ Page({
     //初始化请求参数
     let param = {
       showMemberId: this.data.showMemberId,
-      memberId: this.data.userId
+      memberId: app.globalData.user.memberId
     }
     request.getRequest('bbs/infofollow/bbsInfoFollow/personalInfo', param).then(res => {
       if (res.code == 200) {
@@ -119,7 +119,7 @@ Page({
   followRequest(type = '1', id) {
     let param = {
       type: type,
-      memberId: this.data.userId,
+      memberId: app.globalData.user.memberId,
       id: this.data.showMemberId
     }
     wx.showLoading()
@@ -139,7 +139,7 @@ Page({
     const { type,id,index} = e.currentTarget.dataset
     let param = {
       type: type,
-      memberId: this.data.userId,
+      memberId: app.globalData.user.memberId,
       id: id
     }
     wx.showLoading()

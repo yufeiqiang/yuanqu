@@ -51,6 +51,7 @@ Page({
   /**获取验证码验证*/
   verification: function (e) {
     // console.log(this.data.formData)
+    let _that = this
     this.selectComponent('#form').validateField('phone', (isValid, errors) => {
       // console.log('valid', isValid, errors)
       if (!isValid) {
@@ -58,7 +59,9 @@ Page({
             title: errors.message,
           })
       } else {
-        this.timer()
+        if (_that.data.codetext == '获取验证码'){
+          this.timer()
+        }
       }
     })
    
@@ -73,9 +76,8 @@ Page({
         _that.setData({
           codetext: --coden + '重新发送'
         })
-        if (coden == 60) {
-
-          clearInterval(this.data.codev);
+        if (coden <= 0) {
+          clearInterval(_that.data.codev);
           _that.setData({
             codetext: '获取验证码'
           })
@@ -87,14 +89,16 @@ Page({
   submitData:function(){
     let param = this.data.formData
     request.postRequest('app/member/login', param).then(res=>{
-      console.log(res)
+     
       if(res.code == 200){
         // console.log(1215)
-        wx.switchTab({
-          url: '../index/index'
-        })
+        // wx.switchTab({
+        //   url: '../index/index'
+        // })
         wx.setStorageSync('user', JSON.stringify(res.data))
+        console.log(res)
         app.getInfoData()
+        wx.navigateBack({delta:1})
       }
     }).catch(err=>{
 
@@ -102,15 +106,10 @@ Page({
   },
   /**表单提交验证 */
   submitForm(e) {
-    // console.log(this.data.formData)
     this.selectComponent('#form').validate((valid, errors) => {
-      // console.log('valid', valid, errors)
       if (!valid) {
         const firstError = Object.keys(errors)
         if (firstError.length) {
-          // this.setData({
-          //   error: errors[firstError[0]].message
-          // })
           wx.showToast({
             title: errors[firstError[0]].message,
           })

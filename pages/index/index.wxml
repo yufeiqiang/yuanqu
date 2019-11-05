@@ -33,58 +33,58 @@
   </view>
   <view class='barList'>
     <view class='barList_item'>
-      <navigator url='../recommend/recommend?typeId=7' hover-class="none">
+      <view data-url='../recommend/recommend?typeId=7' bindtap = "itemDetail">
           <image src='../../image/index/bar01.png'></image>
         <view>推荐</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator  url='../course/course?typeId=2' hover-class="none">
+      <view   data-url='../course/course?typeId=2' bindtap = "itemDetail">
           <image src='../../image/index/bar02.png'></image>
         <view>课程</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../course/course?typeId=1' hover-class="none">
+      <view  data-url='../course/course?typeId=1' bindtap = "itemDetail">
           <image src='../../image/index/bar03.png'></image>
         <view>活动</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../recommend/recommend?typeId=2' hover-class="none">
+      <view  data-url='../recommend/recommend?typeId=2' bindtap = "itemDetail">
           <image src='../../image/index/bar04.png'></image>
         <view>资讯</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../office/office' hover-class="none">
+      <view  data-url='../office/office' bindtap = "itemDetail">
           <image src='../../image/index/bar05.png'></image>
         <view>办公预定</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../serve/serve' hover-class="none">
+      <view  data-url='../serve/serve' bindtap = "itemDetail">
           <image src='../../image/index/bar06.png'></image>
         <view>园区服务</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../../forum/index/index' hover-class="none">
+      <view  data-url='../../forum/index/index' bindtap = "itemDetail">
           <image src='../../image/index/bar07.png'></image>
         <view>园区论坛</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../visitor/visitor' hover-class="none">
+      <view  data-url='../visitor/visitor' bindtap = "itemDetail">
           <image src='../../image/index/bar08.png'></image>
         <view>访客预约</view>
-      </navigator>
+      </view>
     </view>
     <view class='barList_item'>
-      <navigator url='../visitorform/visitorform?type=2&title=意见反馈' hover-class="none">
+      <view  data-url='../visitorform/visitorform?type=2&title=意见反馈' bindtap = "itemDetail">
           <image src='../../image/index/bar09.png'></image>
         <view>意见反馈</view>
-      </navigator>
+      </view>
     </view>
   </view>
   <view class='inform'>

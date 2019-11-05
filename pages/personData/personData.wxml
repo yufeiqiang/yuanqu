@@ -6,7 +6,7 @@
           <text decode>头&emsp;&emsp;像</text>
         </view>
         <view>
-          <image src="{{user.baseUrl}}{{user.user.images}}" mode="aspectFill"></image>
+          <image src="{{user.baseUrl}}{{userData.images}}" mode="aspectFill"></image>
         </view>
       </view>
     </navigator>

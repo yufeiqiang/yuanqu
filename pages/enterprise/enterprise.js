@@ -36,6 +36,7 @@ Page({
       del_flag:"0",
       tname:"c_company"
     },
+    region: ['广东省', '广州市', '海珠区'],
     baseUrl:app.globalData.baseUrl,
     companyList:[],
     companyIndex:0,
@@ -217,11 +218,11 @@ Page({
   },
   /**
    * 选择城市
-   * @param {} e 
+   * @param {} 
    */
   bindRegionChange: function (e) {
      let {value, code, postcode} = e.detail
-    // console.log('picker发送选择改变，携带值为',value,code,)
+    console.log('picker发送选择改变，携带值为',e.detail)
     let pro={
       province:value[0],
       province_code:code[0],

@@ -1,5 +1,9 @@
 <!--logs.wxml-->
 <view class="page">
+    <view class="home curr_item">
+      <view>用户登录</view>
+      <view class="home-right"><navigator url="../index/index" open-type="switchTab" hover-class="none"><image src="../../image/course/index.png"></image></navigator></view>
+    </view>
     <view class="page__bd">
         <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
             <mp-cells>

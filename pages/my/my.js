@@ -8,33 +8,37 @@ Page({
    */
   data: {
     user: app.globalData,
-    memberId: app.globalData.user.memberId
+    memberId: app.globalData.user.memberId,
+    userData:''
   },
   callPhone(){
     wx.makePhoneCall({
       phoneNumber: '02038106809' //仅为示例，并非真实的电话号码
     })
   },
-  bianji(){
-    this.requestPhoto()
+  previewImage(e){
+    let url = e.currentTarget.dataset.url;
+    let that = this
+    wx.previewImage({
+      current: that.data.user.baseUrl+url, // 当前显示图片的http链接
+      urls: [that.data.user.baseUrl+url] // 需要预览的图片http链接列表
+    })
   },
   /**
    * 修改头像
    */
-  requestPhoto: function () {
+  dataList() {
     let params = {
-      memberId: this.data.memberId,
-      url: 'uc/member/update',
-      images: '/ress/staticpm/images/651e65aeea164db5bdb2c3492aaf17a6/e902b99cbc3747fb4275f9b6663c25da.jpg',
-      name:'',
-      sex:'',
-      idCard:''
-      
-    };
-    request.getRequest('uc/member/update', params).then(res => {
-      console.log(res)
-    
+      url: 'uc/member/get',
+      memberId: app.globalData.user.memberId
+    }
+    request.postRequest('uc/member/get', params).then(res => {
       // console.log(res)
+      if(res.code==200){
+        this.setData({
+          userData: res.data,
+        })
+      }
     }).catch(err => { })
   },
   /**
@@ -56,13 +60,18 @@ Page({
     })
   },
   /**
+   *  tab 点击时执行
+   */
+  onTabItemTap(item){
+
+  },
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
-    console.log(app.globalData.user.images)
+    // console.log(app.globalData)
+    this.dataList()
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -74,7 +83,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(app.globalData.user.memberId)
+    if(!app.globalData.user.memberId){
+      wx.navigateTo({
+        url: '../logs/logs',
+      })
+    }
+    this.dataList()
+    console.log(app.globalData)
   },
 
   /**
@@ -95,7 +111,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log(app.globalData)
+    wx.showNavigationBarLoading()
+    this.dataList()
+    wx.stopPullDownRefresh()
+    wx.hideNavigationBarLoading()
   },
 
   /**

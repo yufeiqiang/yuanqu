@@ -138,6 +138,39 @@ Page({
     }
   },
   /**
+   * 点击按钮跳转到详情
+   */
+  itemDetail(e){
+    let url = e.currentTarget.dataset.url;
+    console.log(url)
+    if(!app.globalData.user.memberId){
+      wx.showModal({
+        title: '需登录后才能访问',
+        content: '是否跳转至登录页?',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if(result.confirm){
+            wx.navigateTo({
+              url: '../logs/logs',
+            })
+          }
+        }
+      });
+    }else{
+      wx.navigateTo({
+        url
+      })
+    }
+    
+  },
+  /**
+   *  tab 点击时执行
+   */
+  onTabItemTap(item){
+    console.log(item)
+    
+  },
+  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {

@@ -8,13 +8,13 @@
                   bindtap="uploadTap">
               选择图片
           </view>
-          <view catchtap="chooseImg">
+          <!-- <view catchtap="chooseImg">
               上传头像
-          </view>
+          </view> -->
           <view
                   class="getCropperImage"
                   catchtap="getCropperImage">
-              生成图片
+              提交保存
           </view>
       </view>
   </view>
