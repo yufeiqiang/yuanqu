@@ -107,13 +107,13 @@ Page({
    */
   onPullDownRefresh: function () {
     // 当用户下拉的时候，将页码设置为1，同时清空列表数组
+    wx.showNavigationBarLoading()
     this.setData({
       pageNo: 1,
       recommList:[],
       ismore: false,
       isloading: true
     })
-    wx.showNavigationBarLoading()
     this.recommendList(this.data.searchVal)
     wx.stopPullDownRefresh()
     wx.hideNavigationBarLoading()
@@ -126,12 +126,17 @@ Page({
     let pageNo = this.data.pageNo;
     console.log(98)
     //当用户上拉的时候，全局页面自增 1
-    this.setData({
-      pageNo: ++pageNo,
-      isloading:true,
-      ismore: false
-    })
-    this.recommendList(this.data.searchVal, this.data.pageNo)
+    if(!this.data.ismore){
+      setTimeout(()=>{
+        this.setData({
+          pageNo: ++pageNo,
+          isloading:true,
+          ismore: false
+        })
+        this.recommendList(this.data.searchVal, this.data.pageNo)
+      },500)
+    }
+    
   },
   /**
    * 监听页面滚动

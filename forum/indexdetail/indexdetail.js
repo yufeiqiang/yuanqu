@@ -39,7 +39,7 @@ Page({
   /**删除每项信息 */
   deleteItem(e) {
     let id = e.currentTarget.dataset.id;
-    let memberId = this.data.userId;
+    let memberId =app.globalData.user.memberId;
     let that = this
     wx.showModal({
       title: '删除信息',
@@ -101,7 +101,7 @@ Page({
   followRequest(type='1',id){
     let param = {
       type: type,
-      memberId: this.data.userId,
+      memberId: app.globalData.user.memberId,
       id:id
     }
     wx.showLoading()
@@ -131,7 +131,7 @@ Page({
     //初始化请求参数
     let param = {
       id: this.data.id,
-      memberId:this.data.userId,
+      memberId:app.globalData.user.memberId,
     }
     request.getRequest('bbs/info/bbsInfo/detail', param).then(res => {
       if (res.code == 200) {
@@ -167,7 +167,7 @@ Page({
   commentData(infoId){
     let param = {
       type: 1,
-      memberId: this.data.userId,
+      memberId: app.globalData.user.memberId,
       infoId:infoId,
       pageSize:100,
       pageNo:1,
@@ -214,12 +214,16 @@ Page({
     let pageNo = this.data.pageNo;
     // console.log(98)
     //当用户上拉的时候，全局页面自增 1
-    this.setData({
-      pageNo: ++pageNo,
-      isloading: true,
-      ismore: false
-    })
-    this.recommendList(this.data.content, this.data.pageNo)
+    if(!this.data.ismore){
+      setTimeout(()=>{
+        this.setData({
+          pageNo: ++pageNo,
+          isloading: true,
+          ismore: false
+        })
+        this.recommendList(this.data.content, this.data.pageNo)
+      },500)
+    }
   },
   /**
    * 点击图片放大

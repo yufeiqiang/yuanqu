@@ -123,7 +123,7 @@ Page({
       }
     },
     onLoad: function(e) {  
-      console.log(app.globalData.user.memberId)
+      // console.log(app.globalData.user.memberId)
         var that = this; 
         //  高度自适应
         wx.getSystemInfo( {  
@@ -140,7 +140,8 @@ Page({
         // console.log(e.type)
       //进入页面请求数据
       this.setData({
-        type:e.type
+        type:e.type,
+        'param.memberId': "'" + app.globalData.user.memberId +"'",
       })
       this.requestList()
     }, 

@@ -24,7 +24,7 @@ Page({
   dataList() {
     let params = {
       url: 'uc/member/get',
-      memberId: this.data.memberId
+      memberId: app.globalData.user.memberId
     }
     request.postRequest('uc/member/get', params).then(res => {
       // console.log(res)
@@ -41,7 +41,7 @@ Page({
    */
   requestPhoto: function () {
     let params = {
-      memberId: this.data.memberId,
+      memberId: app.globalData.user.memberId,
       url: 'uc/member/update',
       images: '',
       name:'',

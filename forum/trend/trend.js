@@ -67,7 +67,7 @@ Page({
   /**删除每项信息 */
   deleteItem(e){
     let id = e.currentTarget.dataset.id;
-    let memberId=this.data.userId;
+    let memberId=app.globalData.user.memberId;
     let that=this
     wx.showModal({
       title: '删除信息',
@@ -101,7 +101,7 @@ Page({
     let param = {
       type: type,
       content: val,
-      memberId:this.data.userId,
+      memberId:app.globalData.user.memberId,
       pageSize: 5,
       pageNo: pageNo,
     }
@@ -177,12 +177,16 @@ Page({
     let pageNo = this.data.pageNo;
     // console.log(98)
     //当用户上拉的时候，全局页面自增 1
-    this.setData({
-      pageNo: ++pageNo,
-      isloading: true,
-      ismore: false
-    })
-    this.recommendList(this.data.content, this.data.pageNo,this.data.type)
+    if(!this.data.ismore){
+      setTimeout(()=>{
+        this.setData({
+          pageNo: ++pageNo,
+          isloading: true,
+          ismore: false
+        })
+        this.recommendList(this.data.content, this.data.pageNo,this.data.type)
+      },500)
+    }
   },
   /**
    * 监听页面滚动
@@ -205,7 +209,7 @@ Page({
     const { type,id,index} = e.currentTarget.dataset
     let param = {
       type: type,
-      memberId: this.data.userId,
+      memberId: app.globalData.user.memberId,
       id: id
     }
     wx.showLoading()

@@ -50,7 +50,7 @@
     </view>
   </view>
   <view class="signUp_box">
-    <view class="signUp_left"><image mode="aspectFill" src='../../image/course/index.png'></image></view>
+    <view class="signUp_left"><navigator url="../index/index" open-type="switchTab" hover-class="none"><image mode="aspectFill" src='../../image/course/index.png'></image></navigator></view>
     <view class="signUp_right">
       <button type="primary" 
         bindtap="signUp" 

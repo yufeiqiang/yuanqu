@@ -47,7 +47,7 @@ Page({
    */
   requestData: function () {
     let params = {
-      memberId: this.data.memberId,
+      memberId:app.globalData.user.memberId,
       url: 'uc/member/update',
       images: '',
       name: this.data.params.name,

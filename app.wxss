@@ -74,3 +74,9 @@ page{
   height: 56rpx;
   margin-top:8rpx; 
 }
+.signUp_right button, .weui-btn-area button{
+  background-color: #3c7cf1;
+}
+button[disabled][type=primary] {
+  background-color: #6a98ec;
+}

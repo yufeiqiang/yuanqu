@@ -15,3 +15,6 @@
     color: rgb(67, 118, 185);
     font-weight: 600;
 }
+page{
+    /* background: #000; */
+}

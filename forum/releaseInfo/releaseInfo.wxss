@@ -56,7 +56,7 @@ page{
   line-height: 55rpx;
   border:none;
   color: #fff;
-  background: #179b16;
+  background: #3c7cf1;
 }
 .release_btn button::after{
   border:none;

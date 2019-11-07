@@ -41,5 +41,6 @@
         </view>
       </view>
     </view>
-  </view>   
+  </view> 
+  <view class='more' >无更多数据（-_-）</view>  
 </view>

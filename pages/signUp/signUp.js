@@ -43,7 +43,7 @@ Page({
       title:options.title,
       'formData.actId':options.id,
       'formData.type': options.type,
-      'formData.memberId':user.memberId,
+      'formData.memberId':app.globalData.user.memberId,
       'formData.isFree': options.isFree
     })
   },

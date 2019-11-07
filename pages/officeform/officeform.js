@@ -54,6 +54,7 @@ Page({
       title:title, 
       'formData.price':price, 
       'formData.unit': unit, 
+      'formData.memberId': app.globalData.user.memberId, 
       unitname:unitname, 
       depositTypeName:depositTypeName, 
       'formData.depositAmount':depositAmount,

@@ -72,11 +72,11 @@
   width: 40rpx;
   height: 40rpx;
   margin-right: 5rpx;
-  vertical-align: top;
+  vertical-align:text-bottom;
 }
 .commen_f image{
-  width: 37rpx;
-  height: 37rpx;
+  /* width: 37rpx; */
+  /* height: 37rpx; */
   margin-right: 5rpx;
 }
 .delete{

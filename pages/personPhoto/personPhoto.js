@@ -24,7 +24,7 @@ Page({
       targetId: 'targetCropper', // 用于用于生成截图的canvas组件标识符
       pixelRatio: device.pixelRatio, // 传入设备像素比
       width,  // 画布宽度
-      height:device.windowHeight-46, // 画布高度
+      height:device.windowHeight, // 画布高度
       scale: 2.5, // 最大缩放倍数
       zoom: 8, // 缩放系数
       cut: {
@@ -139,7 +139,7 @@ Page({
    */
   requestPhoto: function (images) {
     let params = {
-      memberId: this.data.memberId,
+      memberId: app.globalData.user.memberId,
       url: 'uc/member/update',
       images: images,
       name:'',

@@ -25,3 +25,6 @@
 .recomm_list{
   border-bottom:1px dashed rgb(207, 207, 207);
 }
+page{
+  background: #fff;
+}

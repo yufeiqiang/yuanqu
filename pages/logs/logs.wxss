@@ -34,3 +34,6 @@ page{
   width: 40rpx;
   height: 40rpx;
 }
+.weui-btn-area .weui-btn{
+  background-color: #3c7cf1;
+}

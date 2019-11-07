@@ -69,7 +69,10 @@ Page({
         // 当数据不为空的时候，给列表追加数据
         // console.log(111)
         if (res.data.list !== undefined) {
-          // console.log(res)
+          res.data.list.forEach(el => {
+            el.beginDate=el.beginDate.split(' ')[0].replace(/-/g,'/')
+            el.endDate=el.endDate.split(' ')[0].replace(/-/g,'/')
+          });
           this.setData({
             courseList: oldData.concat(res.data.list),
             isloading: false
@@ -89,7 +92,7 @@ Page({
    * 我的课程数据，我的活动
    */
   myRecommendList(){
-    let memberId = this.data.memberId
+    let memberId = app.globalData.user.memberId
     let type = this.data.typeId
     let param = {
       var: "a.create_by = '" + memberId+"' and a.type = '"+type+"'",
@@ -104,6 +107,12 @@ Page({
           // console.log(res[item])
           data.push(res[item])
         }
+        data.forEach(el => {
+          console.log(el)
+          console.log(el.begin_date)
+          el.act_begin_date=el.act_begin_date.split(' ')[0].replace(/-/g,'/')
+          el.act_end_date=el.act_end_date.split(' ')[0].replace(/-/g,'/')
+        });
         this.setData({
           courseList: data,
           ismore: true,
@@ -192,15 +201,19 @@ Page({
     let pageNo = this.data.pageNo;
     // console.log(98)
     //当用户上拉的时候，全局页面自增 1
-    this.setData({
-      pageNo: ++pageNo,
-      isloading: true,
-      ismore: false
-    })
-    if (this.data.falg == 2) {
-      this.myRecommendList(this.data.pageNo)
-    } else {
-      this.recommendList(this.data.searchVal, this.data.pageNo)
+    if(!this.data.ismore){
+      setTimeout(()=>{
+        this.setData({
+          pageNo: ++pageNo,
+          isloading: true,
+          ismore: false
+        })
+        if (this.data.falg == 2) {
+          this.myRecommendList(this.data.pageNo)
+        } else {
+          this.recommendList(this.data.searchVal, this.data.pageNo)
+        }
+      },500)
     }
   },
   /**

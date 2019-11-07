@@ -114,7 +114,9 @@ Page({
       this.setData({
         'formData.companyList': data,
         'formData.companyId': this.data.formData.companyList[0].companyId,
-        'formData.matter': this.data.formData.visit[0]
+        'formData.matter': this.data.formData.visit[0],
+        'formData.memberId': app.globalData.user.memberId,
+        userId: app.globalData.user.memberId,
       })
     })
   },

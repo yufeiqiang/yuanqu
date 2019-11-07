@@ -47,7 +47,7 @@ Page({
     let param = {
       // showMemberId: this.data.showMemberId,
       showMemberId: this.data.showMemberId,
-      memberId: this.data.userId
+      memberId:  app.globalData.user.memberId
     }
     request.getRequest('/bbs/infofollow/bbsInfoFollow/personalFollowAnFans', param).then(res => {
       if (res.code == 200) {
@@ -102,7 +102,7 @@ Page({
   followRequest(type = '1', id) {
     let param = {
       type: type,
-      memberId: this.data.userId,
+      memberId:  app.globalData.user.memberId,
       id: id
     }
     wx.showLoading()
