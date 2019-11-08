@@ -35,7 +35,6 @@ Page({
    * 点击轮播图
    */
   tapNavigate:function(e){
-    // console.log(e)
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../infordetail/infordetail?id=' + id + '',
@@ -59,7 +58,6 @@ Page({
           bannerList:res.data.list
         })
       }
-      // console.log(res)
     }).catch(err=>{})
   },
   /**请求公告信息*/
