@@ -38,13 +38,13 @@ App({
   getInfoData:function(){
     /**获取用登录信息 */
     let userData=wx.getStorageSync('user');
-    console.log(userData)
+    // console.log(userData)
     if(userData!=''){
       // console.log(88)
       
       let user = JSON.parse(userData || null);
       this.globalData.user = user
-      console.log(this.globalData.user)
+      // console.log(this.globalData.user)
       // return user
     }
     

@@ -103,13 +103,11 @@ module.exports = __webpack_require__(1).behavior;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var deepClone = __webpack_require__(2)({ proto: true });
-var deepEqual = __webpack_require__(3);
-var dataPath = __webpack_require__(4);
-var dataTracer = __webpack_require__(5);
+var dataPath = __webpack_require__(2);
+var dataTracer = __webpack_require__(3);
 
-var TYPES = [String, Number, Boolean, Object, Array, null];
-var TYPE_DEFAULT_VALUES = ['', 0, false, null, [], null];
+var TYPES = [String, Number, Boolean, Object, Array];
+var TYPE_DEFAULT_VALUES = ['', 0, false, null, []];
 
 var getDataOnPath = function getDataOnPath(data, path) {
   var ret = data;
@@ -201,9 +199,7 @@ exports.behavior = Behavior({
     // handling computed
     var computedUpdaters = [];
     Object.keys(computedDef).forEach(function (targetField) {
-      var _dataPath$parseSingle = dataPath.parseSingleDataPath(targetField),
-          targetPath = _dataPath$parseSingle.path;
-
+      var targetPath = dataPath.parseSingleDataPath(targetField);
       var updateMethod = computedDef[targetField];
       // update value and calculate related paths
       var updateValueAndRelatedPaths = function updateValueAndRelatedPaths() {
@@ -233,7 +229,7 @@ exports.behavior = Behavior({
       var relatedPathValuesOnDef = [];
       var initData = getDataDefinition(defFields.data, defFields.properties);
       var val = updateMethod(dataTracer.create(initData, relatedPathValuesOnDef));
-      setDataOnPath(defFields.data, targetPath, dataTracer.unwrap(val));
+      setDataOnPath(defFields.data, targetPath, val);
       initFuncs.push(function () {
         var _this2 = this;
 
@@ -276,12 +272,8 @@ exports.behavior = Behavior({
       initFuncs.push(function () {
         var _this4 = this;
 
-        var curVal = paths.map(function (_ref2) {
-          var path = _ref2.path,
-              options = _ref2.options;
-
-          var val = getDataOnPath(_this4.data, path);
-          return options.deepCmp ? deepClone(val) : val;
+        var curVal = paths.map(function (path) {
+          return getDataOnPath(_this4.data, path);
         });
         this._computedWatchInfo.watchCurVal[watchPath] = curVal;
       });
@@ -293,37 +285,18 @@ exports.behavior = Behavior({
 
           if (!this._computedWatchInfo) return;
           var oldVal = this._computedWatchInfo.watchCurVal[watchPath];
-          var originalCurValWithOptions = paths.map(function (_ref3) {
-            var path = _ref3.path,
-                options = _ref3.options;
-
-            var val = getDataOnPath(_this5.data, path);
-            return {
-              val: val,
-              options: options
-            };
-          });
-          var curVal = originalCurValWithOptions.map(function (_ref4) {
-            var val = _ref4.val,
-                options = _ref4.options;
-            return options.deepCmp ? deepClone(val) : val;
+          var curVal = paths.map(function (path) {
+            return getDataOnPath(_this5.data, path);
           });
           this._computedWatchInfo.watchCurVal[watchPath] = curVal;
           var changed = false;
           for (var i = 0; i < curVal.length; i++) {
-            var options = paths[i].options;
-            var deepCmp = options.deepCmp;
-            if (deepCmp ? !deepEqual(oldVal[i], curVal[i]) : oldVal[i] !== curVal[i]) {
+            if (oldVal[i] !== curVal[i]) {
               changed = true;
               break;
             }
           }
-          if (changed) {
-            watchDef[watchPath].apply(this, originalCurValWithOptions.map(function (_ref5) {
-              var val = _ref5.val;
-              return val;
-            }));
-          }
+          if (changed) watchDef[watchPath].apply(this, curVal);
         }
       });
     });
@@ -346,18 +319,6 @@ exports.behavior = Behavior({
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-module.exports = require("rfdc");
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("fast-deep-equal");
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -405,37 +366,23 @@ var parseIdent = function parseIdent(path, state) {
 };
 
 var parseSinglePath = function parseSinglePath(path, state) {
-  var paths = [parseIdent(path, state)];
-  var options = {
-    deepCmp: false
-  };
+  var ret = [parseIdent(path, state)];
   while (state.index < state.length) {
     var ch = path[state.index];
     if (ch === '[') {
       state.index++;
-      paths.push(parseArrIndex(path, state));
+      ret.push(parseArrIndex(path, state));
       var nextCh = path[state.index];
       if (nextCh !== ']') throwParsingError(path, state.index);
       state.index++;
     } else if (ch === '.') {
       state.index++;
-      var _ch2 = path[state.index];
-      if (_ch2 === '*') {
-        state.index++;
-        var _ch3 = path[state.index];
-        if (_ch3 === '*') {
-          state.index++;
-          options.deepCmp = true;
-          break;
-        }
-        throwParsingError(path, state.index);
-      }
-      paths.push(parseIdent(path, state));
+      ret.push(parseIdent(path, state));
     } else {
       break;
     }
   }
-  return { path: paths, options: options };
+  return ret;
 };
 
 var parseMultiPaths = function parseMultiPaths(path, state) {
@@ -454,8 +401,6 @@ var parseMultiPaths = function parseMultiPaths(path, state) {
     } else if (splitted) {
       splitted = false;
       ret.push(parseSinglePath(path, state));
-    } else {
-      throwParsingError(path, state.index);
     }
   }
   return ret;
@@ -486,7 +431,7 @@ exports.parseMultiDataPaths = function (path) {
 };
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -496,7 +441,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var wrapData = function wrapData(data, relatedPathValues, basePath) {
   if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) !== 'object' || data === null) return data;
-  var isArray = data instanceof Array;
   var propDef = {};
   Object.keys(data).forEach(function (key) {
     var keyWrapper = null;
@@ -514,40 +458,14 @@ var wrapData = function wrapData(data, relatedPathValues, basePath) {
       },
       set: function set() {
         throw new Error('Setting data is not allowed');
-      },
-
-      enumerable: true
+      }
     };
   });
-  if (isArray) {
-    propDef.length = {
-      value: data.length,
-      enumerable: false
-    };
-  }
-  propDef.__rawObject__ = {
-    get: function get() {
-      return data;
-    },
-    set: function set() {
-      throw new Error('Setting data is not allowed');
-    },
-
-    enumerable: false
-  };
-  var proto = isArray ? Array.prototype : Object.prototype;
-  return Object.create(proto, propDef);
+  return Object.create(Object.prototype, propDef);
 };
 
 exports.create = function (data, relatedPathValues) {
   return wrapData(data, relatedPathValues, []);
-};
-
-exports.unwrap = function (wrapped) {
-  if ((typeof wrapped === 'undefined' ? 'undefined' : _typeof(wrapped)) !== 'object' || wrapped === null || _typeof(wrapped.__rawObject__) !== 'object') {
-    return wrapped;
-  }
-  return wrapped.__rawObject__;
 };
 
 /***/ })
