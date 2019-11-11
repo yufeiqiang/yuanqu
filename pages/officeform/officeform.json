@@ -4,7 +4,8 @@
     "mp-cell": "../../components/cell/cell",
     "mp-cells": "../../components/cells/cells",
     "mp-form": "../../components/form/form",
-    "computeds": "../../components/computeds/computeds"
+    "computeds": "../../components/computeds/computeds",
+    "officeComponent":"../../components/officeComponent/officeComponent"
   },
   "enablePullDownRefresh": false
 }
