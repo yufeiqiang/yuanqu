@@ -67,13 +67,14 @@ Page({
           identifier: "query_product_list"
         }
     request.getRequest('ls',param,2).then(res=>{
-      for(item in res){
+      for(let item in res){
         var data = res[item].imgUrls;
-        var icon = res[item].facilities
+        var icon = res[item].facilities;
         // console.log(icon)
         res[item].imgUrls = JSON.parse(data)[0]
         res[item].facilities = JSON.parse(icon)
       }
+      console.log(res) //打印失败
       this.setData({
         list:res
       })

@@ -80,7 +80,7 @@ Page({
     request.getRequest('ls',param,2).then((res)=>{
         // console.log(res)
         let newData=[]
-        for(itme in res){
+        for(let itme in res){
           // console.log(this.data.type)
           if (res[itme].type == this.data.type) {
             newData.push(res[itme])

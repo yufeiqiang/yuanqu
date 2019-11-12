@@ -71,7 +71,7 @@ Page({
       // console.log(23)
       request.getRequest('ls',param,2).then((res)=>{
         var data = [];
-        for(item in res){
+        for(let item in res){
           if (res[item].productType == this.data.type){
             res[item].imgUrls = JSON.parse(res[item].imgUrls)
             res[item].taskTime = util.timeSlot(res[item].startTime, res[item].endTime, res[item].unitName);
