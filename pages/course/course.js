@@ -103,7 +103,7 @@ Page({
     request.getRequest('ls', param, 2).then(res => {
         let data = [];
       // console.log(1)
-        for(item in res){
+        for(let item in res){
           // console.log(res[item])
           data.push(res[item])
         }

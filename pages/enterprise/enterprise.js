@@ -165,7 +165,7 @@ Page({
       identifier:"query_community_list"
     },(res)=>{
       var data = []
-      for(item in res){
+      for(let item in res){
         data.push(res[item])
       }
       var companyIndex=this._findIndex(data,this.data.formData.community_id) == -1 ? 
