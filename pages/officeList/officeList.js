@@ -74,7 +74,6 @@ Page({
         res[item].imgUrls = JSON.parse(data)[0]
         res[item].facilities = JSON.parse(icon)
       }
-      console.log(res) //打印失败
       this.setData({
         list:res
       })

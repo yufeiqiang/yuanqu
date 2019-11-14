@@ -14,7 +14,6 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 const timeSlot = (startTime,endTime,type)=>{
-  // console.log(type)
   var taskTime = '';
   if(type == '元/小时') {
     taskTime = GetDateDiff(startTime, endTime, 'hour')
