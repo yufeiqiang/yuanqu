@@ -140,7 +140,6 @@ Page({
    */
   itemDetail(e){
     let url = e.currentTarget.dataset.url;
-    console.log(url)
     if(!app.globalData.user.memberId){
       wx.showModal({
         title: '需登录后才能访问',

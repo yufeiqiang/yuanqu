@@ -1,12 +1,12 @@
 <view class="{{isPickerShow==true?'tripList_root':''}}">
     <view class="huiyuan">{{name}}</view>
-    <mp-form id="form" bindsubmit="formSubmit" rules="{{rules}}" models="{{formData}}">
+    <mp-form id="form" bindsubmit="" rules="{{rules}}" models="{{formData}}">
         <mp-cells>
             <mp-cell  show-error  title="选择时间：" ext-class="weui-cell_vcode">
               <input  bindtap="pickerShow" class="weui-input timeClass" disabled  value="{{formData.startTime}} - {{formData.endTime}}"></input>
             </mp-cell>
             <mp-cell  show-error  title="单  价：" ext-class="weui-cell_vcode">
-                <input  data-field="price" bindinput="formInputChange" name='price' disabled value="{{formData.price}}{{formData.unitname}}" class="weui-input"/>
+                <input  data-field="price" bindinput="formInputChange" name='price' disabled value="{{formData.price}}{{unitname}}" class="weui-input"/>
             </mp-cell>
             <mp-cell prop="num" show-error  title="预定数量：" ext-class="weui-cell_vcode">
                 <input  data-field="num" bindinput="formInputChange" disabled="{{title!='柜子'}}" bindblur="formNumChange" min="1" type='number' name='num'  value="{{formData.num}}" class="weui-input"/>
@@ -26,7 +26,7 @@
         </mp-cells>
     </mp-form>
     <view class="total">
-      总金额：<text>{{formData.totalPrice}}元</text>
+      总金额：<text>{{total}}元</text>
     </view>
     <view class="weui-btn-area">
         <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>

@@ -32,7 +32,7 @@ Page({
       identifier: "get_product_detail"
     }
     request.getRequest('ls', param, 2).then(res => {
-      for (item in res) {
+      for (let item in res) {
         var data = res[item].imgUrls;
         var icon = res[item].facilities
         // console.log(icon)
