@@ -41,7 +41,7 @@ Page({
     companyList:[],
     companyIndex:0,
     cparam:{
-      create_by: +app.globalData.user.memberId,
+      create_by: app.globalData.user.memberId,
       del_flag: "0",
       identifier:"query_community_list"
     },

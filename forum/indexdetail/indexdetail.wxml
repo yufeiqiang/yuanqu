@@ -32,7 +32,7 @@
           <view class="comment_list_a" wx:if="{{list!=null}}">{{commFilter.diaplayTime(list.createDate)}}</view>
           <view class="delete" data-id="{{list.id}}" catchtap="deleteItem">删除</view>
           <view class="commen_f" bindtap="follow" data-id="{{list.id}}" data-type="2">
-            <image src="../../image/forum/fabulous.png"></image>{{list.praiseCount}}</view>
+            <image src="../../image/forum/fabulous0.png"></image>{{list.praiseCount}}</view>
           <view class="commen_c"><image src="../../image/forum/comment.png"></image>{{list.commentCount}}</view>
         </view>
         <view class="zan_list curr_item">
@@ -44,7 +44,7 @@
       </view>
     </view>
     <view class="comment_box">
-      <view class="comment_item" wx:for="{{commentList}}" data-id="{{item.id}}" data-releaseName="{{item.nikeName}}" bindtap="bindReply" wx:key="item.id">
+      <view class="comment_item" wx:for="{{commentList}}" data-id="{{item.id}}" data-releaseName="{{item.nikeName}}" catchtap="bindReply" wx:key="item.id">
         <text 
           class="nikeName_last" 
           catchtap="circle" 

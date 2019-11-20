@@ -26,7 +26,7 @@
         <view class="comment_list curr_item">
           <view class="comment_list_a">{{commFilter.diaplayTime(item.createDate)}}</view>
           <view class="delete" wx:if="{{userId==item.memberId}}" data-id="{{item.id}}" catchtap="deleteItem">删除</view>
-          <view class="commen_f" catchtap="fabulous" data-id="{{item.id}}" data-index="{{index}}" data-type="2"><image src="../../image/forum/fabulous.png"></image>{{item.praiseCount}}</view>
+          <view class="commen_f" catchtap="fabulous" data-id="{{item.id}}" data-index="{{index}}" data-type="2"><image src="../../image/forum/fabulous0.png"></image>{{item.praiseCount}}</view>
           <view class="commen_c"><image src="../../image/forum/comment.png"></image>{{item.commentCount}}</view>
         </view>
       </view>

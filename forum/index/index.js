@@ -46,7 +46,8 @@ Page({
       type: e.currentTarget.dataset.index,
       list:[],
       content:'',
-      pageNo:1
+      pageNo:1,
+      ismore:false
     })
     this.recommendList('', this.data.pageNo, this.data.type)
   },
