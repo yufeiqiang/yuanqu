@@ -30,7 +30,7 @@
         <view class="comment_list curr_item">
           <!-- <view class="comment_list_a">1小时前</view> -->
           <view class="comment_list_a" wx:if="{{list!=null}}">{{commFilter.diaplayTime(list.createDate)}}</view>
-          <view class="delete" data-id="{{list.id}}" catchtap="deleteItem">删除</view>
+          <view class="delete" data-id="{{list.id}}"  wx:if="{{userId==list.memberId}}" catchtap="deleteItem">删除</view>
           <view class="commen_f" bindtap="follow" data-id="{{list.id}}" data-type="2">
             <image src="../../image/forum/fabulous0.png"></image>{{list.praiseCount}}</view>
           <view class="commen_c"><image src="../../image/forum/comment.png"></image>{{list.commentCount}}</view>

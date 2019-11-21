@@ -26,16 +26,17 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      typeId: options.typeId
+      typeId: options.typeId,
+      userId: app.globalData.user.memberId
     })
-    this.recommendList('', this.data.pageNo,this.data.type)
+    // this.recommendList('', this.data.pageNo,this.data.type)
     
   },
   onShow:function(){
     this.setData({
       list:[]
     })
-    this.recommendList('', 1, this.data.type)
+    this.recommendList('',this.data.pageNo, this.data.type)
   },
   /**
    * 点击头部导航
