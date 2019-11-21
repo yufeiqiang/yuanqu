@@ -11,7 +11,7 @@ Page({
     list:null,
     isloading: true,
     ismore: false,
-    userId: app.globalData.user.memberId,
+    userId: '',
     commentList:null,
     pageNo: 1,
     id:'',
@@ -21,7 +21,7 @@ Page({
     commentConten:{
       type:1,
       infoId:'',
-      createBy:app.globalData.user.memberId,
+      createBy:'',
       comment:'',
       parentId:''
     }
@@ -31,7 +31,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      id: options.id
+      id: options.id,
+      'commentConten.createBy':app.globalData.user.memberId,
+      userId:app.globalData.user.memberId
     })
     this.recommendList();
     console.log(app.globalData.user)

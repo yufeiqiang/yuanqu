@@ -101,6 +101,7 @@ Page({
       //进入页面请求数据
       this.setData({
         'param.type':e.type,
+        'param.createBy': app.globalData.user.memberId,
         currentTab:e.type-1
       })
       this.requestList()
