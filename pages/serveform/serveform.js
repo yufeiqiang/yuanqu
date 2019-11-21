@@ -46,6 +46,9 @@ Page({
     this.setData({
       text:options.text,
       'formData.type': options.type,
+      'formData.createBy': app.globalData.user.memberId,
+      'formData.names':app.globalData.user.name,
+      'formData.telno': app.globalData.user.phone
     })
   },
   /**

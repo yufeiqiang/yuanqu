@@ -13,7 +13,9 @@ Page({
     }
   },
   onLoad: function (options) {
-
+    this.setData({
+      'param.createBy':app.globalData.user.memberId
+    })
   },
   /**
    * 点击取消按钮

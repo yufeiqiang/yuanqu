@@ -12,7 +12,7 @@ Page({
     list: [],
     isloading: true,
     ismore: false,
-    userId: app.globalData.user.memberId,
+    userId: '',
     showMemberId:''
   },
 

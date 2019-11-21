@@ -91,12 +91,8 @@ Page({
     request.postRequest('app/member/login', param).then(res=>{
      
       if(res.code == 200){
-        // console.log(1215)
-        // wx.switchTab({
-        //   url: '../index/index'
-        // })
         wx.setStorageSync('user', JSON.stringify(res.data))
-        console.log(res)
+        // console.log(res)
         app.getInfoData()
         wx.navigateBack({delta:1})
       }

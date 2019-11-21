@@ -11,7 +11,8 @@ Page({
   onLoad: function (e) {
     console.log(e)
     this.setData({
-      'param.id':e.id
+      'param.id':e.id,
+      'param.createBy': app.globalData.user.memberId
     })
     this.requestData()
   },
