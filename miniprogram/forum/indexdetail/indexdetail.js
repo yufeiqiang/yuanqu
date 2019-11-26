@@ -151,16 +151,33 @@ Page({
    *  提交评论信息
    */
   commentSub(){
+    let that = this
     if (this.data.commentConten.comment != ''){
-      request.postRequest('bbs/infocomment/bbsInfoComment/comment', this.data.commentConten).then(res => {
-        if(res.code==200){
-          this.commentData();
-          this.recommendList()
-           this.setData({
-            'commentConten.comment': ''
+      wx.cloud.callFunction({
+        name: 'checkContent', data: {
+          txt: that.data.commentConten.comment
+        }
+      }).then(res => {
+        // console.log(res)
+        if(res.result.errCode == 87014){
+          wx.showToast({
+            icon:'none',
+            title:'此内容涉嫌违规,发布失败!'
+          })
+        }else{
+          request.postRequest('bbs/infocomment/bbsInfoComment/comment', that.data.commentConten).then(res => {
+            if(res.code==200){
+              that.commentData();
+              that.recommendList()
+              that.setData({
+                'commentConten.comment': ''
+              })
+            }
           })
         }
+      
       })
+      
     }
   },
   /**

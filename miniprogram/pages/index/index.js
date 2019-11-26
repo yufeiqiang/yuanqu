@@ -30,6 +30,7 @@ Page({
   },
   onLoad: function () {
     this.init()
+    
   },
   /**
    * 点击轮播图

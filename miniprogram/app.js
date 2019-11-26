@@ -34,23 +34,11 @@ App({
     })
     // console.log()
     this.getInfoData()
+    // 初始化小程序云函数
     wx.cloud.init({
       traceUser:true
     })
-    wx.cloud.callFunction({
-      name: 'msgSecCheck', data: {
-        text: '特3456书yuuo莞6543李zxcz蒜7782法fgnv级完2347全dfji试3726测asad感3847知qwez到'  }
-    }).then(res => {
-      console.log(res)
-      if (res.result.code == "200") {   
-        console.log()
-      } else {  //执行不通过
-        // var v_content = res.result.msg;
-        // console.log(res)
-        // return wx.showModal({ title: "提示", content: v_content, showCancel: false, confirmText: "确定", });
-        //return false;
-      }
-    })
+    
   },
   getInfoData:function(){
     /**获取用登录信息 */

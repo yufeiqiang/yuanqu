@@ -1,5 +1,7 @@
 const app = getApp()
 const request = require("../../utils/request.js");
+const check =  require("../../utils/check.js")
+const upload= require("../../utils/upload.js")
 Page({
   data: {
     
@@ -26,7 +28,7 @@ Page({
       success:function(res){
         if(res.confirm){
           wx.navigateBack({
-            delta: 2
+            delta: 1
           })
         }
       }
@@ -36,17 +38,31 @@ Page({
    * 发布信息
    */
   releaseInfo(){
+    let that= this;
     if (this.data.param.content == ''){
       wx.showToast({
         title: '内容不能空信息'
       })
     }else{
-      let param = Object.assign({}, this.data.param)
-      param.pics = param.pics.join()
-      request.postRequest('bbs/info/bbsInfo/crud/save', param).then(res => {
-        if (res.code == 200) {
-          wx.redirectTo({
-            url: '../index/index',
+      wx.cloud.callFunction({
+        name: 'checkContent', data: {
+          txt: that.data.param.content
+        }
+      }).then(res => {
+        if(res.result.errCode == 87014){
+          wx.showToast({
+            icon:'none',
+            title:'此内容涉嫌违规,发布失败!'
+          })
+        }else{
+          let param = Object.assign({}, this.data.param)
+          param.pics = param.pics.join()
+          request.postRequest('bbs/info/bbsInfo/crud/save', param).then(res => {
+            if (res.code == 200) {
+              wx.redirectTo({
+                url: '../index/index',
+              })
+            }
           })
         }
       })
@@ -64,10 +80,10 @@ Page({
   /**
    * 点击上传图片
    */
-  chooseImg() {
+   chooseImg() {
     let that = this;
-    let len = this.data.param.pics;
-    if (len >= 9) {
+    let pics = this.data.param.pics;
+    if (pics >= 9) {
       this.setData({
         lenMore: 1
       })
@@ -76,55 +92,35 @@ Page({
     wx.chooseImage({
       sizeType: ['original', 'compressed'],
       success: (res) => {
-        let tempFilePaths = res.tempFilePaths
-        // console.log(res);
-        let pics = that.data.param.pics;
-        for (let i = 0; i < tempFilePaths.length; i++) {
-          // console.log(tempFilePaths[i])
-          if (pics.length < 9) {
-            wx.showLoading({
-              title: '上传中',
-            })
-            wx.uploadFile({
-              url: that.data.baseUrl +'/park_manage/api/sys/file/upload',
-              filePath:tempFilePaths[i],
-              name:'file',
-              header:'',
-              formData:{
-                accessToken: app.globalData.user.accessToken,
-                userId: app.globalData.user.memberId,
-                dfsType:'0'
-              },
-              success:function(e){
-                let data = JSON.parse(e.data)
-                if(e.statusCode == 200){
-                  if(data.code==200){
-                    pics.push(data.data.file_rsurl)
-                    that.setData({
-                      'param.pics':pics
-                    });
-                    wx.hideLoading()
-                  }
-                }
-                
-              }
-            })
-          } else {
-            that.setData({
-              'param.pics':pics
-            })
-            wx.showModal({
-              title: '提示',
-              content: '最多只能有九张图片'
-            })
-            return;
-          }
+        var tempFilesSize = res.tempFiles[0].size
+        let tempFilePaths = res.tempFilePaths;
+        if(tempFilesSize>1048576){
+          wx.showToast({
+            title:'上传图片不能大于1M!',  //标题
+            icon:'none'       //图标 none不使用图标，详情看官方文档
+          })
+          return
         }
-        that.setData({
-          'param.pics':pics
-        })
+        this.checkImgNuber(tempFilePaths)
       }
     })
+  },
+  /**
+   * 
+   * @param {*} imgList
+   * 遍历检测每一张图片，并且上传到服务器 
+   */
+  async checkImgNuber(imgList){
+    let picList=this.data.param.pics;
+    for (let i = 0; i < imgList.length; i++) {
+        let  resNumber =await check.imgCheck(imgList[i])
+        if(resNumber != 0) return;
+        let data =await upload.uploadImage(imgList[i])
+        picList.push(data)
+        this.setData({
+          'param.pics':picList
+        })
+    }
   },
   /**点击图片放大 */
   previewImg(e) {
