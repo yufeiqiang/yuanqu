@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "timePicker": "../../../components/timePicker/timePicker",
+        "mp-cell": "../../components/cell/cell",
+        "mp-cells": "../../components/cells/cells",
+        "mp-form": "../../components/form/form",
+        "computeds": "../../components/computeds/computeds"
+    }
+}

@@ -76,7 +76,15 @@ Component({
   ready: function() {
     let { id, title, price, unitname, depositTypeName, name, depositAmount, unit} = this.data.config;
     this.setData({
-      configInit:options
+      'formData.buildingReleaseId':id, 
+      title:title, 
+      'formData.price':price, 
+      'formData.unit': unit, 
+      'formData.memberId': app.globalData.user.memberId, 
+      unitname:unitname, 
+      depositTypeName:depositTypeName, 
+      'formData.depositAmount':depositAmount,
+      name: name
     })
   },
   methods:{

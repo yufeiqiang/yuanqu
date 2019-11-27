@@ -1,4 +1,3 @@
-
 <view class="{{isPickerShow==true?'tripList_root':''}}">
     <view class="huiyuan">{{name}}</view>
     <mp-form id="form" bindsubmit="" rules="{{rules}}" models="{{formData}}">
