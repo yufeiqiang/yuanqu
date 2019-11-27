@@ -124,11 +124,15 @@ Page({
   },
   /**点击图片放大 */
   previewImg(e) {
+    let that = this
     let index = e.currentTarget.dataset.index;
     let pics = this.data.param.pics;
+    let newpics=pics.map(function(item){
+      return that.data.baseUrl+item
+    })
     wx.previewImage({
-      current: pics[index],
-      urls: pics,
+      current:newpics[index],
+      urls:newpics,
     })
   },
   /**点击删除图片 */

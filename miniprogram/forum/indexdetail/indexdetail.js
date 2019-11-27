@@ -252,7 +252,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let pics = this.data.list.pics.split(',');
     let that= this
-    newpics=pics.map(function(item){
+    let newpics=pics.map(function(item){
       return that.data.baseUrl+item
     })
     wx.previewImage({

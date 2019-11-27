@@ -46,7 +46,7 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options)
-    console.log(app.globalData.user)
+    // console.log(app.globalData.user)
     let obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     this.setData({
       title: options.title,
@@ -103,14 +103,14 @@ Page({
   requestCompany() {
     let param = this.data.company;
     request.getRequest('ls', param, 2).then(res => {
-      var data = this.data.formData.companyList
-      for (item in res) {
+      let data = this.data.formData.companyList
+      for (let item in res) {
         var obj = {}
         obj.companyId = res[item].id;
         obj.name = res[item].name
         data.push(obj);
       }
-      console.log(data)
+      
       this.setData({
         'formData.companyList': data,
         'formData.companyId': this.data.formData.companyList[0].companyId,
